@@ -27,7 +27,7 @@ the net salary returned by a student will be the same as his/her gross salary.
     public Intern(String name, String ID, double gross_salary, int gpa) throws Exception {
         super(name, ID, gross_salary);
         this.gpa = gpa; //how can i set gpa to be between 0-10? bc it is not recommended to have conditionals in the constructor
-    }                   //can i do it in the setter method?
+    }
 
     public void setGpa(int gpa) {  //newGpa?
         this.gpa = gpa;          //=newGpa?
@@ -36,10 +36,10 @@ the net salary returned by a student will be the same as his/her gross salary.
     @Override
     public double calculateNetSalary(){     //definition
         if(this.gpa<=5){
-            this.gross_salary=0;
+            this.grossSalary=0;
         }
         else if(gpa<8){
-            this.gross_salary = super.grossSalary;
+            this.grossSalary = super.grossSalary;
         }
         else {
             this.grossSalary=super.grossSalary +1000;
