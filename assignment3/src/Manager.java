@@ -35,12 +35,11 @@ public class Manager extends Employee
             return newGrossSalary;
         }
 
-        //<degree> <name>’s gross salary is <gross_salary> SEK per month.
-        /*public String toString()
-        {
-            return this.DEGREE_TYPES + " "+ this.getName()+"'s gross salary is "+this.newGrossSalary+" SEK per month.";
-        }
+    }
 
-         */
+    //<degree> <name>’s gross salary is <gross_salary> SEK per month.
+    public String toString()
+    {
+        return this.DEGREE_TYPES + " "+ this.getName()+"'s gross salary is "+this.newGrossSalary+" SEK per month.";
     }
 }
