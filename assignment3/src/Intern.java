@@ -35,15 +35,16 @@ the net salary returned by a student will be the same as his/her gross salary.
 
     @Override
     public double calculateNetSalary() {     //definition
-        double newGrossSalary;
+
         if (this.gpa <= 5) {
-            newGrossSalary = 0;
+            netSalary = 0;
         } else if (gpa < 8) {
-            newGrossSalary = super.getGrossSalary();
+            netSalary = super.getGrossSalary();
         } else {
-            newGrossSalary = super.getGrossSalary() + 1000;
+            netSalary = super.getGrossSalary() + 1000;
         }
-        return newGrossSalary;
+        //netSalary=super.getGrossSalary;
+        return netSalary;
     }
 
     @Override
