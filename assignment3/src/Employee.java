@@ -1,6 +1,6 @@
 public class Employee
 {
-    private final String employeeID;
+    private final String EMPLOYEE_ID;
     private String name;
     private double grossSalary;
     double netSalary;
@@ -9,12 +9,12 @@ public class Employee
 
     Employee(String id, String name, double grossSalary)
     {
-        this.employeeID =id;
+        this.EMPLOYEE_ID =id;
         this.name=name;
         this.grossSalary=grossSalary;
     }
 
-    public String getID() { return employeeID; }
+    public String getID() { return EMPLOYEE_ID; }
 
     public String getName() { return name; }
 
@@ -59,7 +59,7 @@ public class Employee
             return false;
         }
         if (anotherObject instanceof Employee otherEmployee) {
-            boolean sameID = this.employeeID.equals(otherEmployee.getID());
+            boolean sameID = this.EMPLOYEE_ID.equals(otherEmployee.getID());
             return sameID;
         }
         else { return false; }
