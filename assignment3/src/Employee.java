@@ -28,7 +28,6 @@ public class Employee
         this.grossSalary = newGrossSalary;
     }
 
-
     //netSalary = grossSalary - (grossSalary * 0.1)
     public double calculateNetSalary(){
         netSalary = this.grossSalary - (this.grossSalary*0.1);
