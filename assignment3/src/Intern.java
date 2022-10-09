@@ -34,20 +34,20 @@ the net salary returned by a student will be the same as his/her gross salary.
     }
 
     @Override
-    public double calculateNetSalary(){     //definition
-        if(this.gpa<=5){
-            this.grossSalary=0;
+    public double calculateNetSalary() {     //definition
+        double newGrossSalary;
+        if (this.gpa <= 5) {
+            newGrossSalary = 0;
+        } else if (gpa < 8) {
+            newGrossSalary = super.getGrossSalary();
+        } else {
+            newGrossSalary = super.getGrossSalary() + 1000;
         }
-        else if(gpa<8){
-            this.grossSalary = super.grossSalary;
-        }
-        else {
-            this.grossSalary=super.grossSalary +1000;
-        }
+        return newGrossSalary;
     }
 
     @Override
     public String toString() {
-        return name + "'s gross salary is " + this.calculateNetSalary() + "SEK per month. GPA: "+ this.gpa;
+        return this.getName() + "'s gross salary is " + this.calculateNetSalary() + "SEK per month. GPA: "+ this.gpa;
     }
 }
