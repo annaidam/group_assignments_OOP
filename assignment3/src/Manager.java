@@ -13,7 +13,7 @@ public class Manager extends Employee
     @Override
     public double calculateNetSalary()
     {
-        double bonus =0.0;
+        double bonus = 0.0;
         if (DEGREE_TYPES.equals("Bsc"))
         {
             //double regularSalary = super.salary or super.calculateSalary();
