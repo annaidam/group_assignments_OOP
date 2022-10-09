@@ -8,10 +8,7 @@ public enum Degrees {
         this.DEGREE_TYPES = degree;
     }
 
-    public String toString() {
-        return this.DEGREE_TYPES;
-    }
-
+    public String toString() { return this.DEGREE_TYPES; }
 }
 
 
