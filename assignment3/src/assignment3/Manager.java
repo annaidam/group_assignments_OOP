@@ -4,7 +4,7 @@ import assignment3.Employee;
 
 public class Manager extends Employee
 {
-    private final String DEGREE_TYPES;
+    private String DEGREE_TYPES;
     double newGrossSalary;
 
     public Manager (String id, String name, double grossSalary, String DEGREE_TYPES, double newGrossSalary)
@@ -19,6 +19,8 @@ public class Manager extends Employee
         return DEGREE_TYPES;
     }
 
+    public void setDEGREE_TYPES(String DEGREE_TYPES) { this.DEGREE_TYPES = DEGREE_TYPES;}
+
     public double getDegreeBonus() {
         double bonus = 0.0;
         if (DEGREE_TYPES.equals("Bsc")) {
@@ -31,6 +33,7 @@ public class Manager extends Employee
         return bonus;
     }
 
+    @Override
     public double calculateNetSalary() {
         newGrossSalary = this.getDegreeBonus() + this.getGrossSalary();
         return newGrossSalary;
@@ -68,4 +71,5 @@ public class Manager extends Employee
     {
         return this.DEGREE_TYPES + " "+ this.getName()+"'s gross salary is "+this.newGrossSalary+" SEK per month.";
     }
+
 }
