@@ -13,7 +13,7 @@ public class Intern extends Employee {
     }
 
     @Override
-    public double calculateNetSalary() {     //definition
+    public double calculateNetSalary() {
 
         double internGrossSalary;
         if (this.GPA <= 5) {
