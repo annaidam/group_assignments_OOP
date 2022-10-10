@@ -22,10 +22,16 @@ public class Company {
         return null;
     }
 
-    /*
     //Your system should print the sum of all net salaries for all employees. Similarly to all
     //salaries, the system should truncate the result of this operation in two decimal values.
     public double retrieveExpenses() {
+        double expenses = 0.0;
+        if (!this.listOfEmployees.isEmpty()) {
+            for (Employee currentEmployee : listOfEmployees) {
+                expenses = currentEmployee.calculateNetSalary() + expenses;
+            }
+        }
+        return expenses;
     }
 
     //Your system should print a list of employees in ascending order based on their gross
@@ -39,15 +45,32 @@ public class Company {
     public double retrieveSortedEmployees() {
     }
 
-    public double updateEmployeeName(String id, String newName) {
+    public String updateEmployeeName(String id, String newName) {
+        for (int i = 0; i < listOfEmployees.size(); i++) {
+            Employee currentEmployee = listOfEmployees.get(i);
+            if (id.equals(currentEmployee.getID())) {
+                newName = currentEmployee.getName();
+                return newName;
+            }
+        }
+        return null;
     }
 
-    public double updateInternGPA() {
+    //how to get the gpa here to update it?
+    public double updateInternGPA(String id, int newGPA) {
+        for (int i = 0; i < listOfEmployees.size(); i++) {
+            Employee currentEmployee = listOfEmployees.get(i);
+            if (id.equals(currentEmployee.getID())) {
+                newGPA = currentEmployee.getGpa();
+            }
+        }
+        return newGPA;
     }
 
-    public String toString() {
-    }
-     */
+    /*
+    public String toString(String id) {
+
+    }*/
 
     /*
     + removeEmployee(String id) : String –IM
