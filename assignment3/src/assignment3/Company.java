@@ -20,22 +20,27 @@ public class Company {
     public String createEmployee(String id, String name, double grossSalary) { //i think we need to add GPA here too, and degree and dept
         Employee employee = new Employee(id, name, grossSalary);
         this.listOfEmployees.add(employee);
-        if(findEmployee(id) instanceof Manager)
-        {
-            Employee employee = new Manager(id, name, grossSalary, DEGREE_TYPES);
-            this.listOfEmployees.add(employee);
-        }
-        if(findEmployee(id) instanceof Intern)
-        {
-            employee = new Intern (id, name, grossSalary, GPA);
-            this.listOfEmployees.add(employee);
-        }
-        if(findEmployee(id) instanceof Director)
-        {
-            employee = new Director (id, name, grossSalary, DEGREE_TYPES, department);
-        }
         return "Employee "+employee.getID()+ " was registered successfully.";
     }
+    public String createManager(String id, String name, double grossSalary, String DEGREE_TYPES) {
+        Employee employee = new Manager(id, name, grossSalary, DEGREE_TYPES);
+        this.listOfEmployees.add(employee);
+        return "Employee "+employee.getID()+ " was registered successfully.";
+    }
+
+    public String createIntern(String id, String name, double grossSalary, int GPA) {
+
+        Employee employee = new Intern(id, name, grossSalary, GPA);
+        this.listOfEmployees.add(employee);
+        return "Employee "+employee.getID()+ " was registered successfully.";
+    }
+    public String createDirector(String id, String name, double grossSalary, String DEGREE_TYPES, String department){
+            Employee employee = new Director (id, name, grossSalary, DEGREE_TYPES, department);
+        this.listOfEmployees.add(employee);
+        return "Employee "+employee.getID()+ " was registered successfully.";
+        }
+
+
 
     public Employee findEmployee(String id) {
         for (Employee currentEmployee : listOfEmployees) {
@@ -46,6 +51,14 @@ public class Company {
         return null;
     }
 
+    /*if(findEmployee(id) instanceof Manager)
+        {
+            Employee employee = new Manager(id, name, grossSalary, DEGREE_TYPES);
+            this.listOfEmployees.add(employee);
+            return "Employee "+employee.getID()+ " was registered successfully.";
+        }
+
+     */
     //Your system should print the sum of all net salaries for all employees. Similarly to all
     //salaries, the system should truncate the result of this operation in two decimal values.
     //TRUNCATE!

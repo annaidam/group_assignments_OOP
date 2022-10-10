@@ -5,7 +5,8 @@ import assignment3.Employee;
 public class Intern extends Employee {
     private int GPA;
 
-    public Intern(String name, String ID, double gross_salary, int GPA) throws Exception {
+    public Intern(String name, String ID, double gross_salary, int GPA) //throws Exception
+     {
         super(name, ID, gross_salary);
         this.GPA = GPA;
     }

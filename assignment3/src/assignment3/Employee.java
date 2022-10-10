@@ -11,11 +11,10 @@ public class Employee {
     double truncatedSalary;
     double newGrossSalary;
 
-    Employee(String id, String name, double grossSalary) {
+    Employee(String id, String name, double grossSalary) { //should newGrossSalary be here?
         this.EMPLOYEE_ID = id;
         this.name = name;
         this.grossSalary = grossSalary;
-
     }
 
     public String getID() {
@@ -45,8 +44,11 @@ public class Employee {
     }
 
     //double temporaryNew = Math.floor(netSalary*100)/100.0;   589.987
+    public double truncateSalary(double salary){
+        return Math.floor(salary*Math.pow(10,2)/Math.pow(10,2));
+    }
 
-    public double truncateSalary(double salary) {
+    /*public double truncateSalary(double salary) {
         double temporary1 = salary * 100;
         double temporary2 = (int) temporary1;
         truncatedSalary = temporary2 / 100.0;
@@ -72,7 +74,7 @@ public class Employee {
     */
     //<name>’s gross salary is <gross_salary> SEK per month.
     public String toString() {
-        return this.name + "'s gross salary is " + String. format("%.2f",this.grossSalary) + " SEK per month.";
+        return this.name + "'s gross salary is " + String.format("%.2f", this.truncateSalary(grossSalary)) + " SEK per month.";
     }
 
     public boolean equals(Object anotherObject) {

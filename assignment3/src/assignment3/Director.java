@@ -4,8 +4,8 @@ public class Director extends Manager {
 
     private String department;
 
-    public Director (String id, String name, double grossSalary, String DEGREE_TYPES, double newGrossSalary, String department) {
-        super (id, name, grossSalary, DEGREE_TYPES, newGrossSalary);
+    public Director (String id, String name, double grossSalary, String DEGREE_TYPES, String department) {
+        super (id, name, grossSalary, DEGREE_TYPES); //newGrossSalary?
         this.department = department;
     }
 
