@@ -138,6 +138,7 @@ public class Company {
 
         for (Employee employee : listOfEmployees) {
             allEmployees = allEmployees + employee.toString() + END_OF_LINE;
+            //or instance of director, manager, intern
         }
         return allEmployees;
     }
