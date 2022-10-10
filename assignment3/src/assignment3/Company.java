@@ -84,7 +84,7 @@ public class Company {
         return null;
     }
 
-    public String updateManagerDegree(String id, String newDegree)
+   /* public String updateManagerDegree(String id, String newDegree)
     {
         for (int i=0; i<listOfEmployees.size();i++)
         {
@@ -99,6 +99,17 @@ public class Company {
             }
         }
         return null;
+    }
+
+    */
+    public String updateManagerDegree(String id, String newDegree) {
+        if(findEmployee(id) instanceof Manager) {
+            ((Manager) findEmployee(id)).setDEGREE_TYPES(newDegree);
+            return "Employee "+ id + "was updated successfully";
+        }
+        else {
+            return null;
+        }
     }
 
     /*
