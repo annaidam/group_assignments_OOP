@@ -15,15 +15,17 @@ public class Intern extends Employee {
     @Override
     public double calculateNetSalary() {     //definition
 
+        double internGrossSalary;
         if (this.GPA <= 5) {
-            netSalary = 0;
+            internGrossSalary = 0;
         } else if (GPA < 8) {
-            netSalary = super.getGrossSalary();
+            internGrossSalary = super.getGrossSalary();
         } else {
-            netSalary = super.getGrossSalary() + 1000;
+            internGrossSalary = super.getGrossSalary() + 1000;
         }
+        netSalary=internGrossSalary;
         //netSalary=super.getGrossSalary; the net salary returned by a student will be the same as his/her gross salary.
-        return netSalary;
+        return internGrossSalary;
     }
 
     @Override
