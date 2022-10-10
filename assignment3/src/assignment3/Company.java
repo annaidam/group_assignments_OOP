@@ -55,3 +55,13 @@ public class Company
     }
      */
 }
+/*
++ removeEmployee(String id) : String –IM
++ retrieveEmployee() : String –IM : printEmployee and printAllEmployees
++ updateGrossSalary(String id, double newGrossSalary) –IM
++ updateDirectorDegree(String id, String newDegree) –IM
++ updateDirectorDept(String id, String newDept) –IM
+ */
+public removeEmployee(String empID){
+
+}
