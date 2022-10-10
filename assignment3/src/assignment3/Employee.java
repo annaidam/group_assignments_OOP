@@ -1,4 +1,8 @@
 package assignment3;
+
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class Employee {
     private final String EMPLOYEE_ID;
     private String name;
@@ -41,12 +45,25 @@ public class Employee {
     }
 
     //double temporaryNew = Math.floor(netSalary*100)/100.0;   589.987
+
     public double truncateSalary(double salary) {
         double temporary1 = salary * 100;
         double temporary2 = (int) temporary1;
         truncatedSalary = temporary2 / 100.0;
         return truncatedSalary;
+
     }
+
+    /*
+    public double truncateSalary(double salary){
+        DecimalFormat df = new DecimalFormat("#.##");
+
+        df.setRoundingMode(RoundingMode.FLOOR);
+
+        double truncatedSalary = Double.parseDouble(df.format(salary));
+        return truncatedSalary;
+    }
+*/
     /*
     public String truncateGrossSalary() {
         String truncatedGrossSalary = String.format("%.2f", Math.floor((Math.pow(10,2) * this.getGrossSalary())) / Math.pow(10,2));
