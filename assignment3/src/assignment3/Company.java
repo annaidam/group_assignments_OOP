@@ -150,8 +150,11 @@ public class Company {
    }
 
    public String updateDirectorDept(String id, String newDept){
-
-
+       if (findEmployee(id) instanceof Director) {
+           ((Director)findEmployee(id)).setDepartment(newDept);
+           return "Employee " + id + " was updated successfully";
+       }
+       return null;
    }
 
 
