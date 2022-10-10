@@ -15,7 +15,24 @@ public class Manager extends Employee
         return DEGREE_TYPES;
     }
 
-    @Override
+    public double getDegreeBonus() {
+        double bonus = 0.0;
+        if (DEGREE_TYPES.equals("Bsc")) {
+            bonus = 0.1 * super.getGrossSalary();
+        } else if (DEGREE_TYPES.equals("Msc")) {
+            bonus = 0.2 * super.getGrossSalary();
+        } else if (DEGREE_TYPES.equals("PhD")) {
+            bonus = 0.35 * super.getGrossSalary();
+        }
+        return bonus;
+    }
+
+    public double calculateNetSalary() {
+        newGrossSalary = this.getDegreeBonus() + this.getGrossSalary();
+        return newGrossSalary;
+    }
+
+    /*@Override
     public double calculateNetSalary()
     {
         double bonus = 0.0;
@@ -40,7 +57,7 @@ public class Manager extends Employee
             return newGrossSalary;
         }
 
-    }
+    }*/
 
     //<degree> <name>’s gross salary is <gross_salary> SEK per month.
     public String toString()
