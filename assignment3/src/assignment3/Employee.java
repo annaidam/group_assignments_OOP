@@ -47,7 +47,12 @@ public class Employee {
         truncatedSalary = temporary2 / 100.0;
         return truncatedSalary;
     }
-
+    /*
+    public String truncateGrossSalary() {
+        String truncatedGrossSalary = String.format("%.2f", Math.floor((Math.pow(10,2) * this.getGrossSalary())) / Math.pow(10,2));
+        return truncatedGrossSalary;
+    }
+    */
     //<name>’s gross salary is <gross_salary> SEK per month.
     public String toString() {
         return this.name + "'s gross salary is " + String. format("%.2f",this.grossSalary) + " SEK per month.";
