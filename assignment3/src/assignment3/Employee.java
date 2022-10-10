@@ -60,7 +60,7 @@ public class Employee
 
     //<name>’s gross salary is <gross_salary> SEK per month.
     public String toString() {
-        return this.name+"s gross salary is "+this.grossSalary+" SEK per month.";
+        return this.name+"'s gross salary is "+this.grossSalary+" SEK per month.";
     }
 
 }
