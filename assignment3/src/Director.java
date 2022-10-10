@@ -26,6 +26,6 @@ public class Director extends Manager {
     }
 
     public String toString() {
-        return (super.getDegree() + " " + super.getName() + "'s gross salary is " + super.getGrossSalary() + " SEK per month. Dept: " + this.getDepartment());
+        return (super.getDEGREE_TYPES() + " " + super.getName() + "'s gross salary is " + super.getGrossSalary() + " SEK per month. Dept: " + this.getDepartment());
     }
 }
