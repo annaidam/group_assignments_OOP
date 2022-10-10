@@ -102,28 +102,29 @@ public class Company {
         }
         return null;
     }
-}
 
-    /*public String toString() {
+    public String printAllEmployees() {
+        //I want to print all employees to see an overview of all employees’ information.
+        //
+        //In this user story, you should create a string with one employee per line, following the template below.
+        // You should replace the <employee_string> to the specific string for each type of employee specified above
         final String END_OF_LINE = System.lineSeparator(); // "\n"
-        String companyStr = "";
+        String allEmployees = "";
 
-        for(Employee employee : employees) {
-            companyStr = companyStr + employee.toString()  + END_OF_LINE;
+        for (Employee employee : listOfEmployees) {
+            allEmployees = allEmployees + employee.toString() + END_OF_LINE;
         }
-
-        return companyStr;
-    }
-
-
-    public String printAllEmployees(){
-
+        return allEmployees;
     }
 
     //we need a method get net salary; we search employeeID in the list and return net salary
     public double getNetSalary(String employeeID) {
+        for (int i = 0; i < listOfEmployees.size(); i++) {
+            Employee currentEmployee = listOfEmployees.get(i);
+            if (employeeID.equals(currentEmployee.getID())) {
+                return currentEmployee.calculateNetSalary();
+            }
+        }
+        return 0;
     }
-
 }
-
-     */
