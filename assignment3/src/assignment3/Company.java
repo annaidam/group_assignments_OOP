@@ -32,7 +32,7 @@ public class Company {
         }
         if(findEmployee(id) instanceof Director)
         {
-            employee = new Director (id, name, grossSalary, DEGREE_TYPES, department)
+            employee = new Director (id, name, grossSalary, DEGREE_TYPES, department);
         }
         return "Employee "+employee.getID()+ " was registered successfully.";
     }
