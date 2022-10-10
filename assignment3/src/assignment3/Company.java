@@ -84,6 +84,23 @@ public class Company {
         return null;
     }
 
+    public String updateManagerDegree(String id, String newDegree)
+    {
+        for (int i=0; i<listOfEmployees.size();i++)
+        {
+            Employee currentEmployee = listOfEmployees.get(i);
+            if(id.equals(currentEmployee.getID()))
+            {
+                if(currentEmployee instanceof Manager)
+                {
+                    ((Manager) currentEmployee).setDEGREE_TYPES(newDegree);
+                    return "Employee "+ id + "was updated successfully";
+                }
+            }
+        }
+        return null;
+    }
+
     /*
     + removeEmployee(String id) : String –IM
     + retrieveEmployee() : String –IM : printEmployee and printAllEmployees
