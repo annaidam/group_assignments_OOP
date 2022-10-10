@@ -6,12 +6,12 @@ public class Employee
     private double grossSalary;
     double netSalary;
     double truncatedSalary;
+    double newGrossSalary;
 
-    Employee(String id, String name, double grossSalary)
-    {
-        this.EMPLOYEE_ID =id;
+    Employee(String id, String name, double grossSalary) {
+        this.EMPLOYEE_ID = id;
         this.name = name;
-        this.grossSalary=grossSalary;
+        this.grossSalary = grossSalary;
 
     }
 
@@ -19,11 +19,11 @@ public class Employee
 
     public String getName() { return name; }
 
-    public double getGrossSalary() { return grossSalary; }
-
     public void setName(String newName) {
         this.name = newName;
     }
+
+    public double getGrossSalary() { return grossSalary; }
 
     public void setGrossSalary (double newGrossSalary) {
         newGrossSalary = truncateSalary(grossSalary);
@@ -43,6 +43,10 @@ public class Employee
         return truncatedSalary;
     }
 
+    public double getNewGrossSalary(){
+        return newGrossSalary;
+    }
+
     public boolean equals (Object anotherObject) {
         if (anotherObject == this) {
             return true;
@@ -60,7 +64,7 @@ public class Employee
 
     //<name>’s gross salary is <gross_salary> SEK per month.
     public String toString() {
-        return this.name+"'s gross salary is "+this.calculateNetSalary()+" SEK per month.";
+        return this.name+"'s gross salary is "+ this.setGrossSalary(this.grossSalary)+" SEK per month.";
     }
 
 }
