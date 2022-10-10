@@ -39,7 +39,7 @@ public class Employee
     {
         double temporary1 = salary*100;
         double temporary2 = (int)temporary1;
-        truncatedSalary = temporary2/100.0;
+        truncatedSalary = temporary2/100.00;
         return truncatedSalary;
     }
 
