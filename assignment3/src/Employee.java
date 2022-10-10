@@ -4,8 +4,7 @@ public class Employee
     private String name;
     private double grossSalary;
     double netSalary;
-    double truncatedNetSalary;
-    double truncatedGrossSalary;
+    double truncatedSalary;
 
     Employee(String id, String name, double grossSalary)
     {
@@ -31,23 +30,15 @@ public class Employee
     //netSalary = grossSalary - (grossSalary * 0.1)
     public double calculateNetSalary(){
         netSalary = this.grossSalary - (this.grossSalary*0.1);
-        return this.truncatedNetSalary;
+        return this.truncateSalary(netSalary);
     }
 
-    public double truncateGrossSalary(double grossSalary){
-
-        double temporary1 = this.grossSalary*100;
+    public double truncateSalary(double salary)
+    {
+        double temporary1 = salary*100;
         double temporary2 = (int)temporary1;
-        truncatedGrossSalary = temporary2/100.0;
-        return truncatedGrossSalary;
-    }
-
-    public double truncateNetSalary(){
-
-        double temporary1 = this.netSalary*100;
-        double temporary2 = (int)temporary1;
-        truncatedNetSalary = temporary2/100.0;
-        return truncatedNetSalary;
+        truncatedSalary = temporary2/100.0;
+        return truncatedSalary;
     }
 
     public boolean equals (Object anotherObject) {
