@@ -24,6 +24,7 @@ public class Company {
 
     //Your system should print the sum of all net salaries for all employees. Similarly to all
     //salaries, the system should truncate the result of this operation in two decimal values.
+    //TRUNCATE!
     public double retrieveExpenses() {
         double expenses = 0.0;
         if (!this.listOfEmployees.isEmpty()) {
@@ -42,35 +43,32 @@ public class Company {
     //<employee_string>
     //<employee_string>
     //<employee_string>
-    public double retrieveSortedEmployees() {
-    }
+    /*public double retrieveSortedEmployees() {
+    }*/
 
     public String updateEmployeeName(String id, String newName) {
         for (int i = 0; i < listOfEmployees.size(); i++) {
             Employee currentEmployee = listOfEmployees.get(i);
             if (id.equals(currentEmployee.getID())) {
-                newName = currentEmployee.getName();
-                return newName;
+                currentEmployee.setName(newName);
+                return "Employee " + id + " was updated successfully";
             }
         }
         return null;
     }
 
-    //how to get the gpa here to update it?
-    public double updateInternGPA(String id, int newGPA) {
+    public String updateInternGPA(String id, int newGPA) {
         for (int i = 0; i < listOfEmployees.size(); i++) {
             Employee currentEmployee = listOfEmployees.get(i);
             if (id.equals(currentEmployee.getID())) {
-                newGPA = currentEmployee.getGpa();
+                if (currentEmployee instanceof Intern) {
+                    ((Intern) currentEmployee).setGpa(newGPA);
+                    return "Employee " + id + " was updated successfully";
+                }
             }
         }
-        return newGPA;
+        return null;
     }
-
-    /*
-    public String toString(String id) {
-
-    }*/
 
     /*
     + removeEmployee(String id) : String –IM
@@ -127,4 +125,9 @@ public class Company {
         }
         return 0;
     }
+
+    /* AM:
+    public String toString(String id) {
+
+    }*/
 }
