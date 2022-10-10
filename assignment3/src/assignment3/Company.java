@@ -48,6 +48,7 @@ public class Company {
     public String retrieveSortedEmployees() {
         for (int i = 0; i < listOfEmployees.size(); i++) {
             for (int j = listOfEmployees.size() - 1; j < i; j--) {
+                //how to access the gross salary AFTER any bonuses?
                 if (listOfEmployees.get(i).getGrossSalary() > listOfEmployees.get(j).getGrossSalary()) {
                     Employee temp = listOfEmployees.get(i);
                     listOfEmployees.set(i, listOfEmployees.get(i));
