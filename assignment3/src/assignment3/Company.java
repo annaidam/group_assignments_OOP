@@ -14,8 +14,7 @@ public class Company {
     }
 
     public Employee findEmployee(String id) {
-        for (int i = 0; i < listOfEmployees.size(); i++) {
-            Employee currentEmployee = listOfEmployees.get(i);
+        for (Employee currentEmployee : listOfEmployees) {
             if (id.equals(currentEmployee.getID())) {
                 return currentEmployee;
             }
