@@ -66,12 +66,32 @@ public class Company {
         return "Employee" + empID + " was successfully removed.";
     }
 
-    public String printEmployee(String employeeID){
+    public String printEmployee(String employeeID) {
         //To retrieve a string of an employee,
         // The customer then needs to specify the ID of the employee that it wants to get the string from.
         // The program should then retrieve the employee as specified in their respective description
         // (User Stories 1.2 and 1.3).
+        for (int i = 0; i < listOfEmployees.size(); i++) {
+            Employee currentEmployee = listOfEmployees.get(i);
+            if (employeeID.equals(currentEmployee.getID())) {
+                return currentEmployee.toString();
+            }
+        }
+        return null;
     }
+}
+
+    /*public String toString() {
+        final String END_OF_LINE = System.lineSeparator(); // "\n"
+        String companyStr = "";
+
+        for(Employee employee : employees) {
+            companyStr = companyStr + employee.toString()  + END_OF_LINE;
+        }
+
+        return companyStr;
+    }
+
 
     public String printAllEmployees(){
 
@@ -82,3 +102,5 @@ public class Company {
     }
 
 }
+
+     */
