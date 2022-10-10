@@ -10,19 +10,24 @@ public class Director extends Manager {
     }
 
     public String getDepartment() {return this.department;}
+    public String setDepartment(String newDept) {return newDept;}
 
-    public double calculateNetSalary() {
+    public double getDirectorGrossSalary() {
         final double ADDITIONAL_SALARY = 5000;
         double directorGrossSalary = super.getGrossSalary() + super.getDegreeBonus() + ADDITIONAL_SALARY;
+        return directorGrossSalary;
+    }
+
+    public double calculateNetSalary() {
         double netSalary;
         netSalary = 0.0;
-        if (directorGrossSalary < 30000) {
-            netSalary = directorGrossSalary - (directorGrossSalary * 0.1);
-        } else if (directorGrossSalary >= 30000 && directorGrossSalary <= 50000) {
-            netSalary = directorGrossSalary - (directorGrossSalary * 0.2);
-        } else if (directorGrossSalary > 50000) {
-            double salaryLeft = directorGrossSalary - 30000;
-            netSalary = directorGrossSalary - ((salaryLeft * 0.4) + (30000 * 0.2));
+        if (getDirectorGrossSalary() < 30000) {
+            netSalary = getDirectorGrossSalary() - (getDirectorGrossSalary() * 0.1);
+        } else if (getDirectorGrossSalary() >= 30000 && getDirectorGrossSalary() <= 50000) {
+            netSalary = getDirectorGrossSalary() - (getDirectorGrossSalary() * 0.2);
+        } else if (getDirectorGrossSalary() > 50000) {
+            double salaryLeft = getDirectorGrossSalary() - 30000;
+            netSalary = getDirectorGrossSalary() - ((salaryLeft * 0.4) + (30000 * 0.2));
         }
         return netSalary;
     }

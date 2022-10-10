@@ -127,7 +127,7 @@ public class Company {
     }
 
     /* AM:
-    public String toString(String id) {
+    public String toString() {
 
     }*/
 }
