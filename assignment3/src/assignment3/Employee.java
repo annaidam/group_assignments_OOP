@@ -73,7 +73,6 @@ public class Employee {
     //<name>’s gross salary is <gross_salary> SEK per month.
     public String toString() {
         return this.name + "'s gross salary is " + String. format("%.2f",this.grossSalary) + " SEK per month.";
-
     }
 
     public boolean equals(Object anotherObject) {

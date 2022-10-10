@@ -7,11 +7,10 @@ public class Manager extends Employee
     private String DEGREE_TYPES;
     double newGrossSalary;
 
-    public Manager (String id, String name, double grossSalary, String DEGREE_TYPES, double newGrossSalary)
+    public Manager (String id, String name, double grossSalary, String DEGREE_TYPES) //newGrossSalary
     {
         super (id,name,grossSalary);
         this.DEGREE_TYPES = DEGREE_TYPES;
-        this.newGrossSalary = newGrossSalary;
     }
 
     public String getDEGREE_TYPES()
