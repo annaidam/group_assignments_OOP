@@ -27,4 +27,31 @@ public class Company
         }
         return null;
     }
+
+    /*
+    //Your system should print the sum of all net salaries for all employees. Similarly to all
+    //salaries, the system should truncate the result of this operation in two decimal values.
+    public double retrieveExpenses() {
+    }
+
+    //Your system should print a list of employees in ascending order based on their gross
+    //salary. Note that this should be sorted based on the value of the gross salary after any
+    //bonuses. The list should follow the template below:
+    //Employees sorted by gross salary (ascending order):
+    //<employee_string>
+    //<employee_string>
+    //<employee_string>
+    //<employee_string>
+    public double retrieveSortedEmployees() {
+    }
+
+    public double updateEmployeeName(String id, String newName) {
+    }
+
+    public double updateInternGPA() {
+    }
+
+    public String toString() {
+    }
+     */
 }
