@@ -1,4 +1,4 @@
-package Tests;
+package employeetests;
 
 import assignment3.Company;
 import org.junit.jupiter.api.BeforeAll;
