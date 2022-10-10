@@ -78,8 +78,7 @@ public class Company {
     + updateDirectorDept(String id, String newDept) –IM
      */
     public String removeEmployee(String empID) {
-        for (int i = 0; i < listOfEmployees.size(); i++) {
-            Employee currentEmployee = listOfEmployees.get(i);
+        for (Employee currentEmployee : listOfEmployees) {
             if (empID.equals(currentEmployee.getID())) {
                 this.listOfEmployees.remove(currentEmployee);
             }
@@ -92,8 +91,7 @@ public class Company {
         // The customer then needs to specify the ID of the employee that it wants to get the string from.
         // The program should then retrieve the employee as specified in their respective description
         // (User Stories 1.2 and 1.3).
-        for (int i = 0; i < listOfEmployees.size(); i++) {
-            Employee currentEmployee = listOfEmployees.get(i);
+        for (Employee currentEmployee : listOfEmployees) {
             if (employeeID.equals(currentEmployee.getID())) {
                 return currentEmployee.toString();
             }
@@ -117,8 +115,7 @@ public class Company {
 
     //we need a method get net salary; we search employeeID in the list and return net salary
     public double getNetSalary(String employeeID) {
-        for (int i = 0; i < listOfEmployees.size(); i++) {
-            Employee currentEmployee = listOfEmployees.get(i);
+        for (Employee currentEmployee : listOfEmployees) {
             if (employeeID.equals(currentEmployee.getID())) {
                 return currentEmployee.calculateNetSalary();
             }
