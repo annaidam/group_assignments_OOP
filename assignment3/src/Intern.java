@@ -22,7 +22,7 @@ public class Intern extends Employee {
         } else {
             netSalary = super.getGrossSalary() + 1000;
         }
-        //netSalary=super.getGrossSalary;
+        //netSalary=super.getGrossSalary; the net salary returned by a student will be the same as his/her gross salary.
         return netSalary;
     }
 
