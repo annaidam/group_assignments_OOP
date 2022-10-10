@@ -136,6 +136,19 @@ public class Company {
                 return findEmployee(employeeID).calculateNetSalary();
     }
 
+   public String updateGrossSalary(String id, double newGrossSalary){
+       findEmployee(id).setGrossSalary(newGrossSalary);
+       return "Employee " + id + " was updated successfully";
+   }
+
+   public String updateDirectorDegree(String id, String newDegree){
+       findEmployee(id).setDEGREE_TYPES(newDegree);
+       return "Employee " + id + " was updated successfully";
+   }
+
+  // public String updateDirectorDept(String id, String newDept)
+
+
     /* AM:
     public String toString() {
 
