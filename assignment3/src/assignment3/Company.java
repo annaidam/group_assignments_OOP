@@ -1,27 +1,21 @@
 package assignment3;
 import java.util.ArrayList;
-public class Company
-{
+public class Company {
     private ArrayList<Employee> listOfEmployees;
 
-    public Company ()
-    {
-        this.listOfEmployees= new ArrayList<>();
+    public Company() {
+        this.listOfEmployees = new ArrayList<>();
     }
 
-    public void registerEmployee (String id, String name, double grossSalary)
-    {
-        Employee employee = new Employee (id, name, grossSalary);
+    public void createEmployee(String id, String name, double grossSalary) { //i think we need to add GPA here too, and degree and dept
+        Employee employee = new Employee(id, name, grossSalary);
         this.listOfEmployees.add(employee);
     }
 
-    public Employee findEmployee (String id)
-    {
-        for (int i=0; i<listOfEmployees.size(); i++)
-        {
+    public Employee findEmployee(String id) {
+        for (int i = 0; i < listOfEmployees.size(); i++) {
             Employee currentEmployee = listOfEmployees.get(i);
-            if(id.equals(currentEmployee.getID()))
-            {
+            if (id.equals(currentEmployee.getID())) {
                 return currentEmployee;
             }
         }
@@ -54,14 +48,37 @@ public class Company
     public String toString() {
     }
      */
-}
-/*
-+ removeEmployee(String id) : String –IM
-+ retrieveEmployee() : String –IM : printEmployee and printAllEmployees
-+ updateGrossSalary(String id, double newGrossSalary) –IM
-+ updateDirectorDegree(String id, String newDegree) –IM
-+ updateDirectorDept(String id, String newDept) –IM
- */
-public removeEmployee(String empID){
+
+    /*
+    + removeEmployee(String id) : String –IM
+    + retrieveEmployee() : String –IM : printEmployee and printAllEmployees
+    + updateGrossSalary(String id, double newGrossSalary) –IM
+    + updateDirectorDegree(String id, String newDegree) –IM
+    + updateDirectorDept(String id, String newDept) –IM
+     */
+    public String removeEmployee(String empID) {
+        for (int i = 0; i < listOfEmployees.size(); i++) {
+            Employee currentEmployee = listOfEmployees.get(i);
+            if (empID.equals(currentEmployee.getID())) {
+                this.listOfEmployees.remove(currentEmployee);
+            }
+        }
+        return "Employee" + empID + " was successfully removed.";
+    }
+
+    public String printEmployee(String employeeID){
+        //To retrieve a string of an employee,
+        // The customer then needs to specify the ID of the employee that it wants to get the string from.
+        // The program should then retrieve the employee as specified in their respective description
+        // (User Stories 1.2 and 1.3).
+    }
+
+    public String printAllEmployees(){
+
+    }
+
+    //we need a method get net salary; we search employeeID in the list and return net salary
+    public double getNetSalary(String employeeID) {
+    }
 
 }
