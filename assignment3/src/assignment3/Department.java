@@ -1,3 +1,5 @@
+package assignment3;
+
 public enum Department {
     HUMAN_RESOURCES("Human Resources"),
     TECHNICAL("Technical"),

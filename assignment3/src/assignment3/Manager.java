@@ -1,3 +1,7 @@
+package assignment3;
+
+import assignment3.Employee;
+
 public class Manager extends Employee
 {
     private final String DEGREE_TYPES;

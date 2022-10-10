@@ -1,3 +1,5 @@
+package assignment3;
+
 public enum Degrees {
     BSC("BSc"),
     MSC("MSc"),

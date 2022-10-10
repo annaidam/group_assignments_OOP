@@ -1,3 +1,7 @@
+package assignment3;
+
+import assignment3.Employee;
+
 public class Intern extends Employee {
     private int GPA;
 

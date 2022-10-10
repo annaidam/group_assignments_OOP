@@ -1,3 +1,5 @@
+package assignment3;
+
 public class Director extends Manager {
 
     private String department;

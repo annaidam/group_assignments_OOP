@@ -43,12 +43,12 @@ public class Epic1US4Test {
     @Test
     public void shouldRemoveEmployee() throws Exception {
         String empID = "Emp8";
-        String expectedMessage = "Employee Emp8 was successfully removed.";
+        String expectedMessage = "assignment3.Employee Emp8 was successfully removed.";
         String actualMessage = facade.removeEmployee(empID);
         assertEquals(expectedMessage, actualMessage);
 
-        // Since it was removed you can create the Employee with the ID again.
-        String expectedLeiomy = "Employee Emp8 was registered successfully.";
+        // Since it was removed you can create the assignment3.Employee with the ID again.
+        String expectedLeiomy = "assignment3.Employee Emp8 was registered successfully.";
         String actualLeiomy = facade.createEmployee("Emp8", "Leiomy Maldonado", 32500.00);
         assertEquals(expectedLeiomy, actualLeiomy);
 
