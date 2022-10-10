@@ -7,9 +7,10 @@ public class Company {
         this.listOfEmployees = new ArrayList<>();
     }
 
-    public void createEmployee(String id, String name, double grossSalary) { //i think we need to add GPA here too, and degree and dept
+    public String createEmployee(String id, String name, double grossSalary) { //i think we need to add GPA here too, and degree and dept
         Employee employee = new Employee(id, name, grossSalary);
         this.listOfEmployees.add(employee);
+        return "Employee "+employee.getID()+ " was registered successfully.";
     }
 
     public Employee findEmployee(String id) {
