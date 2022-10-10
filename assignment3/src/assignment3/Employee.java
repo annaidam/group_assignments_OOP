@@ -39,7 +39,7 @@ public class Employee
     {
         double temporary1 = salary*100;
         double temporary2 = (int)temporary1;
-        truncatedSalary = temporary2/100;
+        truncatedSalary = temporary2/100.00;
         return truncatedSalary;
     }
 
@@ -60,7 +60,7 @@ public class Employee
 
     //<name>’s gross salary is <gross_salary> SEK per month.
     public String toString() {
-        return this.name+"'s gross salary is "+this.grossSalary+" SEK per month.";
+        return this.name+"'s gross salary is "+this.calculateNetSalary()+" SEK per month.";
     }
 
 }
