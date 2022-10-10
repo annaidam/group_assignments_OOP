@@ -10,6 +10,11 @@ public class Manager extends Employee
         this.newGrossSalary = newGrossSalary;
     }
 
+    public String getDEGREE_TYPES()
+    {
+        return DEGREE_TYPES;
+    }
+
     @Override
     public double calculateNetSalary()
     {
