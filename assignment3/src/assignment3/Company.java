@@ -2,6 +2,7 @@ package assignment3;
 import java.util.ArrayList;
 public class Company {
     private ArrayList<Employee> listOfEmployees;
+    final String END_OF_LINE = System.lineSeparator();
 
     public Company() {
         this.listOfEmployees = new ArrayList<>();
@@ -43,8 +44,20 @@ public class Company {
     //<employee_string>
     //<employee_string>
     //<employee_string>
-    /*public double retrieveSortedEmployees() {
-    }*/
+    //smallest to largest
+    public String retrieveSortedEmployees() {
+        for (int i = 0; i < listOfEmployees.size(); i++) {
+            for (int j = listOfEmployees.size() - 1; j < i; j--) {
+                if (listOfEmployees.get(i).getGrossSalary() > listOfEmployees.get(j).getGrossSalary()) {
+                    Employee temp = listOfEmployees.get(i);
+                    listOfEmployees.set(i, listOfEmployees.get(i));
+                    listOfEmployees.set(j, temp);
+                }
+            }
+        }
+        //how can I print each employee in their own line?
+        return "Employees sorted by gross salary (ascending order):" + END_OF_LINE + listOfEmployees;
+    }
 
     public String updateEmployeeName(String id, String newName) {
         for (int i = 0; i < listOfEmployees.size(); i++) {
