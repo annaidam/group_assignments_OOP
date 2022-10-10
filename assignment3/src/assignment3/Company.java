@@ -142,7 +142,8 @@ public class Company {
    }
 
    public String updateDirectorDegree(String id, String newDegree){
-       findEmployee(id).setDEGREE_TYPES(newDegree);
+       if(findEmployee(id) instanceof Director){
+           ((Director)findEmployee(id)).setDEGREE_TYPES(newDegree);
        return "Employee " + id + " was updated successfully";
    }
 
