@@ -22,12 +22,12 @@ public class Manager extends Employee
 
     public double getDegreeBonus() {
         double bonus = 0.0;
-        if (DEGREE_TYPES.equals("Bsc")) {
-            bonus = 0.1 * truncateSalary(super.getGrossSalary());
-        } else if (DEGREE_TYPES.equals("Msc")) {
-            bonus = 0.2 * truncateSalary(super.getGrossSalary());
+        if (DEGREE_TYPES.equals("BSc")) {
+            bonus = 0.1 * super.getGrossSalary();
+        } else if (DEGREE_TYPES.equals("MSc")) {
+            bonus = 0.2 * super.getGrossSalary();
         } else if (DEGREE_TYPES.equals("PhD")) {
-            bonus = 0.35 * truncateSalary(super.getGrossSalary());
+            bonus = 0.35 * super.getGrossSalary();
         }
         return bonus;
     }
@@ -39,36 +39,9 @@ public class Manager extends Employee
 
     @Override
     public double calculateNetSalary() {
-        newGrossSalary = this.getDegreeBonus() + this.getGrossSalary();
-        return newGrossSalary;
+        netSalary = truncateSalary(managerGrossSalary()) * 0.9;
+        return netSalary;
     }
-
-    /*@Override
-    public double calculateNetSalary()
-    {
-        double bonus = 0.0;
-        if (DEGREE_TYPES.equals("Bsc"))
-        {
-            //double regularSalary = super.salary or super.calculateSalary();
-            bonus= 0.1* super.getGrossSalary();
-            newGrossSalary = bonus + this.getGrossSalary();
-            return newGrossSalary;
-        }
-        else if (DEGREE_TYPES.equals("Msc"))
-        {
-            bonus = 0.2*super.getGrossSalary();
-            newGrossSalary = bonus + this.getGrossSalary();
-            return newGrossSalary;
-        }
-(
-        else //if (DEGREE_TYPES.equals("PhD"))
-        {
-            bonus = 0.35*super.getGrossSalary();
-            newGrossSalary = bonus + this.getGrossSalary();
-            return newGrossSalary;
-        }
-
-    }*/
 
     //<degree> <name>’s gross salary is <gross_salary> SEK per month.
     public String toString()

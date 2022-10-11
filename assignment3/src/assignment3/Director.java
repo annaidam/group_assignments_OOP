@@ -13,8 +13,8 @@ public class Director extends Manager {
     public String setDepartment(String newDept) {return newDept;}
 
     public double directorGrossSalary() {
-        final double ADDITIONAL_SALARY = 5000;
-        double directorGrossSalary = super.getGrossSalary() + super.getDegreeBonus() + ADDITIONAL_SALARY;
+        final double ADDITIONAL_SALARY = 5000.00;
+        double directorGrossSalary = this.truncateSalary(super.getGrossSalary()) + getDegreeBonus() + ADDITIONAL_SALARY;
         return directorGrossSalary;
     }
 
@@ -33,6 +33,6 @@ public class Director extends Manager {
     }
 
     public String toString() {
-        return (super.getDEGREE_TYPES() + " " + super.getName() + "'s gross salary is " + directorGrossSalary() + " SEK per month. Dept: " + this.getDepartment());
+        return (super.getDEGREE_TYPES() + " " + super.getName() + "'s gross salary is " + String.format("%.2f", this.truncateSalary(directorGrossSalary())) + " SEK per month. Dept: " + this.getDepartment());
     }
 }

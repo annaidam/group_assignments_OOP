@@ -140,14 +140,13 @@ public class Company {
     }
 
     public String printAllEmployees() {
-
         String allEmployees = "";
 
         for (Employee employee : listOfEmployees) {
             allEmployees = allEmployees + employee.toString() + END_OF_LINE;
             //or instance of director, manager, intern
         }
-        return allEmployees;
+        return "All registered employees:" + END_OF_LINE + allEmployees;
     }
 
     //we need a method get net salary; we search employeeID in the list and return net salary
