@@ -49,8 +49,8 @@ public class Employee {
         double roundOff = Math.round(salary*100)/100.00;
     return roundOff;
     }
-
-    /*public double truncateSalary(double salary) {
+*/
+    public double truncateSalary(double salary) {
         double temporary1 = salary * 100;
         double temporary2 = (int) temporary1;
         truncatedSalary = temporary2 / 100.0;
