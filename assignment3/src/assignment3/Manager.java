@@ -60,7 +60,7 @@ public class Manager extends Employee
             newGrossSalary = bonus + this.getGrossSalary();
             return newGrossSalary;
         }
-
+(
         else //if (DEGREE_TYPES.equals("PhD"))
         {
             bonus = 0.35*super.getGrossSalary();
