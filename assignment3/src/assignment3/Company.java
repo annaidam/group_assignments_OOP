@@ -1,5 +1,8 @@
 package assignment3;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Company {
     private ArrayList<Employee> listOfEmployees;
     final String END_OF_LINE = System.lineSeparator();
