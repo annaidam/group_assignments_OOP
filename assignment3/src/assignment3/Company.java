@@ -132,7 +132,7 @@ public class Company {
      */
     public String removeEmployee(String empID) {
         this.listOfEmployees.remove(findEmployee(empID));
-        return "Employee" + empID + " was successfully removed.";
+        return "Employee " + empID + " was successfully removed.";
     }
 
     public String printEmployee(String employeeID) {
@@ -152,7 +152,7 @@ public class Company {
 
     //we need a method get net salary; we search employeeID in the list and return net salary
     public double getNetSalary(String employeeID) {
-                return findEmployee(employeeID).calculateNetSalary();
+        return findEmployee(employeeID).calculateNetSalary();
     }
 
    public String updateGrossSalary(String id, double newGrossSalary){

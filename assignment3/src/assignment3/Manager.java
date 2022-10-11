@@ -34,7 +34,7 @@ public class Manager extends Employee
 
     public double managerGrossSalary() {
         double managerGrossSalary = truncateSalary(super.getGrossSalary()) + getDegreeBonus();
-        return truncateSalary(managerGrossSalary);
+        return managerGrossSalary;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class Manager extends Employee
     //<degree> <name>’s gross salary is <gross_salary> SEK per month.
     public String toString()
     {
-        return this.DEGREE_TYPES + " " + this.getName() + "'s gross salary is " + managerGrossSalary() + " SEK per month.";
+        return this.DEGREE_TYPES + " " + this.getName() + "'s gross salary is " + String.format("%.2f", this.truncateSalary(managerGrossSalary())) + " SEK per month.";
     }
 
 }

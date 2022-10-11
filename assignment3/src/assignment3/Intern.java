@@ -36,6 +36,6 @@ public class Intern extends Employee {
 
     @Override
     public String toString() {
-        return this.getName() + "'s gross salary is " + this.calculateNetSalary() + "SEK per month. GPA: "+ this.GPA;
+        return this.getName() + "'s gross salary is " + String.format("%.2f", this.truncateSalary(this.calculateNetSalary())) + " SEK per month. GPA: "+ this.GPA;
     }
 }
