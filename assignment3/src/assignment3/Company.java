@@ -8,19 +8,10 @@ public class Company {
         this.listOfEmployees = new ArrayList<>();
     }
 
-    /* if(findEmployee(id) instanceof Manager) {
-            ((Manager) findEmployee(id)).setDEGREE_TYPES(newDegree);
-            return "Employee "+ id + "was updated successfully";
-        }
-        else {
-            return null;
-        }
-
-     */
-    public String createEmployee(String id, String name, double grossSalary) { //i think we need to add GPA here too, and degree and dept
+    public String createEmployee(String id, String name, double grossSalary) {
         Employee employee = new Employee(id, name, grossSalary);
         this.listOfEmployees.add(employee);
-        return "Employee "+employee.getID()+ " was registered successfully.";
+        return "Employee " + employee.getID() + " was registered successfully.";
     }
     public String createEmployee(String id, String name, double grossSalary, String DEGREE_TYPES) {
         Employee employee = new Manager(id, name, grossSalary, DEGREE_TYPES);
@@ -46,15 +37,6 @@ public class Company {
         }
         return null;
     }
-
-    /*if(findEmployee(id) instanceof Manager)
-        {
-            Employee employee = new Manager(id, name, grossSalary, DEGREE_TYPES);
-            this.listOfEmployees.add(employee);
-            return "Employee "+employee.getID()+ " was registered successfully.";
-        }
-
-     */
 
     //Your system should print the sum of all net salaries for all employees. Similarly to all
     //salaries, the system should truncate the result of this operation in two decimal values.
