@@ -74,13 +74,7 @@ public class Company {
 
     //Your system should print a list of employees in ascending order based on their gross
     //salary. Note that this should be sorted based on the value of the gross salary after any
-    //bonuses. The list should follow the template below:
-    //Employees sorted by gross salary (ascending order):
-    //<employee_string>
-    //<employee_string>
-    //<employee_string>
-    //<employee_string>
-    //smallest to largest
+    //bonuses.
     public String retrieveSortedEmployees() {
         for (int i = 0; i < listOfEmployees.size(); i++) {
             for (int j = listOfEmployees.size() - 1; j < i; j--) {
@@ -92,8 +86,11 @@ public class Company {
                 }
             }
         }
-        //how can I print each employee in their own line?
-        return "Employees sorted by gross salary (ascending order):" + END_OF_LINE + listOfEmployees;
+        String allEmployeesSorted = "";
+        for (Employee employee : listOfEmployees) {
+            allEmployeesSorted = allEmployeesSorted + employee.toString() + END_OF_LINE;
+        }
+        return "Employees sorted by gross salary (ascending order):" + END_OF_LINE + allEmployeesSorted;
     }
 
     public String updateEmployeeName(String id, String newName) {
@@ -200,10 +197,4 @@ public class Company {
        }
        return null;
    }
-
-
-    /* AM:
-    public String toString() {
-
-    }*/
 }
