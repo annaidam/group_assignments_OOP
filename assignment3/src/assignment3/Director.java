@@ -4,8 +4,23 @@ public class Director extends Manager {
 
     private String department;
 
-    public Director (String id, String name, double grossSalary, String DEGREE_TYPES, String department) {
+    public Director (String id, String name, double grossSalary, String DEGREE_TYPES, String department) throws Exception {
         super (id, name, grossSalary, DEGREE_TYPES);
+
+        if (id.isEmpty()){
+            throw new InvalidIDException("ID cannot be blank.");}
+        if (name.isEmpty()) {
+            throw new InvalidNameException("Name cannot be blank.");}
+        if (grossSalary <= 0){
+            throw new NegativeSalaryException("Salary must be greater than zero.");}
+        //create a boolean that returns true if the string DEGREE_TYPES contains the string BSc, MSc or PhD
+        boolean containsBSc = DEGREE_TYPES.contains("BSc");
+        boolean containsMSc = DEGREE_TYPES.contains("MSc");
+        boolean containsPhD = DEGREE_TYPES.contains("PhD");
+        //if it does not contain---throw the exception
+        if(!containsBSc || !containsMSc || !containsPhD){
+            throw new InvalidDegreeException("Degree must be one of the options: BSc, MSc or PhD.");}
+
         this.department = department;
     }
 

@@ -4,10 +4,23 @@ public class Manager extends Employee
 {
     private String DEGREE_TYPES;
 
-    public Manager (String id, String name, double grossSalary, String DEGREE_TYPES)
-    {
+    public Manager (String id, String name, double grossSalary, String DEGREE_TYPES) throws Exception {
         super (id,name,grossSalary);
-        this.DEGREE_TYPES = DEGREE_TYPES;
+
+        if (id.isEmpty()){
+            throw new InvalidIDException("ID cannot be blank.");}
+        if (name.isEmpty()) {
+            throw new InvalidNameException("Name cannot be blank.");}
+        if (grossSalary <= 0){
+            throw new NegativeSalaryException("Salary must be greater than zero.");}
+        //create a boolean that returns true if the string DEGREE_TYPES contains the string BSc, MSc or PhD
+        boolean containsBSc = DEGREE_TYPES.contains("BSc");
+        boolean containsMSc = DEGREE_TYPES.contains("MSc");
+        boolean containsPhD = DEGREE_TYPES.contains("PhD");
+        //if it does not contain---throw the exception
+        if(!containsBSc || !containsMSc || !containsPhD){
+            throw new InvalidDegreeException("Degree must be one of the options: BSc, MSc or PhD.");
+        } else {this.DEGREE_TYPES = DEGREE_TYPES;}
     }
 
     public String getDEGREE_TYPES()

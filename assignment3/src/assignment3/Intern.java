@@ -3,9 +3,15 @@ package assignment3;
 public class Intern extends Employee {
     private int GPA;
 
-    public Intern(String name, String ID, double gross_salary, int GPA) //throws Exception
-     {
-        super(name, ID, gross_salary);
+    public Intern(String name, String id, double grossSalary, int GPA) throws Exception{
+        super(name, id, grossSalary);
+        if (id.isEmpty()){
+            throw new InvalidIDException("ID cannot be blank.");}
+        if (name.isEmpty()) {
+            throw new InvalidNameException("Name cannot be blank.");}
+        if (grossSalary <= 0){
+            throw new NegativeSalaryException("Salary must be greater than zero.");}
+
         this.GPA = GPA;
     }
 

@@ -9,12 +9,14 @@ public class Employee {
     double newGrossSalary;
 
     Employee(String id, String name, double grossSalary) throws Exception {
-        if (name.isEmpty()) {
-            throw new InvalidNameException("Name cannot be blank.");
-        } else {this.name = name;}
         if (id.isEmpty()){
             throw new InvalidIDException("ID cannot be blank.");
         } else {  this.EMPLOYEE_ID = id;}
+
+        if (name.isEmpty()) {
+            throw new InvalidNameException("Name cannot be blank.");
+        } else {this.name = name;}
+
         if (grossSalary <= 0){
             throw new NegativeSalaryException("Salary must be greater than zero.");
         } else {this.grossSalary = grossSalary;}

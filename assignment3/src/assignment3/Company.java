@@ -13,26 +13,81 @@ public class Company {
         this.listOfEmployees = new ArrayList<>();
     }
 
-    public String createEmployee(String id, String name, double grossSalary) {
+    public String createEmployee(String id, String name, double grossSalary) throws Exception {
         Employee employee = new Employee(id, name, grossSalary);
+
+        ////////////////
+        if (id.isEmpty()){
+            throw new InvalidIDException("ID cannot be blank.");}
+        if (name.isEmpty()) {
+            throw new InvalidNameException("Name cannot be blank.");}
+        if (grossSalary <= 0){
+            throw new NegativeSalaryException("Salary must be greater than zero.");}
+        ////////////////
+
         this.listOfEmployees.add(employee);
         return "Employee " + employee.getID() + " was registered successfully.";
     }
 
-    public String createEmployee(String id, String name, double grossSalary, String DEGREE_TYPES) {
+    public String createEmployee(String id, String name, double grossSalary, String DEGREE_TYPES) throws Exception {
         Employee employee = new Manager(id, name, grossSalary, DEGREE_TYPES);
+
+        ////////////
+        if (id.isEmpty()){
+            throw new InvalidIDException("ID cannot be blank.");}
+        if (name.isEmpty()) {
+            throw new InvalidNameException("Name cannot be blank.");}
+        if (grossSalary <= 0){
+            throw new NegativeSalaryException("Salary must be greater than zero.");}
+
+        boolean containsBSc = DEGREE_TYPES.contains("BSc");
+        boolean containsMSc = DEGREE_TYPES.contains("MSc");
+        boolean containsPhD = DEGREE_TYPES.contains("PhD");
+
+        if(!containsBSc || !containsMSc || !containsPhD){
+            throw new InvalidDegreeException("Degree must be one of the options: BSc, MSc or PhD.");}
+            ///////////
+
+
         this.listOfEmployees.add(employee);
         return "Employee " + employee.getID() + " was registered successfully.";
     }
 
-    public String createEmployee(String id, String name, double grossSalary, String DEGREE_TYPES, String department) {
+    public String createEmployee(String id, String name, double grossSalary, String DEGREE_TYPES, String department) throws Exception {
         Employee employee = new Director(id, name, grossSalary, DEGREE_TYPES, department);
+
+        //check exceptions
+        if (id.isEmpty()){
+            throw new InvalidIDException("ID cannot be blank.");}
+        if (name.isEmpty()) {
+            throw new InvalidNameException("Name cannot be blank.");}
+        if (grossSalary <= 0){
+            throw new NegativeSalaryException("Salary must be greater than zero.");}
+
+        boolean containsBSc = DEGREE_TYPES.contains("BSc");
+        boolean containsMSc = DEGREE_TYPES.contains("MSc");
+        boolean containsPhD = DEGREE_TYPES.contains("PhD");
+
+        if(!containsBSc || !containsMSc || !containsPhD){
+            throw new InvalidDegreeException("Degree must be one of the options: BSc, MSc or PhD.");}
+        //finish checking exceptions
+
         this.listOfEmployees.add(employee);
         return "Employee " + employee.getID() + " was registered successfully.";
     }
 
-    public String createEmployee(String id, String name, double grossSalary, int GPA) {
+    public String createEmployee(String id, String name, double grossSalary, int GPA) throws Exception {
         Employee employee = new Intern(id, name, grossSalary, GPA);
+
+        //check for the exceptions
+        if (id.isEmpty()){
+            throw new InvalidIDException("ID cannot be blank.");}
+        if (name.isEmpty()) {
+            throw new InvalidNameException("Name cannot be blank.");}
+        if (grossSalary <= 0){
+            throw new NegativeSalaryException("Salary must be greater than zero.");}
+        //finished with the exceptions
+
         this.listOfEmployees.add(employee);
         return "Employee " + employee.getID() + " was registered successfully.";
     }

@@ -10,4 +10,3 @@ Throwable" and gives it the value: "Error: Name cannot be empty"*/
         super(message);
     }
 }
-
