@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class Company {
     private ArrayList<Employee> listOfEmployees;
+    private HashMap<String, Integer> degreeMap = new HashMap<>();
     final String END_OF_LINE = System.lineSeparator();
 
     public Company() {
@@ -39,6 +40,28 @@ public class Company {
             }
         }
         return null;
+    }
+
+    public String removeEmployee(String empID) {
+        this.listOfEmployees.remove(findEmployee(empID));
+        return "Employee " + empID + " was successfully removed.";
+    }
+
+    public String printEmployee(String employeeID) {
+        return findEmployee(employeeID).toString();
+    }
+
+    public String printAllEmployees() {
+        String allEmployees = "";
+
+        for (Employee employee : listOfEmployees) {
+            allEmployees = allEmployees + employee.toString() + END_OF_LINE;
+        }
+        return "All registered employees:" + END_OF_LINE + allEmployees;
+    }
+
+    public double getNetSalary(String employeeID) {
+        return findEmployee(employeeID).calculateNetSalary();
     }
 
     public double getTotalNetSalary() {
@@ -84,6 +107,37 @@ public class Company {
         return null;
     }
 
+    public String updateGrossSalary(String id, double newGrossSalary){
+        findEmployee(id).setGrossSalary(newGrossSalary);
+        return "Employee " + id + " was updated successfully";
+    }
+
+    public String updateManagerDegree(String id, String newDegree) {
+        if(findEmployee(id) instanceof Manager) {
+            ((Manager) findEmployee(id)).setDEGREE_TYPES(newDegree);
+            return "Employee "+ id + " was updated successfully";
+        }
+        else {
+            return null;
+        }
+    }
+
+    public String updateDirectorDegree(String id, String newDegree) {
+        if (findEmployee(id) instanceof Director) {
+            ((Director) findEmployee(id)).setDEGREE_TYPES(newDegree);
+            return "Employee " + id + " was updated successfully";
+        }
+        return null;
+    }
+
+    public String updateDirectorDept(String id, String newDept){
+        if (findEmployee(id) instanceof Director) {
+            ((Director)findEmployee(id)).setDepartment(newDept);
+            return "Employee " + id + " was updated successfully";
+        }
+        return null;
+    }
+
     public String updateInternGPA(String id, int newGPA) {
         for (int i = 0; i < listOfEmployees.size(); i++) {
             Employee currentEmployee = listOfEmployees.get(i);
@@ -97,56 +151,56 @@ public class Company {
         return null;
     }
 
-    public String updateManagerDegree(String id, String newDegree) {
-        if(findEmployee(id) instanceof Manager) {
-            ((Manager) findEmployee(id)).setDEGREE_TYPES(newDegree);
-            return "Employee "+ id + " was updated successfully";
+    //Academic background of employees:
+    //"BSc: => " + counterBSc + END_OF_LINE
+    //"MSc: => " + counterMSc + END_OF_LINE
+    //"PhD: => " + counterPhD + END_OF_LINE
+    /*public String academicBackground() {
+        int counterBSc = 0, counterMSc = 0, counterPhD = 0;
+        for (Employee current : listOfEmployees) {
+            if (current instanceof Manager || current instanceof Director) {
+                if (((Manager) current).getDEGREE_TYPES().equals("BSc")) {
+                    counterBSc = counterBSc + 1;
+                } else if (((Manager) current).getDEGREE_TYPES().equals("MSc")) {
+                    counterMSc = counterMSc + 1;
+                } else if (((Manager) current).getDEGREE_TYPES().equals("PhD")) {
+                    counterPhD = counterPhD + 1;
+                }
+            }
+        }
+        if(counterBSc>0){
+        return "Academic background of employees:" + counterBSc+ END_OF_LINE;
+        }
+        else if(counterMSc>0){
+            return "Academic background of employees:" + counterMSc+ END_OF_LINE;
+        }
+        else if(counterPhD>0){
+            return "Academic background of employees:" + counterPhD+ END_OF_LINE;
         }
         else {
             return null;
         }
-    }
 
-    public String removeEmployee(String empID) {
-        this.listOfEmployees.remove(findEmployee(empID));
-        return "Employee " + empID + " was successfully removed.";
-    }
+     */
 
-    public String printEmployee(String employeeID) {
-        return findEmployee(employeeID).toString();
-    }
-
-    public String printAllEmployees() {
-        String allEmployees = "";
-
+    public Map<String, Integer> mapEachDegree ()
+    {
         for (Employee employee : listOfEmployees) {
-            allEmployees = allEmployees + employee.toString() + END_OF_LINE;
+            if (employee instanceof Manager) {
+                if (((Manager) employee).getDEGREE_TYPES().equals("BSc")) {
+                    degreeMap.put("BSc", 1);
+                }
+            }
         }
-        return "All registered employees:" + END_OF_LINE + allEmployees;
+
+       String result = "Size of map is:- "+ degreeMap.size();
+        if (degreeMap.containsKey("Bsc")) {
+
+            // Mapping
+            Integer a = degreeMap.get("BSc");
+
+            // Printing value for the corresponding key
+            System.out.println("value for key"
+                    + " \"BSc\" is:- " + a);
     }
-    
-    public double getNetSalary(String employeeID) {
-        return findEmployee(employeeID).calculateNetSalary();
-    }
-
-   public String updateGrossSalary(String id, double newGrossSalary){
-       findEmployee(id).setGrossSalary(newGrossSalary);
-       return "Employee " + id + " was updated successfully";
-   }
-
-   public String updateDirectorDegree(String id, String newDegree) {
-       if (findEmployee(id) instanceof Director) {
-           ((Director) findEmployee(id)).setDEGREE_TYPES(newDegree);
-           return "Employee " + id + " was updated successfully";
-       }
-       return null;
-   }
-
-   public String updateDirectorDept(String id, String newDept){
-       if (findEmployee(id) instanceof Director) {
-           ((Director)findEmployee(id)).setDepartment(newDept);
-           return "Employee " + id + " was updated successfully";
-       }
-       return null;
-   }
 }
