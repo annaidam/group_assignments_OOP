@@ -8,7 +8,7 @@ public class Employee {
     double truncatedSalary;
     double newGrossSalary;
 
-    Employee(String id, String name, double grossSalary) { //should newGrossSalary be here?
+    Employee(String id, String name, double grossSalary) {
         this.EMPLOYEE_ID = id;
         this.name = name;
         this.grossSalary = grossSalary;

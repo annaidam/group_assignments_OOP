@@ -46,6 +46,9 @@ public class Company {
             for (Employee currentEmployee : listOfEmployees) {
                 expenses = currentEmployee.calculateNetSalary() + expenses;
             }
+            double temporary1 = expenses * 100;
+            double temporary2 = (int) temporary1;
+            expenses = temporary2 / 100.0;
         }
         return Math.floor(Math.pow(10,2) * expenses / Math.pow(10,2));
     }
