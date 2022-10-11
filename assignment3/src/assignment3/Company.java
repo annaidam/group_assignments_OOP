@@ -38,9 +38,7 @@ public class Company {
         return null;
     }
 
-    //Your system should print the sum of all net salaries for all employees. Similarly to all
-    //salaries, the system should truncate the result of this operation in two decimal values.
-    public double retrieveExpenses() {
+    public double getTotalNetSalary() {
         double expenses = 0.0;
         if (!this.listOfEmployees.isEmpty()) {
             for (Employee currentEmployee : listOfEmployees) {
@@ -50,13 +48,11 @@ public class Company {
             double temporary2 = (int) temporary1;
             expenses = temporary2 / 100.0;
         }
-        return Math.floor(Math.pow(10,2) * expenses / Math.pow(10,2));
+        return expenses;
     }
 
-    //Your system should print a list of employees in ascending order based on their gross
-    //salary. Note that this should be sorted based on the value of the gross salary after any
-    //bonuses.
-    public String retrieveSortedEmployees() {
+    //Sort again using stuff we will learn tomorrow
+    public String printSortedEmployees() {
         for (int i = 0; i < listOfEmployees.size(); i++) {
             for (int j = listOfEmployees.size() - 1; j < i; j--) {
                 //how to access the gross salary AFTER any bonuses?
@@ -101,20 +97,13 @@ public class Company {
     public String updateManagerDegree(String id, String newDegree) {
         if(findEmployee(id) instanceof Manager) {
             ((Manager) findEmployee(id)).setDEGREE_TYPES(newDegree);
-            return "Employee "+ id + "was updated successfully";
+            return "Employee "+ id + " was updated successfully";
         }
         else {
             return null;
         }
     }
 
-    /*
-    + removeEmployee(String id) : String –IM
-    + retrieveEmployee() : String –IM : printEmployee and printAllEmployees
-    + updateGrossSalary(String id, double newGrossSalary) –IM
-    + updateDirectorDegree(String id, String newDegree) –IM
-    + updateDirectorDept(String id, String newDept) –IM
-     */
     public String removeEmployee(String empID) {
         this.listOfEmployees.remove(findEmployee(empID));
         return "Employee " + empID + " was successfully removed.";

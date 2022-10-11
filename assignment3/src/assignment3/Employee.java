@@ -31,7 +31,8 @@ public class Employee {
     }
 
     public void setGrossSalary(double newGrossSalary) {
-        newGrossSalary = truncateSalary(grossSalary);
+        this.grossSalary = newGrossSalary;
+        truncateSalary(this.grossSalary);
     }
 
     //netSalary = grossSalary - (grossSalary * 0.1)
@@ -40,12 +41,6 @@ public class Employee {
         return this.truncateSalary(netSalary);
     }
 
-    //double temporaryNew = Math.floor(netSalary*100)/100.0;   589.987
-  /*  public double truncateSalary(double salary){
-      return Math.floor(salary*Math.pow(10,2)/Math.pow(10,2));
-
-    }
-*/
     public double truncateSalary(double salary) {
         double temporary1 = salary * 100;
         double temporary2 = (int) temporary1;

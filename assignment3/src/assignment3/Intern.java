@@ -1,7 +1,5 @@
 package assignment3;
 
-import assignment3.Employee;
-
 public class Intern extends Employee {
     private int GPA;
 
@@ -30,7 +28,6 @@ public class Intern extends Employee {
         }
         netSalary=internGrossSalary;
         setGrossSalary(internGrossSalary);
-        //netSalary=super.getGrossSalary; the net salary returned by a student will be the same as his/her gross salary.
         return internGrossSalary;
     }
 

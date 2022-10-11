@@ -1,11 +1,8 @@
 package assignment3;
 
-import assignment3.Employee;
-
 public class Manager extends Employee
 {
     private String DEGREE_TYPES;
-    double newGrossSalary;
 
     public Manager (String id, String name, double grossSalary, String DEGREE_TYPES)
     {

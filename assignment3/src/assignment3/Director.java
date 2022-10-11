@@ -10,7 +10,7 @@ public class Director extends Manager {
     }
 
     public String getDepartment() {return this.department;}
-    public String setDepartment(String newDept) {return newDept;}
+    public void setDepartment(String newDept) {this.department = newDept;}
 
     public double directorGrossSalary() {
         final double ADDITIONAL_SALARY = 5000.00;
