@@ -98,24 +98,6 @@ public class Company {
         return null;
     }
 
-   /* public String updateManagerDegree(String id, String newDegree)
-    {
-        for (int i=0; i<listOfEmployees.size();i++)
-        {
-            Employee currentEmployee = listOfEmployees.get(i);
-            if(id.equals(currentEmployee.getID()))
-            {
-                if(currentEmployee instanceof Manager)
-                {
-                    ((Manager) currentEmployee).setDEGREE_TYPES(newDegree);
-                    return "Employee "+ id + "was updated successfully";
-                }
-            }
-        }
-        return null;
-    }
-
-    */
     public String updateManagerDegree(String id, String newDegree) {
         if(findEmployee(id) instanceof Manager) {
             ((Manager) findEmployee(id)).setDEGREE_TYPES(newDegree);
@@ -147,12 +129,10 @@ public class Company {
 
         for (Employee employee : listOfEmployees) {
             allEmployees = allEmployees + employee.toString() + END_OF_LINE;
-            //or instance of director, manager, intern
         }
         return "All registered employees:" + END_OF_LINE + allEmployees;
     }
-
-    //we need a method get net salary; we search employeeID in the list and return net salary
+    
     public double getNetSalary(String employeeID) {
         return findEmployee(employeeID).calculateNetSalary();
     }
