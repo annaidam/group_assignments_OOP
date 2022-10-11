@@ -165,11 +165,7 @@ public class Company {
     }
 
     public String printAllEmployees() {
-        //I want to print all employees to see an overview of all employees’ information.
-        //
-        //In this user story, you should create a string with one employee per line, following the template below.
-        // You should replace the <employee_string> to the specific string for each type of employee specified above
-        final String END_OF_LINE = System.lineSeparator(); // "\n"
+
         String allEmployees = "";
 
         for (Employee employee : listOfEmployees) {
