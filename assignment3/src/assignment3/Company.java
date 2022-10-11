@@ -59,9 +59,9 @@ public class Company {
         }
 
      */
+
     //Your system should print the sum of all net salaries for all employees. Similarly to all
     //salaries, the system should truncate the result of this operation in two decimal values.
-    //TRUNCATE!
     public double retrieveExpenses() {
         double expenses = 0.0;
         if (!this.listOfEmployees.isEmpty()) {
@@ -69,7 +69,7 @@ public class Company {
                 expenses = currentEmployee.calculateNetSalary() + expenses;
             }
         }
-        return expenses;
+        return Math.floor(Math.pow(10,2) * expenses / Math.pow(10,2));
     }
 
     //Your system should print a list of employees in ascending order based on their gross
