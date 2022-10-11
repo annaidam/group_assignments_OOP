@@ -46,6 +46,7 @@ public class Employee {
     //double temporaryNew = Math.floor(netSalary*100)/100.0;   589.987
     public double truncateSalary(double salary){
         return Math.floor(salary*Math.pow(10,2)/Math.pow(10,2));
+
     }
 
     /*public double truncateSalary(double salary) {
