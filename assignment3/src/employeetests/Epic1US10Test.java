@@ -43,6 +43,7 @@ public class Epic1US10Test {
 
     @Test
     public void shouldMapPerDegree() throws Exception {
+
         Map<String, Integer> actualMap = facade.mapEachDegree();
         assertEquals(actualMap.get("PhD"), 1);
         assertEquals(actualMap.get("MSc"), 1);

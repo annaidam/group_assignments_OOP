@@ -8,10 +8,16 @@ public class Employee {
     double truncatedSalary;
     double newGrossSalary;
 
-    Employee(String id, String name, double grossSalary) {
-        this.EMPLOYEE_ID = id;
-        this.name = name;
-        this.grossSalary = grossSalary;
+    Employee(String id, String name, double grossSalary) throws Exception {
+        if (name.isEmpty()) {
+            throw new InvalidNameException("Name cannot be blank.");
+        } else {this.name = name;}
+        if (id.isEmpty()){
+            throw new InvalidIDException("ID cannot be blank.");
+        } else {  this.EMPLOYEE_ID = id;}
+        if (grossSalary <= 0){
+            throw new NegativeSalaryException("Salary must be greater than zero.");
+        } else {this.grossSalary = grossSalary;}
     }
 
     public String getID() {

@@ -1,4 +1,5 @@
 package assignment3;
+import java.lang.constant.Constable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,16 +18,19 @@ public class Company {
         this.listOfEmployees.add(employee);
         return "Employee " + employee.getID() + " was registered successfully.";
     }
+
     public String createEmployee(String id, String name, double grossSalary, String DEGREE_TYPES) {
         Employee employee = new Manager(id, name, grossSalary, DEGREE_TYPES);
         this.listOfEmployees.add(employee);
         return "Employee " + employee.getID() + " was registered successfully.";
     }
-    public String createEmployee(String id,String name, double grossSalary,String DEGREE_TYPES, String department) {
+
+    public String createEmployee(String id, String name, double grossSalary, String DEGREE_TYPES, String department) {
         Employee employee = new Director(id, name, grossSalary, DEGREE_TYPES, department);
         this.listOfEmployees.add(employee);
         return "Employee " + employee.getID() + " was registered successfully.";
     }
+
     public String createEmployee(String id, String name, double grossSalary, int GPA) {
         Employee employee = new Intern(id, name, grossSalary, GPA);
         this.listOfEmployees.add(employee);
@@ -107,17 +111,16 @@ public class Company {
         return null;
     }
 
-    public String updateGrossSalary(String id, double newGrossSalary){
+    public String updateGrossSalary(String id, double newGrossSalary) {
         findEmployee(id).setGrossSalary(newGrossSalary);
         return "Employee " + id + " was updated successfully";
     }
 
     public String updateManagerDegree(String id, String newDegree) {
-        if(findEmployee(id) instanceof Manager) {
+        if (findEmployee(id) instanceof Manager) {
             ((Manager) findEmployee(id)).setDEGREE_TYPES(newDegree);
-            return "Employee "+ id + " was updated successfully";
-        }
-        else {
+            return "Employee " + id + " was updated successfully";
+        } else {
             return null;
         }
     }
@@ -130,9 +133,9 @@ public class Company {
         return null;
     }
 
-    public String updateDirectorDept(String id, String newDept){
+    public String updateDirectorDept(String id, String newDept) {
         if (findEmployee(id) instanceof Director) {
-            ((Director)findEmployee(id)).setDepartment(newDept);
+            ((Director) findEmployee(id)).setDepartment(newDept);
             return "Employee " + id + " was updated successfully";
         }
         return null;
@@ -150,6 +153,7 @@ public class Company {
         }
         return null;
     }
+}
 
     //Academic background of employees:
     //"BSc: => " + counterBSc + END_OF_LINE
@@ -183,7 +187,7 @@ public class Company {
 
      */
 
-    public Map<String, Integer> mapEachDegree ()
+   /* public Map<String, Integer> mapEachDegree ()
     {
         for (Employee employee : listOfEmployees) {
             if (employee instanceof Manager) {
@@ -202,5 +206,36 @@ public class Company {
             // Printing value for the corresponding key
             System.out.println("value for key"
                     + " \"BSc\" is:- " + a);
+    }*/
+
+/* Isabela-draft of task 10
+    public Map<String, Integer> mapEachDegree() {
+        for (Employee employee : listOfEmployees) {
+            if (employee instanceof Manager || employee instanceof Director) {
+                if (((Manager) employee).getDEGREE_TYPES().equals("BSc")) {
+                    degreeMap.put("BSc", 1);
+                } else if (((Manager) employee).getDEGREE_TYPES().equals("MSc")) {
+                    degreeMap.put("MSc", 1);
+                } else if (((Manager) employee).getDEGREE_TYPES().equals("PhD")) {
+                    degreeMap.put("PhD", 1);
+                }
+            }
+
+        }return null;
+    }
+    public String numberOfDegrees(){
+        String numberOfBSc = "";
+        String numberOfMSc = "";
+        String numberOfPhD = "";
+
+        for (Employee employee : listOfEmployees) {
+            String numberOfBSc = numberOfBSc + "BSc: =>" + degreeMap.get("BSc") + END_OF_LINE;
+            String numberOfMSc = numberOfMSc + "MSc: =>" + degreeMap.get("MSc") + END_OF_LINE;
+            String numberOfPhD = numberOfPhD + "PhD: =>" + degreeMap.get("PhD") + END_OF_LINE;
+
+        return "Academic background of employees: " + END_OF_LINE + numberOfBSc + numberOfMSc + numberOfPhD;
     }
 }
+
+ */
+
