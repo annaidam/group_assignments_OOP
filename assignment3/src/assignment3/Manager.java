@@ -32,6 +32,12 @@ public class Manager extends Employee
         return bonus;
     }
 
+    public double setManagerGrossSalary() {
+        double managerGrossSalary = super.getGrossSalary() + getDegreeBonus();
+        setGrossSalary(managerGrossSalary);
+        return this.getGrossSalary();
+    }
+
     @Override
     public double calculateNetSalary() {
         newGrossSalary = this.getDegreeBonus() + this.getGrossSalary();

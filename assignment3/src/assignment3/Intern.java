@@ -29,6 +29,7 @@ public class Intern extends Employee {
             internGrossSalary = super.getGrossSalary() + 1000;
         }
         netSalary=internGrossSalary;
+        setGrossSalary(internGrossSalary);
         //netSalary=super.getGrossSalary; the net salary returned by a student will be the same as his/her gross salary.
         return internGrossSalary;
     }
