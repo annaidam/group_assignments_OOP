@@ -1,8 +1,5 @@
 package assignment3;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
-
 public class Employee {
     private final String EMPLOYEE_ID;
     private String name;
@@ -57,22 +54,6 @@ public class Employee {
 
     }
 
-    /*
-    public double truncateSalary(double salary){
-        DecimalFormat df = new DecimalFormat("#.##");
-
-        df.setRoundingMode(RoundingMode.FLOOR);
-
-        double truncatedSalary = Double.parseDouble(df.format(salary));
-        return truncatedSalary;
-    }
-*/
-    /*
-    public String truncateGrossSalary() {
-        String truncatedGrossSalary = String.format("%.2f", Math.floor((Math.pow(10,2) * this.getGrossSalary())) / Math.pow(10,2));
-        return truncatedGrossSalary;
-    }
-    */
     //<name>’s gross salary is <gross_salary> SEK per month.
     public String toString() {
         return this.name + "'s gross salary is " + String.format("%.2f", this.truncateSalary(grossSalary)) + " SEK per month.";

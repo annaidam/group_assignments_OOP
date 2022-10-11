@@ -32,10 +32,9 @@ public class Manager extends Employee
         return bonus;
     }
 
-    public double setManagerGrossSalary() {
-        double managerGrossSalary = super.getGrossSalary() + getDegreeBonus();
-        setGrossSalary(managerGrossSalary);
-        return this.getGrossSalary();
+    public double managerGrossSalary() {
+        double managerGrossSalary = truncateSalary(super.getGrossSalary()) + getDegreeBonus();
+        return truncateSalary(managerGrossSalary);
     }
 
     @Override
