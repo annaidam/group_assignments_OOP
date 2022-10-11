@@ -39,13 +39,13 @@ public class Employee {
 
     //netSalary = grossSalary - (grossSalary * 0.1)
     public double calculateNetSalary() {
-        netSalary = this.grossSalary - (this.grossSalary * 0.1);
+        netSalary = this.grossSalary * 0.9;
         return this.truncateSalary(netSalary);
     }
 
     //double temporaryNew = Math.floor(netSalary*100)/100.0;   589.987
     public double truncateSalary(double salary){
-        return Math.floor(salary*Math.pow(10,2)/Math.pow(10,2));
+     return Math.floor(salary*Math.pow(10,2)/Math.pow(10,2));
 
     }
 
