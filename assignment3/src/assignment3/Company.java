@@ -21,6 +21,11 @@ public class Company {
         //im not sure if i did this correctly, i think i might need to use a try-catch block
         //most of the try catch is in the tests, we need to figure out where to throw and where to catch
         // ////////////
+        for (Employee currentEmployee : listOfEmployees) {
+            if (id.equals(currentEmployee.getID())) {
+                throw new InvalidCompanyException("Cannot register. The ID " + id + " is already registered.");
+            }
+        }
         if (id.isEmpty()) {
             throw new InvalidEmployeeException("ID cannot be blank.");
         }
@@ -40,6 +45,11 @@ public class Company {
         Employee employee = new Manager(id, name, grossSalary, DEGREE_TYPES);
 
         ////////////
+        for (Employee currentEmployee : listOfEmployees) {
+            if (id.equals(currentEmployee.getID())) {
+                throw new InvalidCompanyException("Cannot register. The ID " + id + " is already registered.");
+            }
+        }
         if (id.isEmpty()) {
             throw new InvalidEmployeeException("ID cannot be blank.");
         }
@@ -68,6 +78,11 @@ public class Company {
         Employee employee = new Director(id, name, grossSalary, DEGREE_TYPES, department);
 
         //check exceptions
+        for (Employee currentEmployee : listOfEmployees) {
+            if (id.equals(currentEmployee.getID())) {
+                throw new InvalidCompanyException("Cannot register. The ID " + id + " is already registered.");
+            }
+        }
         if (id.isEmpty()) {
             throw new InvalidEmployeeException("ID cannot be blank.");
         }
@@ -95,6 +110,11 @@ public class Company {
         Employee employee = new Intern(id, name, grossSalary, GPA);
 
         //check for the exceptions
+        for (Employee currentEmployee : listOfEmployees) {
+            if (id.equals(currentEmployee.getID())) {
+                throw new InvalidCompanyException("Cannot register. The ID " + id + " is already registered.");
+            }
+        }
         if (id.isEmpty()) {
             throw new InvalidEmployeeException("ID cannot be blank.");
         }
@@ -120,7 +140,12 @@ public class Company {
                 currentEmployee= currentEmployee.getID();
             }
         }
-        return null;
+        if(!foundEmployee) {
+            throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
+        }
+        else{
+            return currentEmployee;
+        }
     }
 
     /*public Employee findEmployee(String id) throws Exception {
