@@ -2,6 +2,7 @@ package assignment3;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class Company {
@@ -253,7 +254,7 @@ public class Company {
         return null;
     }
 
-    public String updateInternGPA(String id, int newGPA) {
+    public String updateInternGPA(String id, int newGPA) throws Exception {
         for (int i = 0; i < listOfEmployees.size(); i++) {
             Employee currentEmployee = listOfEmployees.get(i);
             if (id.equals(currentEmployee.getID())) {

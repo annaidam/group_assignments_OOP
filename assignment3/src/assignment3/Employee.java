@@ -86,6 +86,17 @@ public class Employee {
         }
 
     }
+/*
+    public int compareTo() {
+    }
+
+    /*
+    The compareTo() method determines the order of one object (object1) with the specified
+    object o (object2) and returns the following:
+    1. Returns 1 if object1 > object2;
+    2. Returns 0 if object1 == object2;
+    3. Returns -1 if object1 < object2;
+     */
 }
 
 
