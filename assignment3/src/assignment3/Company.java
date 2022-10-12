@@ -17,9 +17,6 @@ public class Company {
         Employee employee = new Employee(id, name, grossSalary);
 
         ////////////////
-        if (employee.getID().equals(findEmployee(employee.getID()))) {
-            throw new EmployeeIDTakenException("Cannot register. The ID is already registered.");
-        }
         if (id.isEmpty()) {
             throw new InvalidIDException("ID cannot be blank.");
         }
@@ -113,8 +110,6 @@ public class Company {
         for (Employee currentEmployee : listOfEmployees) {
             if (id.equals(currentEmployee.getID())) {
                 return currentEmployee;
-            } else {
-                throw new SpecificEmployeeNotFoundException("Employee " + id + " was not registered yet.");
             }
         }
         return null;
@@ -132,10 +127,6 @@ public class Company {
     public String printAllEmployees() throws Exception {
         String allEmployees = "";
 
-        if (listOfEmployees.isEmpty()) {
-            throw new EmployeeNotFoundException("No employee has been registered yet.");
-        }
-
         for (Employee employee : listOfEmployees) {
             allEmployees = allEmployees + employee.toString() + END_OF_LINE;
         }
@@ -147,10 +138,6 @@ public class Company {
     }
 
     public double getTotalNetSalary() throws Exception {
-        if (listOfEmployees.isEmpty()) {
-            throw new EmployeeNotFoundException("No employee has been registered yet.");
-        }
-
         double expenses = 0.0;
         if (!this.listOfEmployees.isEmpty()) {
             for (Employee currentEmployee : listOfEmployees) {
@@ -165,10 +152,6 @@ public class Company {
 
     //Sort again using stuff we will learn tomorrow
     public String printSortedEmployees() throws Exception {
-        if (listOfEmployees.isEmpty()) {
-            throw new EmployeeNotFoundException("No employee has been registered yet.");
-        }
-
         for (int i = 0; i < listOfEmployees.size(); i++) {
             for (int j = listOfEmployees.size() - 1; j < i; j--) {
                 //how to access the gross salary AFTER any bonuses?
