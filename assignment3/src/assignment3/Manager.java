@@ -8,18 +8,18 @@ public class Manager extends Employee
         super (id,name,grossSalary);
 
         if (id.isEmpty()){
-            throw new InvalidIDException("ID cannot be blank.");}
+            throw new InvalidEmployeeException("ID cannot be blank.");}
         if (name.isEmpty()) {
-            throw new InvalidNameException("Name cannot be blank.");}
+            throw new InvalidEmployeeException("Name cannot be blank.");}
         if (grossSalary <= 0){
-            throw new NegativeSalaryException("Salary must be greater than zero.");}
+            throw new InvalidEmployeeException("Salary must be greater than zero.");}
         //create a boolean that returns true if the string DEGREE_TYPES contains the string BSc, MSc or PhD
         boolean containsBSc = DEGREE_TYPES.contains("BSc");
         boolean containsMSc = DEGREE_TYPES.contains("MSc");
         boolean containsPhD = DEGREE_TYPES.contains("PhD");
         //if it does not contain---throw the exception
         if(!containsBSc || !containsMSc || !containsPhD){
-            throw new InvalidDegreeException("Degree must be one of the options: BSc, MSc or PhD.");
+            throw new InvalidEmployeeException("Degree must be one of the options: BSc, MSc or PhD.");
         } else {this.DEGREE_TYPES = DEGREE_TYPES;}
     }
 

@@ -6,11 +6,11 @@ public class Intern extends Employee {
     public Intern(String name, String id, double grossSalary, int GPA) throws Exception{
         super(name, id, grossSalary);
         if (id.isEmpty()){
-            throw new InvalidIDException("ID cannot be blank.");}
+            throw new InvalidEmployeeException("ID cannot be blank.");}
         if (name.isEmpty()) {
-            throw new InvalidNameException("Name cannot be blank.");}
+            throw new InvalidEmployeeException("Name cannot be blank.");}
         if (grossSalary <= 0){
-            throw new NegativeSalaryException("Salary must be greater than zero.");}
+            throw new InvalidEmployeeException("Salary must be greater than zero.");}
 
         this.GPA = GPA;
     }
