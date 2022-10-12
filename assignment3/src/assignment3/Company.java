@@ -17,6 +17,8 @@ public class Company {
         Employee employee = new Employee(id, name, grossSalary);
 
         ////////////////
+        if (employee.getID().equals(findEmployee(employee.getID()))) {
+            throw new EmployeeIDTakenException("Cannot register. The ID is already registered.");}
         if (id.isEmpty()){
             throw new InvalidIDException("ID cannot be blank.");}
         if (name.isEmpty()) {
@@ -92,26 +94,31 @@ public class Company {
         return "Employee " + employee.getID() + " was registered successfully.";
     }
 
-    public Employee findEmployee(String id) {
+    public Employee findEmployee(String id) throws Exception {
         for (Employee currentEmployee : listOfEmployees) {
             if (id.equals(currentEmployee.getID())) {
                 return currentEmployee;
+            } else {
+                throw new SpecificEmployeeNotFoundException("Employee " + id + " was not registered yet.");
             }
         }
         return null;
     }
 
-    public String removeEmployee(String empID) {
+    public String removeEmployee(String empID) throws Exception {
         this.listOfEmployees.remove(findEmployee(empID));
         return "Employee " + empID + " was successfully removed.";
     }
 
-    public String printEmployee(String employeeID) {
+    public String printEmployee(String employeeID) throws Exception {
         return findEmployee(employeeID).toString();
     }
 
-    public String printAllEmployees() {
+    public String printAllEmployees() throws Exception {
         String allEmployees = "";
+
+        if (listOfEmployees.isEmpty()){
+            throw new EmployeeNotFoundException("No employee has been registered yet.");}
 
         for (Employee employee : listOfEmployees) {
             allEmployees = allEmployees + employee.toString() + END_OF_LINE;
@@ -119,11 +126,14 @@ public class Company {
         return "All registered employees:" + END_OF_LINE + allEmployees;
     }
 
-    public double getNetSalary(String employeeID) {
+    public double getNetSalary(String employeeID) throws Exception {
         return findEmployee(employeeID).calculateNetSalary();
     }
 
-    public double getTotalNetSalary() {
+    public double getTotalNetSalary() throws Exception {
+        if (listOfEmployees.isEmpty()){
+            throw new EmployeeNotFoundException("No employee has been registered yet.");}
+
         double expenses = 0.0;
         if (!this.listOfEmployees.isEmpty()) {
             for (Employee currentEmployee : listOfEmployees) {
@@ -137,7 +147,10 @@ public class Company {
     }
 
     //Sort again using stuff we will learn tomorrow
-    public String printSortedEmployees() {
+    public String printSortedEmployees() throws Exception {
+        if (listOfEmployees.isEmpty()){
+            throw new EmployeeNotFoundException("No employee has been registered yet.");}
+
         for (int i = 0; i < listOfEmployees.size(); i++) {
             for (int j = listOfEmployees.size() - 1; j < i; j--) {
                 //how to access the gross salary AFTER any bonuses?
