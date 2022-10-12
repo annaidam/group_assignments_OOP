@@ -16,15 +16,18 @@ public class Company {
     public String createEmployee(String id, String name, double grossSalary) throws Exception {
         Employee employee = new Employee(id, name, grossSalary);
 
-        ////////////////
+        //can we create a method that does all this? maybe for different employee classes
+        //im not sure if i did this correctly, i think i might need to use a try-catch block
+        //most of the try catch is in the tests, we need to figure out where to throw and where to catch
+        // ////////////
         if (id.isEmpty()) {
             throw new InvalidEmployeeException("ID cannot be blank.");
         }
         if (name.isEmpty()) {
-            throw new InvalidNameException("Name cannot be blank.");
+            throw new InvalidEmployeeException("Name cannot be blank.");
         }
         if (grossSalary <= 0) {
-            throw new NegativeSalaryException("Salary must be greater than zero.");
+            throw new InvalidEmployeeException("Salary must be greater than zero.");
         }
         ////////////////
 
@@ -37,13 +40,13 @@ public class Company {
 
         ////////////
         if (id.isEmpty()) {
-            throw new InvalidIDException("ID cannot be blank.");
+            throw new InvalidEmployeeException("ID cannot be blank.");
         }
         if (name.isEmpty()) {
             throw new InvalidEmployeeException("Name cannot be blank.");
         }
         if (grossSalary <= 0) {
-            throw new NegativeSalaryException("Salary must be greater than zero.");
+            throw new InvalidEmployeeException("Salary must be greater than zero.");
         }
 
         boolean containsBSc = DEGREE_TYPES.contains("BSc");
@@ -51,7 +54,7 @@ public class Company {
         boolean containsPhD = DEGREE_TYPES.contains("PhD");
 
         if (!containsBSc || !containsMSc || !containsPhD) {
-            throw new InvalidDegreeException("Degree must be one of the options: BSc, MSc or PhD.");
+            throw new InvalidEmployeeException("Degree must be one of the options: BSc, MSc or PhD.");
         }
         ///////////
 
@@ -65,13 +68,13 @@ public class Company {
 
         //check exceptions
         if (id.isEmpty()) {
-            throw new InvalidIDException("ID cannot be blank.");
+            throw new InvalidEmployeeException("ID cannot be blank.");
         }
         if (name.isEmpty()) {
-            throw new InvalidNameException("Name cannot be blank.");
+            throw new InvalidEmployeeException("Name cannot be blank.");
         }
         if (grossSalary <= 0) {
-            throw new NegativeSalaryException("Salary must be greater than zero.");
+            throw new InvalidEmployeeException("Salary must be greater than zero.");
         }
 
         boolean containsBSc = DEGREE_TYPES.contains("BSc");
@@ -79,7 +82,7 @@ public class Company {
         boolean containsPhD = DEGREE_TYPES.contains("PhD");
 
         if (!containsBSc || !containsMSc || !containsPhD) {
-            throw new InvalidDegreeException("Degree must be one of the options: BSc, MSc or PhD.");
+            throw new InvalidEmployeeException("Degree must be one of the options: BSc, MSc or PhD.");
         }
         //finish checking exceptions
 
@@ -92,13 +95,13 @@ public class Company {
 
         //check for the exceptions
         if (id.isEmpty()) {
-            throw new InvalidIDException("ID cannot be blank.");
+            throw new InvalidEmployeeException("ID cannot be blank.");
         }
         if (name.isEmpty()) {
-            throw new InvalidNameException("Name cannot be blank.");
+            throw new InvalidEmployeeException("Name cannot be blank.");
         }
         if (grossSalary <= 0) {
-            throw new NegativeSalaryException("Salary must be greater than zero.");
+            throw new InvalidEmployeeException("Salary must be greater than zero.");
         }
         //finished with the exceptions
 
@@ -110,12 +113,19 @@ public class Company {
         for (Employee currentEmployee : listOfEmployees) {
             if (id.equals(currentEmployee.getID())) {
                 return currentEmployee;
+            } else if (!id.equals(currentEmployee.getID())) {
+                    throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
             }
         }
         return null;
     }
 
     public String removeEmployee(String empID) throws Exception {
+        for (Employee currentEmployee : listOfEmployees) {
+            if (!empID.equals(currentEmployee.getID())) {
+                throw new InvalidCompanyException("Employee " + empID + " was not registered yet.");
+            }
+        }
         this.listOfEmployees.remove(findEmployee(empID));
         return "Employee " + empID + " was successfully removed.";
     }
@@ -143,10 +153,18 @@ public class Company {
     }
 
     public double getNetSalary(String employeeID) throws Exception {
+        for (Employee currentEmployee : listOfEmployees) {
+            if (!employeeID.equals(currentEmployee.getID())) {
+                throw new InvalidCompanyException("Employee " + employeeID + " was not registered yet.");
+            }
+        }
         return findEmployee(employeeID).calculateNetSalary();
     }
 
     public double getTotalNetSalary() throws Exception {
+        if (listOfEmployees.isEmpty()) {
+            throw new InvalidCompanyException("No employee has been registered yet.");
+        }
         double expenses = 0.0;
         if (!this.listOfEmployees.isEmpty()) {
             for (Employee currentEmployee : listOfEmployees) {
