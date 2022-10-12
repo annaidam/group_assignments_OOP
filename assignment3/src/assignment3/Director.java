@@ -3,14 +3,18 @@ package assignment3;
 public class Director extends Manager {
 
     private String department;
+    boolean containsHUMAN_RESOURCES;
+    boolean containsBUSINESS;
+    boolean containsTECHNICAL;
+
 
     public Director (String id, String name, double grossSalary, String DEGREE_TYPES, String department) throws Exception {
         super (id, name, grossSalary, DEGREE_TYPES);
 
         //Presenting the creation or assignment with invalid Directors data.
-        boolean containsHUMAN_RESOURCES = department.equals("Human Resources");
-        boolean containsBUSINESS = department.equals("Business");
-        boolean containsTECHNICAL = department.equals("Technical");
+        containsHUMAN_RESOURCES = department.equals("Human Resources");
+        containsBUSINESS = department.equals("Business");
+        containsTECHNICAL = department.equals("Technical");
         if(!containsBUSINESS || !containsTECHNICAL || !containsHUMAN_RESOURCES) {
             throw new InvalidEmployeeException("Department must be one of the options: Business, Human Resources or Technical.");
         }

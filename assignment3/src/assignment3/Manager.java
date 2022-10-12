@@ -3,14 +3,17 @@ package assignment3;
 public class Manager extends Employee
 {
     private String DEGREE_TYPES;
+    boolean containsBSc;
+    boolean containsMSc;
+    boolean containsPhD;
 
     public Manager (String id, String name, double grossSalary, String DEGREE_TYPES) throws Exception {
         super (id,name,grossSalary);
 
         //create a boolean that returns true if the string DEGREE_TYPES contains the string BSc, MSc or PhD
-        boolean containsBSc = DEGREE_TYPES.equals("BSc");
-        boolean containsMSc = DEGREE_TYPES.equals("MSc");
-        boolean containsPhD = DEGREE_TYPES.equals("PhD");
+        containsBSc = DEGREE_TYPES.equals("BSc");
+        containsMSc = DEGREE_TYPES.equals("MSc");
+        containsPhD = DEGREE_TYPES.equals("PhD");
 
         //if it contains, assign the value---else throw the exception
         if(containsBSc || containsMSc || containsPhD){
@@ -23,7 +26,14 @@ public class Manager extends Employee
         return DEGREE_TYPES;
     }
 
-    public void setDEGREE_TYPES(String DEGREE_TYPES) { this.DEGREE_TYPES = DEGREE_TYPES;} //throw
+    public void setDEGREE_TYPES(String DEGREE_TYPES) throws Exception {
+        if (containsBSc || containsMSc || containsPhD) {
+            this.DEGREE_TYPES = DEGREE_TYPES;
+        } else {
+            throw new InvalidEmployeeException("Degree must be one of the options: BSc, MSc or PhD.");
+        }
+    }
+
 
     public double getDegreeBonus() {
         double bonus = 0.0;

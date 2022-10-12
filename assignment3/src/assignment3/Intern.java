@@ -27,7 +27,7 @@ public class Intern extends Employee {
     }
 
     @Override
-    public double calculateNetSalary() {
+    public double calculateNetSalary() throws Exception {
 
         double internGrossSalary;
         if (this.GPA <= 5) {
