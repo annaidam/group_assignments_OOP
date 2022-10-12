@@ -8,6 +8,7 @@ public class Company {
     private ArrayList<Employee> listOfEmployees;
     private HashMap<String, Integer> degreeMap = new HashMap<>();
     final String END_OF_LINE = System.lineSeparator();
+    boolean foundEmployee=false;
 
     public Company() {
         this.listOfEmployees = new ArrayList<>();
@@ -122,6 +123,18 @@ public class Company {
         return null;
     }
 
+    /*public Employee findEmployee(String id) throws Exception {
+        for (Employee currentEmployee : listOfEmployees) {
+            if (!id.equals(currentEmployee.getID())) {
+                throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
+            } else {
+                return currentEmployee;
+            }
+        }
+    }
+
+     */
+
     public String removeEmployee(String empID) throws Exception {
         for (Employee currentEmployee : listOfEmployees) {
             if (!empID.equals(currentEmployee.getID())) {
@@ -212,7 +225,7 @@ public class Company {
         return null;
     }
 
-    public String updateGrossSalary(String id, double newGrossSalary) {
+    public String updateGrossSalary(String id, double newGrossSalary) throws Exception {
         findEmployee(id).setGrossSalary(newGrossSalary);
         return "Employee " + id + " was updated successfully";
     }
@@ -234,7 +247,7 @@ public class Company {
         return null;
     }
 
-    public String updateDirectorDept(String id, String newDept) {
+    public String updateDirectorDept(String id, String newDept) throws Exception {
         if (findEmployee(id) instanceof Director) {
             ((Director) findEmployee(id)).setDepartment(newDept);
             return "Employee " + id + " was updated successfully";
