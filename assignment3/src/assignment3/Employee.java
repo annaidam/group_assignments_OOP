@@ -30,8 +30,14 @@ public class Employee {
         return name;
     }
 
-    public void setName(String newName) {
-        this.name = newName;
+    public void setName(String newName)  throws Exception
+    {
+        if (name.isEmpty()) {
+            throw new InvalidEmployeeException("Name cannot be blank.");
+        }
+        else {
+            this.name = newName;
+        }
     }
 
     public double getGrossSalary() {

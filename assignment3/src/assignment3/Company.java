@@ -24,16 +24,6 @@ public class Company {
                 throw new InvalidCompanyException("Cannot register. The ID " + id + " is already registered.");
             }
         }
-        if (id.isEmpty()) {
-            throw new InvalidEmployeeException("ID cannot be blank.");
-        }
-        if (name.isEmpty()) {
-            throw new InvalidEmployeeException("Name cannot be blank.");
-        }
-        if (grossSalary <= 0) {
-            throw new InvalidEmployeeException("Salary must be greater than zero.");
-        }
-        ////////////////
 
         this.listOfEmployees.add(employee);
         return "Employee " + employee.getID() + " was registered successfully.";
@@ -48,25 +38,13 @@ public class Company {
                 throw new InvalidCompanyException("Cannot register. The ID " + id + " is already registered.");
             }
         }
-        if (id.isEmpty()) {
-            throw new InvalidEmployeeException("ID cannot be blank.");
-        }
-        if (name.isEmpty()) {
-            throw new InvalidEmployeeException("Name cannot be blank.");
-        }
-        if (grossSalary <= 0) {
-            throw new InvalidEmployeeException("Salary must be greater than zero.");
-        }
-
-        boolean containsBSc = DEGREE_TYPES.contains("BSc");
+        boolean containsBSc = DEGREE_TYPES.contains("BSc"); //equlas
         boolean containsMSc = DEGREE_TYPES.contains("MSc");
         boolean containsPhD = DEGREE_TYPES.contains("PhD");
 
         if (!containsBSc || !containsMSc || !containsPhD) {
             throw new InvalidEmployeeException("Degree must be one of the options: BSc, MSc or PhD.");
         }
-        ///////////
-
 
         this.listOfEmployees.add(employee);
         return "Employee " + employee.getID() + " was registered successfully.";
@@ -80,15 +58,6 @@ public class Company {
             if (id.equals(currentEmployee.getID())) {
                 throw new InvalidCompanyException("Cannot register. The ID " + id + " is already registered.");
             }
-        }
-        if (id.isEmpty()) {
-            throw new InvalidEmployeeException("ID cannot be blank.");
-        }
-        if (name.isEmpty()) {
-            throw new InvalidEmployeeException("Name cannot be blank.");
-        }
-        if (grossSalary <= 0) {
-            throw new InvalidEmployeeException("Salary must be greater than zero.");
         }
 
         boolean containsBSc = DEGREE_TYPES.contains("BSc");
@@ -112,21 +81,33 @@ public class Company {
                 throw new InvalidCompanyException("Cannot register. The ID " + id + " is already registered.");
             }
         }
-        if (id.isEmpty()) {
-            throw new InvalidEmployeeException("ID cannot be blank.");
-        }
-        if (name.isEmpty()) {
-            throw new InvalidEmployeeException("Name cannot be blank.");
-        }
-        if (grossSalary <= 0) {
-            throw new InvalidEmployeeException("Salary must be greater than zero.");
-        }
-        //finished with the exceptions
-
         this.listOfEmployees.add(employee);
         return "Employee " + employee.getID() + " was registered successfully.";
     }
 
+    /* private Employee findEmployee(String ID) {
+        for (int i = 0; i < employeeList.size(); i++) {
+            Employee currentEmployee = employeeList.get(i);
+            if (currentEmployee.getId().equals(ID)) {
+                return currentEmployee;
+            }
+        }
+        return null;
+    }
+
+     */
+
+    /*public Employee findEmployee(String id) throws Exception {
+     for (Employee currentEmployee : listOfEmployees) {
+         if (!id.equals(currentEmployee.getID())) {
+             throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
+         } else {
+             return currentEmployee;
+         }
+     }
+ }
+
+  */
     public Employee findEmployee(String id) throws Exception {
         Employee currentEmployee = null;
         for (int i=0; i<listOfEmployees.size(); i++) {
@@ -134,7 +115,6 @@ public class Company {
             if (currentEmployee.getID().equals(id))
             {
                 foundEmployee = true;
-                currentEmployee= currentEmployee.getID();
             }
         }
         if(!foundEmployee) {
@@ -144,18 +124,6 @@ public class Company {
             return currentEmployee;
         }
     }
-
-    /*public Employee findEmployee(String id) throws Exception {
-        for (Employee currentEmployee : listOfEmployees) {
-            if (!id.equals(currentEmployee.getID())) {
-                throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
-            } else {
-                return currentEmployee;
-            }
-        }
-    }
-
-     */
 
     public String removeEmployee(String empID) throws Exception {
         for (Employee currentEmployee : listOfEmployees) {

@@ -8,17 +8,26 @@ public class Director extends Manager {
         super (id, name, grossSalary, DEGREE_TYPES);
 
         //Presenting the creation or assignment with invalid Directors data.
-        boolean containsHUMAN_RESOURCES = department.contains("HUMAN_RESOURCES");
-        boolean containsBUSINESS = department.contains("Business");
-        boolean containsTECHNICAL = department.contains("Technical");
-        if(!containsBUSINESS || containsTECHNICAL || containsHUMAN_RESOURCES) {
+        boolean containsHUMAN_RESOURCES = department.equals("Human Resources");
+        boolean containsBUSINESS = department.equals("Business");
+        boolean containsTECHNICAL = department.equals("Technical");
+        if(!containsBUSINESS || !containsTECHNICAL || !containsHUMAN_RESOURCES) {
             throw new InvalidEmployeeException("Department must be one of the options: Business, Human Resources or Technical.");
         }
-        this.department = department;
+        else {
+            this.department = department;
+        }
     }
 
     public String getDepartment() {return this.department;}
-    public void setDepartment(String newDept){this.department = newDept;}
+
+    public void setDepartment(String newDept) throws Exception {
+        if (!containsBUSINESS || !containsTECHNICAL || !containsHUMAN_RESOURCES) {
+            throw new InvalidEmployeeException("Department must be one of the options: Business, Human Resources or Technical.");
+        } else {
+            this.department = newDept;
+        }
+    }
 
     public double directorGrossSalary() {
         final double ADDITIONAL_SALARY = 5000.00;
