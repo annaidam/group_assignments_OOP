@@ -12,6 +12,7 @@ public class Company {
 
     public Company() {
         this.listOfEmployees = new ArrayList<>();
+        this.degreeMap = new HashMap<>();
     }
 
     public String createEmployee(String id, String name, double grossSalary) throws Exception {
@@ -301,112 +302,74 @@ public class Company {
     //"MSc: => " + counterMSc + END_OF_LINE;
     //"PhD: => " + counterPhD + END_OF_LINE;
 
-    /*
-    public void checkDegrees(){
-        // Go through each post
-        for (Employee current : listOfEmployees) {
-            //Retrieve the hashtags in that post. Then, for each Hashtag:
-            //Check if the hashtag was mentioned before (it would exist as a key in the map).
-            //If yes, then retrieve the number of times mentioned, increment and put back in map.
-            //If not, then add the hashtag to the map as a key with value 1 (mentioned once).
-            HashSet<String> degrees = current.getDegrees();
-            for (String degree : degrees){
-                if (mapEachDegree.containsKey(degree) ){
-                    int numOfDegrees = mapEachDegree.get(degree);
-                    numOfDegrees = numOfDegrees + 1;
-                    mapEachDegree.put(degree, numOfDegrees);
-                } else {
-                    mapEachDegree.put(degree, 1);
-                }
-            }
-        }
-    }
+    public void mapEachDegree() throws Exception {
+         counterBSc = 0;
+         counterMSc = 0;
+         counterPhD = 0;
 
-    /*
-    public HashMap<String, Integer> getDegrees() {
-        return this.degreeMap;
-    }
-     */
-}
-/*
-    public Map mapEachDegree() {
-        int counterBSc = 0, counterMSc = 0, counterPhD = 0;
-        for (Employee current : listOfEmployees) {
-            if (current instanceof Manager || current instanceof Director) {
-                if (((Manager) current).getDEGREE_TYPES().equals("BSc")) {
-                    counterBSc = counterBSc + 1;
-                } else if (((Manager) current).getDEGREE_TYPES().equals("MSc")) {
-                    counterMSc = counterMSc + 1;
-                } else if (((Manager) current).getDEGREE_TYPES().equals("PhD")) {
-                    counterPhD = counterPhD + 1;
+        if (listOfEmployees.isEmpty()) {
+            throw new InvalidCompanyException("No employees registered yet.");
+        }
+
+        for (Employee currentEmployee : listOfEmployees) {
+            if (currentEmployee instanceof Manager) {
+
+                switch (((Manager) currentEmployee).getDEGREE_TYPES()) {
+                    case "BSc":
+                        counterBSc = counterBSc + 1;
+                        break;
+                    case "MSc":
+                        counterMSc = counterMSc + 1;
+                        break;
+                    case "PhD":
+                        counterPhD = counterPhD + 1;
+                        break;
                 }
             }
         }
-        String BSc = "";
-        String MSc = "";
-        String PhD = "";
+        //HashMap<String, Integer> hashMap = new HashMap<>();
         if (counterBSc > 0) {
-            BSc = "BSc: => " + counterBSc + END_OF_LINE;
-        } else if (counterMSc > 0) {
-            MSc = "MSc: => " + counterMSc + END_OF_LINE;
-        } else if (counterPhD > 0) {
-            PhD = "PhD: => " + counterPhD + END_OF_LINE;
+            degreeMap.put("BSc", counterBSc);
         }
-        System.out.println("Academic background of employees:" + END_OF_LINE + BSc + MSc + PhD);
-        return mapEachDegree();
-        //return "Academic background of employees:" + END_OF_LINE + BSc + MSc + PhD;
+        if (counterMSc > 0) {
+            degreeMap.put("MSc", counterBSc);
+        }
+        if (counterPhD > 0) {
+            degreeMap.put("PhD", counterBSc);
+        }
+       // return "degreeMap";
+    }
+    public HashMap<String, Integer> getDegreeMap() {
+        return degreeMap;
+    }
+
+    public String toString(){
+        String s1= "";
+        String s2= "";
+        String s3= "";
+        /*String numberOfDegrees = "";
+        for(Employee currentEmployee : this.listOfEmployees){
+            numberOfDegrees = numberOfDegrees + currentPost.getPostContent() + END_OF_LINE;
+        }
+        return numberOfDegrees;
+*/
+        if (counterBSc!=0) {
+            s1 = "BSc: => " + counterBSc + END_OF_LINE;
+        }
+        else {
+            s1= "";
+        }
+        if (counterMSc!=0) {
+            s2 = "MSc: => " + counterMSc + END_OF_LINE;
+        } else {
+            s2= "";
+        }
+        if (counterPhD!=0) {
+            s3 = "PhD: => " + counterPhD + END_OF_LINE;
+        } else {
+            s3= "";
+        }
+
+        return "Academic background of employees: " + END_OF_LINE + s1 + s2 +s3;
     }
 }
-
-   /* public Map<String, Integer> mapEachDegree ()
-    {
-        for (Employee employee : listOfEmployees) {
-            if (employee instanceof Manager) {
-                if (((Manager) employee).getDEGREE_TYPES().equals("BSc")) {
-                    degreeMap.put("BSc", 1);
-                }
-            }
-        }
-
-       String result = "Size of map is:- "+ degreeMap.size();
-        if (degreeMap.containsKey("Bsc")) {
-
-            // Mapping
-            Integer a = degreeMap.get("BSc");
-
-            // Printing value for the corresponding key
-            System.out.println("value for key"
-                    + " \"BSc\" is:- " + a);
-    }*/
-
-/* Isabela-draft of task 10
-    public Map<String, Integer> mapEachDegree() {
-        for (Employee employee : listOfEmployees) {
-            if (employee instanceof Manager || employee instanceof Director) {
-                if (((Manager) employee).getDEGREE_TYPES().equals("BSc")) {
-                    degreeMap.put("BSc", 1);
-                } else if (((Manager) employee).getDEGREE_TYPES().equals("MSc")) {
-                    degreeMap.put("MSc", 1);
-                } else if (((Manager) employee).getDEGREE_TYPES().equals("PhD")) {
-                    degreeMap.put("PhD", 1);
-                }
-            }
-
-        }return null;
-    }
-    public String numberOfDegrees(){
-        String numberOfBSc = "";
-        String numberOfMSc = "";
-        String numberOfPhD = "";
-
-        for (Employee employee : listOfEmployees) {
-            String numberOfBSc = numberOfBSc + "BSc: =>" + degreeMap.get("BSc") + END_OF_LINE;
-            String numberOfMSc = numberOfMSc + "MSc: =>" + degreeMap.get("MSc") + END_OF_LINE;
-            String numberOfPhD = numberOfPhD + "PhD: =>" + degreeMap.get("PhD") + END_OF_LINE;
-
-        return "Academic background of employees: " + END_OF_LINE + numberOfBSc + numberOfMSc + numberOfPhD;
-    }
-}
-
- */
-
