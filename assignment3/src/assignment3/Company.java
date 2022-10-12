@@ -110,11 +110,13 @@ public class Company {
     }
 
     public Employee findEmployee(String id) throws Exception {
-        for (Employee currentEmployee : listOfEmployees) {
-            if (id.equals(currentEmployee.getID())) {
-                return currentEmployee;
-            } else if (!id.equals(currentEmployee.getID())) {
-                    throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
+        Employee currentEmployee = null;
+        for (int i=0; i<listOfEmployees.size(); i++) {
+            currentEmployee = listOfEmployees.get(i);
+            if (currentEmployee.getID().equals(id))
+            {
+                foundEmployee = true;
+                currentEmployee= currentEmployee.getID();
             }
         }
         return null;
@@ -215,7 +217,7 @@ public class Company {
         return "Employee " + id + " was updated successfully";
     }
 
-    public String updateManagerDegree(String id, String newDegree) {
+    public String updateManagerDegree(String id, String newDegree) throws Exception {
         if (findEmployee(id) instanceof Manager) {
             ((Manager) findEmployee(id)).setDEGREE_TYPES(newDegree);
             return "Employee " + id + " was updated successfully";
@@ -224,7 +226,7 @@ public class Company {
         }
     }
 
-    public String updateDirectorDegree(String id, String newDegree) {
+    public String updateDirectorDegree(String id, String newDegree) throws Exception {
         if (findEmployee(id) instanceof Director) {
             ((Director) findEmployee(id)).setDEGREE_TYPES(newDegree);
             return "Employee " + id + " was updated successfully";
