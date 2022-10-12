@@ -8,7 +8,7 @@ public class Company {
     private ArrayList<Employee> listOfEmployees;
     private HashMap<String, Integer> degreeMap = new HashMap<>();
     final String END_OF_LINE = System.lineSeparator();
-    boolean foundEmployee=false;
+    boolean foundEmployee = false;
 
     public Company() {
         this.listOfEmployees = new ArrayList<>();
@@ -67,6 +67,14 @@ public class Company {
         if (!containsBSc || !containsMSc || !containsPhD) {
             throw new InvalidEmployeeException("Degree must be one of the options: BSc, MSc or PhD.");
         }
+
+        boolean containsBusiness = department.contains("Business");
+        boolean containsHumanResources = department.contains("Human Resources");
+        boolean containsTechnical = department.contains("Technical");
+
+        if (!containsBusiness || !containsHumanResources || !containsTechnical) {
+            throw new InvalidEmployeeException("DDepartment must be one of the options: Business, Human Resources or Technical.");
+        }
         //finish checking exceptions
 
         this.listOfEmployees.add(employee);
@@ -110,17 +118,15 @@ public class Company {
   */
     public Employee findEmployee(String id) throws Exception {
         Employee currentEmployee = null;
-        for (int i=0; i<listOfEmployees.size(); i++) {
+        for (int i = 0; i < listOfEmployees.size(); i++) {
             currentEmployee = listOfEmployees.get(i);
-            if (currentEmployee.getID().equals(id))
-            {
+            if (currentEmployee.getID().equals(id)) {
                 foundEmployee = true;
             }
         }
-        if(!foundEmployee) {
+        if (!foundEmployee) {
             throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
-        }
-        else{
+        } else {
             return currentEmployee;
         }
     }
@@ -181,6 +187,20 @@ public class Company {
         }
         return expenses;
     }
+
+    /*
+    public interface Comparable<E> {
+        public double compareTo(E o);
+    }
+     */
+
+    /*
+    The compareTo() method determines the order of one object (object1) with the specified
+    object o (object2) and returns the following:
+    1. Returns 1 if object1 > object2;
+    2. Returns 0 if object1 == object2;
+    3. Returns -1 if object1 < object2;
+     */
 
     //Sort again using stuff we will learn tomorrow
     public String printSortedEmployees() throws Exception {
@@ -257,13 +277,72 @@ public class Company {
         }
         return null;
     }
-}
+
+    /*PROMOTIONS:
+        1. Retrieve the Employee;
+        2. Save all of his/her information (name and raw gross salary);
+        3. Create a “new employee” with the corresponding new type and specify all of their
+        new required information (when applicable), along with the information saved in step
+        2;
+        4. Remove the “old employee” from the database;
+        5. Add the new Employee.*/
+
+    public void promoteToManager(String id, String degree) throws Exception {
+        String originalName = findEmployee(id).getName();
+        double originalSalary = findEmployee(id).getGrossSalary();
+        Employee promotedEmployee = new Manager(id, originalName, originalSalary, degree);
+        removeEmployee(id);
+        listOfEmployees.add(promotedEmployee);
+    }
+
+    public void promoteToDirector(String id, String degree, String department) throws Exception {
+        String originalName = findEmployee(id).getName();
+        double originalSalary = findEmployee(id).getGrossSalary();
+        Employee promotedEmployee = new Director(id, originalName, originalSalary, degree, department);
+        removeEmployee(id);
+        listOfEmployees.add(promotedEmployee);
+    }
+
+    public void promoteToIntern(String id, int GPA) throws Exception {
+        String originalName = findEmployee(id).getName();
+        double originalSalary = findEmployee(id).getGrossSalary();
+        Employee promotedEmployee = new Intern(id, originalName, originalSalary, GPA);
+        removeEmployee(id);
+        listOfEmployees.add(promotedEmployee);
+    }
 
     //"Academic background of employees:" + END_OF_LINE;
     //"BSc: => " + counterBSc + END_OF_LINE;
     //"MSc: => " + counterMSc + END_OF_LINE;
     //"PhD: => " + counterPhD + END_OF_LINE;
-    /*public String academicBackground() {
+
+    /*
+    public void checkDegrees(){
+        // Go through each post
+        for (Employee current : listOfEmployees) {
+            //Retrieve the hashtags in that post. Then, for each Hashtag:
+            //Check if the hashtag was mentioned before (it would exist as a key in the map).
+            //If yes, then retrieve the number of times mentioned, increment and put back in map.
+            //If not, then add the hashtag to the map as a key with value 1 (mentioned once).
+            HashSet<String> degrees = current.getDegrees();
+            for (String degree : degrees){
+                if (mapEachDegree.containsKey(degree) ){
+                    int numOfDegrees = mapEachDegree.get(degree);
+                    numOfDegrees = numOfDegrees + 1;
+                    mapEachDegree.put(degree, numOfDegrees);
+                } else {
+                    mapEachDegree.put(degree, 1);
+                }
+            }
+        }
+    }
+
+    public HashMap<String, Integer> getDegrees(){
+        return this.mapEachDegree;
+    }
+     */
+
+    public Map mapEachDegree() {
         int counterBSc = 0, counterMSc = 0, counterPhD = 0;
         for (Employee current : listOfEmployees) {
             if (current instanceof Manager || current instanceof Director) {
@@ -279,20 +358,18 @@ public class Company {
         String BSc = "";
         String MSc = "";
         String PhD = "";
-        if (counterBSc > 0){
+        if (counterBSc > 0) {
             BSc = "BSc: => " + counterBSc + END_OF_LINE;
-        }
-        else if (counterMSc > 0){
+        } else if (counterMSc > 0) {
             MSc = "MSc: => " + counterMSc + END_OF_LINE;
-        }
-        else if (counterPhD > 0){
+        } else if (counterPhD > 0) {
             PhD = "PhD: => " + counterPhD + END_OF_LINE;
         }
-
-        return "Academic background of employees:" + END_OF_LINE + BSc + MSc + PhD;
+        System.out.println("Academic background of employees:" + END_OF_LINE + BSc + MSc + PhD);
+        return mapEachDegree();
+        //return "Academic background of employees:" + END_OF_LINE + BSc + MSc + PhD;
     }
-
-     */
+}
 
    /* public Map<String, Integer> mapEachDegree ()
     {
