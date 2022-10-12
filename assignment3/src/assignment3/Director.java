@@ -21,11 +21,18 @@ public class Director extends Manager {
         if(!containsBSc || !containsMSc || !containsPhD){
             throw new InvalidEmployeeException("Degree must be one of the options: BSc, MSc or PhD.");}
 
+        //Presenting the creation or assignment with invalid Directors data.
+        boolean containsHUMAN_RESOURCES = department.contains("HUMAN_RESOURCES");
+        boolean containsBUSINESS = department.contains("Business");
+        boolean containsTECHNICAL = department.contains("Technical");
+        if(!containsBUSINESS || containsTECHNICAL || containsHUMAN_RESOURCES) {
+            throw new InvalidEmployeeException("Department must be one of the options: Business, Human Resources or Technical.");
+        }
         this.department = department;
     }
 
     public String getDepartment() {return this.department;}
-    public void setDepartment(String newDept) {this.department = newDept;}
+    public void setDepartment(String newDept){this.department = newDept;}
 
     public double directorGrossSalary() {
         final double ADDITIONAL_SALARY = 5000.00;
