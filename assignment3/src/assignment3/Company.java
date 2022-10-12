@@ -60,21 +60,6 @@ public class Company {
             }
         }
 
-        boolean containsBSc = DEGREE_TYPES.contains("BSc");
-        boolean containsMSc = DEGREE_TYPES.contains("MSc");
-        boolean containsPhD = DEGREE_TYPES.contains("PhD");
-
-        if (!containsBSc || !containsMSc || !containsPhD) {
-            throw new InvalidEmployeeException("Degree must be one of the options: BSc, MSc or PhD.");
-        }
-
-        boolean containsBusiness = department.contains("Business");
-        boolean containsHumanResources = department.contains("Human Resources");
-        boolean containsTechnical = department.contains("Technical");
-
-        if (!containsBusiness || !containsHumanResources || !containsTechnical) {
-            throw new InvalidEmployeeException("DDepartment must be one of the options: Business, Human Resources or Technical.");
-        }
         //finish checking exceptions
 
         this.listOfEmployees.add(employee);
@@ -337,11 +322,13 @@ public class Company {
         }
     }
 
-    public HashMap<String, Integer> getDegrees(){
-        return this.mapEachDegree;
+    /*
+    public HashMap<String, Integer> getDegrees() {
+        return this.degreeMap;
     }
      */
-
+}
+/*
     public Map mapEachDegree() {
         int counterBSc = 0, counterMSc = 0, counterPhD = 0;
         for (Employee current : listOfEmployees) {

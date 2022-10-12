@@ -30,7 +30,8 @@ public class Employee {
         return name;
     }
 
-    public void setName(String newName)  throws Exception {
+    public void setName(String newName)  throws Exception
+    {
         if (name.isEmpty()) {
             throw new InvalidEmployeeException("Name cannot be blank.");
         }
@@ -43,19 +44,18 @@ public class Employee {
         return grossSalary;
     }
 
-    public void setGrossSalary(double newGrossSalary) throws Exception {
-        if (grossSalary <= 0){
-            throw new InvalidEmployeeException("Salary must be greater than zero.");
-        } else {
-            this.grossSalary = newGrossSalary;
-            truncateSalary(this.grossSalary);
-        }
+    public void setGrossSalary(double newGrossSalary) {
+        this.grossSalary = newGrossSalary;
+        truncateSalary(this.grossSalary);
     }
 
     //netSalary = grossSalary - (grossSalary * 0.1)
-    public double calculateNetSalary() {
+    public double calculateNetSalary() throws Exception{
+        if (grossSalary <= 0){
+            throw new InvalidEmployeeException("Salary must be greater than zero.");
+        } else {
         netSalary = truncateSalary(grossSalary) * 0.9;
-        return this.truncateSalary(netSalary);
+        return this.truncateSalary(netSalary);}
     }
 
     public double truncateSalary(double salary) {

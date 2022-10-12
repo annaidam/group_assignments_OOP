@@ -27,7 +27,7 @@ public class Intern extends Employee {
     }
 
     @Override
-    public double calculateNetSalary() throws Exception {
+    public double calculateNetSalary()  {
 
         double internGrossSalary;
         if (this.GPA <= 5) {
@@ -43,7 +43,7 @@ public class Intern extends Employee {
     }
 
     @Override
-    public String toString() {
+    public String toString(){
         return this.getName() + "'s gross salary is " + String.format("%.2f", this.truncateSalary(this.calculateNetSalary())) + " SEK per month. GPA: "+ this.GPA;
     }
 }
