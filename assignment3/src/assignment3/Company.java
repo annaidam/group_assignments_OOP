@@ -1,5 +1,5 @@
 package assignment3;
-import java.lang.constant.Constable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,8 +17,6 @@ public class Company {
     public String createEmployee(String id, String name, double grossSalary) throws Exception {
         Employee employee = new Employee(id, name, grossSalary);
 
-        //can we create a method that does all this? maybe for different employee classes
-        //im not sure if i did this correctly, i think i might need to use a try-catch block
         //most of the try catch is in the tests, we need to figure out where to throw and where to catch
         // ////////////
         for (Employee currentEmployee : listOfEmployees) {
@@ -44,7 +42,7 @@ public class Company {
     public String createEmployee(String id, String name, double grossSalary, String DEGREE_TYPES) throws Exception {
         Employee employee = new Manager(id, name, grossSalary, DEGREE_TYPES);
 
-        ////////////
+        ////////////throw from update, throw from setter
         for (Employee currentEmployee : listOfEmployees) {
             if (id.equals(currentEmployee.getID())) {
                 throw new InvalidCompanyException("Cannot register. The ID " + id + " is already registered.");
@@ -109,7 +107,6 @@ public class Company {
     public String createEmployee(String id, String name, double grossSalary, int GPA) throws Exception {
         Employee employee = new Intern(id, name, grossSalary, GPA);
 
-        //check for the exceptions
         for (Employee currentEmployee : listOfEmployees) {
             if (id.equals(currentEmployee.getID())) {
                 throw new InvalidCompanyException("Cannot register. The ID " + id + " is already registered.");
@@ -239,7 +236,7 @@ public class Company {
         return "Employees sorted by gross salary (ascending order):" + END_OF_LINE + allEmployeesSorted;
     }
 
-    public String updateEmployeeName(String id, String newName) {
+    public String updateEmployeeName(String id, String newName) throws Exception {
         for (int i = 0; i < listOfEmployees.size(); i++) {
             Employee currentEmployee = listOfEmployees.get(i);
             if (id.equals(currentEmployee.getID())) {

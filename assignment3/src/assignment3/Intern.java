@@ -1,5 +1,8 @@
 package assignment3;
 
+import assignment3.Employee;
+import assignment3.InvalidEmployeeException;
+
 public class Intern extends Employee {
     private int GPA;
 
