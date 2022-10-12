@@ -18,7 +18,7 @@ public class Company {
 
         ////////////////
         if (id.isEmpty()) {
-            throw new InvalidIDException("ID cannot be blank.");
+            throw new InvalidEmployeeException("ID cannot be blank.");
         }
         if (name.isEmpty()) {
             throw new InvalidNameException("Name cannot be blank.");
@@ -40,7 +40,7 @@ public class Company {
             throw new InvalidIDException("ID cannot be blank.");
         }
         if (name.isEmpty()) {
-            throw new InvalidNameException("Name cannot be blank.");
+            throw new InvalidEmployeeException("Name cannot be blank.");
         }
         if (grossSalary <= 0) {
             throw new NegativeSalaryException("Salary must be greater than zero.");
