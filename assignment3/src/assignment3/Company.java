@@ -6,10 +6,19 @@ import java.util.Map;
 
 public class Company {
     private ArrayList<Employee> listOfEmployees;
-    private HashMap<String, Integer> degreeMap = new HashMap<>();
+    HashMap<String, Integer> degreeMap;
     final String END_OF_LINE = System.lineSeparator();
     boolean foundEmployee = false;
+    int counterBSc;
+    int counterMSc;
+    int counterPhD;
 
+    /* TODO Try catch exception + extras
+       TODO Promotion refactoring
+       TODO Hash Maps
+       TODO sorting
+       TODO Test locally, then upload on codeGrade
+     */
     public Company() {
         this.listOfEmployees = new ArrayList<>();
         this.degreeMap = new HashMap<>();
@@ -38,13 +47,6 @@ public class Company {
             if (id.equals(currentEmployee.getID())) {
                 throw new InvalidCompanyException("Cannot register. The ID " + id + " is already registered.");
             }
-        }
-        boolean containsBSc = DEGREE_TYPES.contains("BSc"); //equlas
-        boolean containsMSc = DEGREE_TYPES.contains("MSc");
-        boolean containsPhD = DEGREE_TYPES.contains("PhD");
-
-        if (!containsBSc || !containsMSc || !containsPhD) {
-            throw new InvalidEmployeeException("Degree must be one of the options: BSc, MSc or PhD.");
         }
 
         this.listOfEmployees.add(employee);
@@ -273,12 +275,13 @@ public class Company {
         4. Remove the “old employee” from the database;
         5. Add the new Employee.*/
 
-    public void promoteToManager(String id, String degree) throws Exception {
+    public String promoteToManager(String id, String degree) throws Exception {
         String originalName = findEmployee(id).getName();
         double originalSalary = findEmployee(id).getGrossSalary();
         Employee promotedEmployee = new Manager(id, originalName, originalSalary, degree);
         removeEmployee(id);
         listOfEmployees.add(promotedEmployee);
+        return "";
     }
 
     public void promoteToDirector(String id, String degree, String department) throws Exception {
