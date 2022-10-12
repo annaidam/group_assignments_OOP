@@ -121,11 +121,20 @@ public class Company {
     }
 
     public String printEmployee(String employeeID) throws Exception {
+        for (Employee currentEmployee : listOfEmployees) {
+            if (!employeeID.equals(currentEmployee.getID())) {
+                throw new InvalidCompanyException("Employee " + employeeID + " was not registered yet.");
+            }
+        }
         return findEmployee(employeeID).toString();
     }
 
     public String printAllEmployees() throws Exception {
         String allEmployees = "";
+
+        if (listOfEmployees.isEmpty()) {
+            throw new InvalidCompanyException("No employee has been registered yet.");
+        }
 
         for (Employee employee : listOfEmployees) {
             allEmployees = allEmployees + employee.toString() + END_OF_LINE;
@@ -152,6 +161,9 @@ public class Company {
 
     //Sort again using stuff we will learn tomorrow
     public String printSortedEmployees() throws Exception {
+        if (listOfEmployees.isEmpty()) {
+            throw new InvalidCompanyException("No employee has been registered yet.");
+        }
         for (int i = 0; i < listOfEmployees.size(); i++) {
             for (int j = listOfEmployees.size() - 1; j < i; j--) {
                 //how to access the gross salary AFTER any bonuses?
