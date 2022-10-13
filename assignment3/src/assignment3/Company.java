@@ -129,7 +129,7 @@ public class Company implements Comparable {
         for (Employee employee : listOfEmployees) {
             allEmployees = allEmployees + employee.toString() + END_OF_LINE;
         }
-        return "All registered employees:" + END_OF_LINE + allEmployees;
+        return allEmployees;
     }
 
     public double getNetSalary(String employeeID) throws Exception {
@@ -144,17 +144,16 @@ public class Company implements Comparable {
     public double getTotalNetSalary() throws Exception {
         if (listOfEmployees.isEmpty()) {
             throw new InvalidCompanyException("No employee has been registered yet.");
-        }
-        double expenses = 0.0;
-        if (!this.listOfEmployees.isEmpty()) {
+        } else {
+            double expenses = 0.0;
             for (Employee currentEmployee : listOfEmployees) {
                 expenses = currentEmployee.calculateNetSalary() + expenses;
+                double temporary1 = expenses * 100;
+                double temporary2 = (int) temporary1;
+                expenses = temporary2 / 100.0;
             }
-            double temporary1 = expenses * 100;
-            double temporary2 = (int) temporary1;
-            expenses = temporary2 / 100.0;
+            return expenses;
         }
-        return expenses;
     }
 
     /*

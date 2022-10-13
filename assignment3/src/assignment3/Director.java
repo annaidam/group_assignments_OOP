@@ -15,11 +15,10 @@ public class Director extends Manager {
         containsHUMAN_RESOURCES = department.equals("Human Resources");
         containsBUSINESS = department.equals("Business");
         containsTECHNICAL = department.equals("Technical");
-        if(!containsBUSINESS || !containsTECHNICAL || !containsHUMAN_RESOURCES) {
-            throw new InvalidEmployeeException("Department must be one of the options: Business, Human Resources or Technical.");
-        }
-        else {
+        if (containsBUSINESS || containsTECHNICAL || containsHUMAN_RESOURCES) {
             this.department = department;
+        } else {
+            throw new InvalidEmployeeException("Department must be one of the options: Business, Human Resources or Technical.");
         }
     }
 
