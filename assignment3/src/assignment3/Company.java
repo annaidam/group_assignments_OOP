@@ -101,12 +101,11 @@ public class Company implements Comparable {
     }
 
     public String printEmployee(String employeeID) throws Exception {
-        for (Employee currentEmployee : listOfEmployees) {
-            if (!employeeID.equals(currentEmployee.getID())) {
-                throw new InvalidCompanyException("Employee " + employeeID + " was not registered yet.");
-            }
+        if (!listOfEmployees.isEmpty()) {
+            return findEmployee(employeeID).toString();
+        } else {
+            throw new InvalidCompanyException("No employee has been registered yet.");
         }
-        return findEmployee(employeeID).toString();
     }
 
     public String printAllEmployees() throws Exception {
@@ -172,7 +171,7 @@ public class Company implements Comparable {
             throw new InvalidCompanyException("No employee has been registered yet.");
         }
 
-        Collections.sort(listOfEmployees);
+       // Collections.sort(listOfEmployees);
 
         String allEmployeesSorted = "";
         for (Employee employee : listOfEmployees) {
