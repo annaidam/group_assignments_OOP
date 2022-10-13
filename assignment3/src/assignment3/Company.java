@@ -19,7 +19,7 @@ public class Company {
      */
     public Company() {
         this.listOfEmployees = new ArrayList<>();
-        this.degreeMap = new HashMap<>();
+        this.degreeMap = new HashMap<String, Integer>();
     }
 
     public String createEmployee(String id, String name, double grossSalary) throws Exception {
@@ -279,17 +279,15 @@ public class Company {
 
         for (Employee currentEmployee : listOfEmployees) {
             if (currentEmployee instanceof Manager) {
-                switch (((Manager) currentEmployee).getDEGREE_TYPES()) {
-                    case "BSc":
-                        counterBSc = counterBSc + 1;
-                        break;
-                    case "MSc":
+                    if(((Manager) currentEmployee).getDEGREE_TYPES().equals("BSc")){
+                        counterBSc = counterBSc + 1;}
+                        else if(((Manager) currentEmployee).getDEGREE_TYPES().equals("MSc")){
                         counterMSc = counterMSc + 1;
-                        break;
-                    case "PhD":
-                        counterPhD = counterPhD + 1;
-                        break;
+                        }
+                    else if(((Manager) currentEmployee).getDEGREE_TYPES().equals("PhD")) {
+                    counterPhD = counterPhD + 1;
                 }
+
             }
         }
         if (counterBSc > 0) {

@@ -28,6 +28,7 @@ public class Intern extends Employee {
         double internGrossSalary;
         if (this.GPA <= 5) {
             internGrossSalary = 0.0;
+
         } else if (GPA <= 8) {
             internGrossSalary = super.getGrossSalary();
         } else {
