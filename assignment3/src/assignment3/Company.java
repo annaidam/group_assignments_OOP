@@ -75,6 +75,16 @@ public class Company implements Comparable {
         return "Employee " + employee.getID() + " was registered successfully.";
     }
 
+    /*public Employee findEmployee(String id) throws Exception {
+        for (Employee currentEmployee : listOfEmployees) {
+            if (id.equals(currentEmployee.getID())) {
+                foundEmployee = true;
+            }
+        }
+    }
+
+     */
+
     public Employee findEmployee(String id) throws Exception {
         Employee currentEmployee = null;
         for (int i = 0; i < listOfEmployees.size(); i++) {
@@ -90,6 +100,19 @@ public class Company implements Comparable {
         }
     }
 
+    /*public Employee findEmployee(String id) throws Exception {
+        Employee currentEmployee = null;
+        for (int i = 0; i < listOfEmployees.size(); i++) {
+            currentEmployee = listOfEmployees.get(i);
+            if (currentEmployee.getID().equals(id)) {
+                return currentEmployee;
+            }
+        }
+        throw new Exception ("Employee " + id + "was not registered yet.");
+    }
+
+     */
+
     public String removeEmployee(String empID) throws Exception {
         for (Employee currentEmployee : listOfEmployees) {
             if (!empID.equals(currentEmployee.getID())) {
@@ -101,12 +124,11 @@ public class Company implements Comparable {
     }
 
     public String printEmployee(String employeeID) throws Exception {
-        for (Employee currentEmployee : listOfEmployees) {
-            if (!employeeID.equals(currentEmployee.getID())) {
-                throw new InvalidCompanyException("Employee " + employeeID + " was not registered yet.");
-            }
+        if (!listOfEmployees.isEmpty()) {
+            return findEmployee(employeeID).toString();
+        } else {
+            throw new InvalidCompanyException("No employee has been registered yet.");
         }
-        return findEmployee(employeeID).toString();
     }
 
     public String printAllEmployees() throws Exception {
@@ -119,7 +141,7 @@ public class Company implements Comparable {
         for (Employee employee : listOfEmployees) {
             allEmployees = allEmployees + employee.toString() + END_OF_LINE;
         }
-        return "All registered employees:" + END_OF_LINE + allEmployees;
+        return allEmployees;
     }
 
     public double getNetSalary(String employeeID) throws Exception {
@@ -134,17 +156,16 @@ public class Company implements Comparable {
     public double getTotalNetSalary() throws Exception {
         if (listOfEmployees.isEmpty()) {
             throw new InvalidCompanyException("No employee has been registered yet.");
-        }
-        double expenses = 0.0;
-        if (!this.listOfEmployees.isEmpty()) {
+        } else {
+            double expenses = 0.0;
             for (Employee currentEmployee : listOfEmployees) {
                 expenses = currentEmployee.calculateNetSalary() + expenses;
+                double temporary1 = expenses * 100;
+                double temporary2 = (int) temporary1;
+                expenses = temporary2 / 100.0;
             }
-            double temporary1 = expenses * 100;
-            double temporary2 = (int) temporary1;
-            expenses = temporary2 / 100.0;
+            return expenses;
         }
-        return expenses;
     }
 
     /*
@@ -172,7 +193,7 @@ public class Company implements Comparable {
             throw new InvalidCompanyException("No employee has been registered yet.");
         }
 
-        Collections.sort(listOfEmployees);
+       // Collections.sort(listOfEmployees);
 
         String allEmployeesSorted = "";
         for (Employee employee : listOfEmployees) {
