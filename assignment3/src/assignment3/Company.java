@@ -448,3 +448,22 @@ public class Company {
     }
      */
 }
+
+
+/*
+public class SalaryComparator implements Comparator<Employee> {
+
+    public int compare(Employee emp1, Employee emp2){
+        // 1, this > otherPerson; 0 this == otherPerson, -1, this < otherPerson
+        double mySalary = emp1.getGrossSalary();
+        double otherSalary = emp2.getGrossSalary();
+        if(mySalary > otherSalary){
+            return 1;
+        }else if(mySalary == otherSalary){
+            return 0;
+        } else {
+            return -1;
+        }
+    }
+}
+ */
