@@ -1,11 +1,8 @@
 package assignment3;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
-public class Company {
+public class Company implements Comparable {
     private ArrayList<Employee> listOfEmployees;
     HashMap<String, Integer> degreeMap;
     final String END_OF_LINE = System.lineSeparator();
@@ -29,7 +26,6 @@ public class Company {
         Employee employee = new Employee(id, name, grossSalary);
 
         //most of the try catch is in the tests, we need to figure out where to throw and where to catch
-        // ////////////
         for (Employee currentEmployee : listOfEmployees) {
             if (id.equals(currentEmployee.getID())) {
                 throw new InvalidCompanyException("Cannot register. The ID " + id + " is already registered.");
@@ -57,14 +53,11 @@ public class Company {
     public String createEmployee(String id, String name, double grossSalary, String DEGREE_TYPES, String department) throws Exception {
         Employee employee = new Director(id, name, grossSalary, DEGREE_TYPES, department);
 
-        //check exceptions
         for (Employee currentEmployee : listOfEmployees) {
             if (id.equals(currentEmployee.getID())) {
                 throw new InvalidCompanyException("Cannot register. The ID " + id + " is already registered.");
             }
         }
-
-        //finish checking exceptions
 
         this.listOfEmployees.add(employee);
         return "Employee " + employee.getID() + " was registered successfully.";
@@ -82,29 +75,6 @@ public class Company {
         return "Employee " + employee.getID() + " was registered successfully.";
     }
 
-    /* private Employee findEmployee(String ID) {
-        for (int i = 0; i < employeeList.size(); i++) {
-            Employee currentEmployee = employeeList.get(i);
-            if (currentEmployee.getId().equals(ID)) {
-                return currentEmployee;
-            }
-        }
-        return null;
-    }
-
-     */
-
-    /*public Employee findEmployee(String id) throws Exception {
-     for (Employee currentEmployee : listOfEmployees) {
-         if (!id.equals(currentEmployee.getID())) {
-             throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
-         } else {
-             return currentEmployee;
-         }
-     }
- }
-
-  */
     public Employee findEmployee(String id) throws Exception {
         Employee currentEmployee = null;
         for (int i = 0; i < listOfEmployees.size(); i++) {
@@ -191,14 +161,33 @@ public class Company {
     3. Returns -1 if object1 < object2;
      */
 
-    //Sort again using stuff we will learn tomorrow
+    @Override
+    public double compareTo(Employee emp) {
+        double compare = emp.getGrossSalary();
+        return emp.getGrossSalary() - compare;
+    }
+
     public String printSortedEmployees() throws Exception {
+        if (listOfEmployees.isEmpty()) {
+            throw new InvalidCompanyException("No employee has been registered yet.");
+        }
+
+        Collections.sort(listOfEmployees);
+
+        String allEmployeesSorted = "";
+        for (Employee employee : listOfEmployees) {
+            allEmployeesSorted = allEmployeesSorted + employee.toString() + END_OF_LINE;
+        }
+        return "Employees sorted by gross salary (ascending order):" + END_OF_LINE + allEmployeesSorted;
+    }
+
+    //Sort again using stuff we will learn tomorrow
+    /*public String printSortedEmployees() throws Exception {
         if (listOfEmployees.isEmpty()) {
             throw new InvalidCompanyException("No employee has been registered yet.");
         }
         for (int i = 0; i < listOfEmployees.size(); i++) {
             for (int j = listOfEmployees.size() - 1; j < i; j--) {
-                //how to access the gross salary AFTER any bonuses?
                 if (listOfEmployees.get(i).getGrossSalary() > listOfEmployees.get(j).getGrossSalary()) {
                     Employee temp = listOfEmployees.get(i);
                     listOfEmployees.set(i, listOfEmployees.get(i));
@@ -211,7 +200,7 @@ public class Company {
             allEmployeesSorted = allEmployeesSorted + employee.toString() + END_OF_LINE;
         }
         return "Employees sorted by gross salary (ascending order):" + END_OF_LINE + allEmployeesSorted;
-    }
+    }*/
 
     public String updateEmployeeName(String id, String newName) throws Exception {
         for (int i = 0; i < listOfEmployees.size(); i++) {
@@ -267,46 +256,34 @@ public class Company {
         return null;
     }
 
-    /*PROMOTIONS:
-        1. Retrieve the Employee;
-        2. Save all of his/her information (name and raw gross salary);
-        3. Create a “new employee” with the corresponding new type and specify all of their
-        new required information (when applicable), along with the information saved in step
-        2;
-        4. Remove the “old employee” from the database;
-        5. Add the new Employee.*/
-
     public String promoteToManager(String id, String degree) throws Exception {
         String originalName = findEmployee(id).getName();
         double originalSalary = findEmployee(id).getGrossSalary();
         Employee promotedEmployee = new Manager(id, originalName, originalSalary, degree);
         removeEmployee(id);
         listOfEmployees.add(promotedEmployee);
-        return "";
+        return promotedEmployee.getID() + " promoted successfully to Manager.";
     }
 
-    public void promoteToDirector(String id, String degree, String department) throws Exception {
+    public String promoteToDirector(String id, String degree, String department) throws Exception {
         String originalName = findEmployee(id).getName();
         double originalSalary = findEmployee(id).getGrossSalary();
         Employee promotedEmployee = new Director(id, originalName, originalSalary, degree, department);
         removeEmployee(id);
         listOfEmployees.add(promotedEmployee);
+        return promotedEmployee.getID() + " promoted successfully to Director.";
     }
 
-    public void promoteToIntern(String id, int GPA) throws Exception {
+    public String promoteToIntern(String id, int GPA) throws Exception {
         String originalName = findEmployee(id).getName();
         double originalSalary = findEmployee(id).getGrossSalary();
         Employee promotedEmployee = new Intern(id, originalName, originalSalary, GPA);
         removeEmployee(id);
         listOfEmployees.add(promotedEmployee);
+        return promotedEmployee.getID() + " promoted successfully to Intern.";
     }
 
-    //"Academic background of employees:" + END_OF_LINE;
-    //"BSc: => " + counterBSc + END_OF_LINE;
-    //"MSc: => " + counterMSc + END_OF_LINE;
-    //"PhD: => " + counterPhD + END_OF_LINE;
-
-    public void mapEachDegree() throws Exception {
+    public Map mapEachDegree() throws Exception {
          counterBSc = 0;
          counterMSc = 0;
          counterPhD = 0;
@@ -317,7 +294,6 @@ public class Company {
 
         for (Employee currentEmployee : listOfEmployees) {
             if (currentEmployee instanceof Manager) {
-
                 switch (((Manager) currentEmployee).getDEGREE_TYPES()) {
                     case "BSc":
                         counterBSc = counterBSc + 1;
@@ -331,7 +307,6 @@ public class Company {
                 }
             }
         }
-        //HashMap<String, Integer> hashMap = new HashMap<>();
         if (counterBSc > 0) {
             degreeMap.put("BSc", counterBSc);
         }
@@ -341,22 +316,13 @@ public class Company {
         if (counterPhD > 0) {
             degreeMap.put("PhD", counterBSc);
         }
-       // return "degreeMap";
-    }
-    public HashMap<String, Integer> getDegreeMap() {
-        return degreeMap;
+       return degreeMap;
     }
 
     public String toString(){
-        String s1= "";
-        String s2= "";
-        String s3= "";
-        /*String numberOfDegrees = "";
-        for(Employee currentEmployee : this.listOfEmployees){
-            numberOfDegrees = numberOfDegrees + currentPost.getPostContent() + END_OF_LINE;
-        }
-        return numberOfDegrees;
-*/
+        String s1;
+        String s2;
+        String s3;
         if (counterBSc!=0) {
             s1 = "BSc: => " + counterBSc + END_OF_LINE;
         }
@@ -373,7 +339,6 @@ public class Company {
         } else {
             s3= "";
         }
-
         return "Academic background of employees: " + END_OF_LINE + s1 + s2 +s3;
     }
 }

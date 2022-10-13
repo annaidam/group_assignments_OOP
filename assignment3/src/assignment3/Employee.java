@@ -6,7 +6,6 @@ public class Employee {
     private double grossSalary;
     double netSalary;
     double truncatedSalary;
-    double newGrossSalary;
 
     Employee(String id, String name, double grossSalary) throws Exception {
         if (id.isEmpty()){
@@ -86,17 +85,6 @@ public class Employee {
         }
 
     }
-/*
-    public int compareTo() {
-    }
-
-    /*
-    The compareTo() method determines the order of one object (object1) with the specified
-    object o (object2) and returns the following:
-    1. Returns 1 if object1 > object2;
-    2. Returns 0 if object1 == object2;
-    3. Returns -1 if object1 < object2;
-     */
 }
 
 
