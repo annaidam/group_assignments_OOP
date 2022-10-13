@@ -247,7 +247,28 @@ public class Company {
         return promotedEmployee.getID() + " promoted successfully to Intern.";
     }
 
-    public Map mapEachDegree() throws Exception {
+    /*
+    public void checkDegrees(){
+        for(Employee employee : this.listOfEmployees){
+            HashSet<String> degrees = employee.getDEGREE_TYPES();
+            for(String degree : degrees){
+                if(  degreeMap.containsKey(degree) ){
+                    int numOfMention = degreeMap.get(degree);
+                    numOfMention = numOfMention + 1;
+                    degreeMap.put(degree, numOfMention);
+                } else {
+                    degreeMap.put(degree, 1);
+                }
+            }
+        }
+    }
+
+    public HashMap<String, Integer> mapEachDegree(){
+        return this.degreeMap;
+    }
+     */
+
+    public Map<String, Integer> mapEachDegree() throws Exception {
          counterBSc = 0;
          counterMSc = 0;
          counterPhD = 0;
@@ -305,4 +326,83 @@ public class Company {
         }
         return "Academic background of employees: " + END_OF_LINE + s1 + s2 +s3;
     }
+
+/*
+    public void checkDegrees() {
+        //HashSet<String> degrees = employee.getHashtags();
+        for (Employee employee : listOfEmployees) {
+            if (employee instanceof Manager) {
+                if (((Manager) employee).getDEGREE_TYPES().equals("BSc")) {
+                    int counter1 = degreeMap.get("BSc");
+                    counter1 = counter1 + 1;
+                    degreeMap.put("BSc", counter1);
+                } else {
+                    degreeMap.put("BSc", 1);
+                }
+                if (((Manager) employee).getDEGREE_TYPES().equals("MSc")) {
+                    int counter2 = degreeMap.get("MSc");
+                    counter2 = counter2 + 1;
+                    degreeMap.put("MSc", counter2);
+                } else {
+                    degreeMap.put("MSc", 1);
+                }
+                if (((Manager) employee).getDEGREE_TYPES().equals("PhD")) {
+                    int counter2 = degreeMap.get("PhD");
+                    counter2 = counter2 + 1;
+                    degreeMap.put("PhD", counter2);
+                } else {
+                    degreeMap.put("PhD", 1);
+                }
+
+            }
+        }
+    }
+
+    public HashMap<String, Integer> mapEachDegree(){
+        checkDegrees();
+        HashMap<String, Integer> degreeMap = new HashMap<String, Integer>();
+        return this.degreeMap;
+    }*/
+
+
+    /*
+        public Map<String, Integer> mapEachDegree() throws Exception {
+         counterBSc = 0;
+         counterMSc = 0;
+         counterPhD = 0;
+
+         HashMap <String, Integer> degreeMap = new DegreeMap<String,Integer>;
+         degreeMap.put((Manager) currentEmployee).getDEGREE_TYPES(), 0);
+         degreeMap.put((Manager) currentEmployee).getDEGREE_TYPES(), 0);
+         degreeMap.put((Manager) currentEmployee).getDEGREE_TYPES(), 0);
+
+        if (listOfEmployees.isEmpty()) {
+            throw new InvalidCompanyException("No employees registered yet.");
+        }
+
+        for (Employee currentEmployee : listOfEmployees) {
+            if (currentEmployee instanceof Manager) {
+                    if(((Manager) currentEmployee).getDEGREE_TYPES().equals("BSc")){
+                        counterBSc = counterBSc + 1;}
+                        else if(((Manager) currentEmployee).getDEGREE_TYPES().equals("MSc")){
+                        counterMSc = counterMSc + 1;
+                        }
+                    else if(((Manager) currentEmployee).getDEGREE_TYPES().equals("PhD")) {
+                    counterPhD = counterPhD + 1;
+                }
+
+            }
+        }
+        if (counterBSc > 0) {
+            degreeMap.put("BSc", counterBSc);
+        }
+        if (counterMSc > 0) {
+            degreeMap.put("MSc", counterBSc);
+        }
+        if (counterPhD > 0) {
+            degreeMap.put("PhD", counterBSc);
+        }
+       return degreeMap;
+    }
+     */
 }
