@@ -1,11 +1,13 @@
 package assignment3;
 
-public class Employee {
+public class Employee implements Comparable<Employee> {
     private final String EMPLOYEE_ID;
     private String name;
     private double grossSalary;
     double netSalary;
     double truncatedSalary;
+    private double rawGrossSalary;
+    //private
 
     Employee(String id, String name, double grossSalary) throws Exception {
         if (id.isEmpty()){
@@ -45,6 +47,10 @@ public class Employee {
     }*/
 
 
+
+    public double getRawGrossSalary() {
+        return this.rawGrossSalary = this.grossSalary;
+    }
 
     public double getGrossSalary() {
         return grossSalary;
@@ -91,6 +97,18 @@ public class Employee {
             return false;
         }
 
+    }
+
+    public int compareTo(Employee otherEmployee) {
+        double mySalary = this.getGrossSalary();
+        double otherSalary = otherEmployee.getGrossSalary();
+        if (mySalary > otherSalary) {
+            return 1;
+        } else if (mySalary == otherSalary) {
+            return 0;
+        } else {
+            return -1;
+        }
     }
 }
 

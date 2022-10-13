@@ -93,11 +93,10 @@ public class Company {
      */
     int counter=0;
     public String removeEmployee(String empID) throws Exception {
-        //if empID is not in the arraylist listOfEmployees, then we throw
         for(int i =0; i< listOfEmployees.size(); i++) {
 
             Employee currentEmployee = listOfEmployees.get(i);
-            if(currentEmployee.getID().equals (empID))
+            if(currentEmployee.getID().equals(empID))
             {
                 this.listOfEmployees.remove(findEmployee(empID));
                 counter = counter+1;
@@ -157,7 +156,7 @@ public class Company {
             throw new InvalidCompanyException("No employee has been registered yet.");
         }
 
-        Collections.sort(listOfEmployees, new SalaryComparator());
+        Collections.sort(listOfEmployees);
 
         String allEmployeesSorted = "";
         for (Employee employee : listOfEmployees) {
@@ -240,7 +239,7 @@ public class Company {
 
     public String promoteToIntern(String id, int GPA) throws Exception {
         String originalName = findEmployee(id).getName();
-        double originalSalary = findEmployee(id).getGrossSalary();
+        double originalSalary = findEmployee(id).getRawGrossSalary();
         Employee promotedEmployee = new Intern(id, originalName, originalSalary, GPA);
         removeEmployee(id);
         listOfEmployees.add(promotedEmployee);

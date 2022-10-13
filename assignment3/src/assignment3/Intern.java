@@ -8,8 +8,7 @@ public class Intern extends Employee {
 
         if(this.GPA<0 || this.GPA>10) {
             throw new InvalidEmployeeException("GPA outside range. Must be between 0-10.");
-        }
-        else {
+        } else {
             this.GPA = GPA;
         }
     }
