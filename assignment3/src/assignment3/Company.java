@@ -75,6 +75,16 @@ public class Company implements Comparable {
         return "Employee " + employee.getID() + " was registered successfully.";
     }
 
+    /*public Employee findEmployee(String id) throws Exception {
+        for (Employee currentEmployee : listOfEmployees) {
+            if (id.equals(currentEmployee.getID())) {
+                foundEmployee = true;
+            }
+        }
+    }
+
+     */
+
     public Employee findEmployee(String id) throws Exception {
         Employee currentEmployee = null;
         for (int i = 0; i < listOfEmployees.size(); i++) {
