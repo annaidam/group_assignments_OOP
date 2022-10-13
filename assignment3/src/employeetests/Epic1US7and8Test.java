@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Epic1US7and8Test {
 
@@ -36,7 +35,7 @@ public class Epic1US7and8Test {
             facade.createEmployee("Emp7", "Ricky", 23500.00);                            // G: 23500.00; N: 21150.00
             facade.createEmployee("Emp8", "Damon", 22100.00);                            // G: 22100.00; N: 19890.00
         }catch(Exception e){
-            assertFalse(true); // Forces an error in the test. The creation should work without problems.
+            fail(); // Forces an error in the test. The creation should work without problems.
         }
     }
 

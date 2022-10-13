@@ -75,52 +75,41 @@ public class Company implements Comparable {
         return "Employee " + employee.getID() + " was registered successfully.";
     }
 
-    /*public Employee findEmployee(String id) throws Exception {
+    public Employee findEmployee(String id) {
         for (Employee currentEmployee : listOfEmployees) {
             if (id.equals(currentEmployee.getID())) {
-                foundEmployee = true;
-            }
-        }
-    }
-
-     */
-
-    public Employee findEmployee(String id) throws Exception {
-        Employee currentEmployee = null;
-        for (int i = 0; i < listOfEmployees.size(); i++) {
-            currentEmployee = listOfEmployees.get(i);
-            if (currentEmployee.getID().equals(id)) {
-                foundEmployee = true;
-            }
-        }
-        if (!foundEmployee) {
-            throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
-        } else {
-            return currentEmployee;
-        }
-    }
-
-    /*public Employee findEmployee(String id) throws Exception {
-        Employee currentEmployee = null;
-        for (int i = 0; i < listOfEmployees.size(); i++) {
-            currentEmployee = listOfEmployees.get(i);
-            if (currentEmployee.getID().equals(id)) {
                 return currentEmployee;
             }
         }
-        throw new Exception ("Employee " + id + "was not registered yet.");
+        return null;
     }
 
-     */
-
-    public String removeEmployee(String empID) throws Exception {
-        for (Employee currentEmployee : listOfEmployees) {
+    /*
+    for (Employee currentEmployee : listOfEmployees) {
             if (!empID.equals(currentEmployee.getID())) {
                 throw new InvalidCompanyException("Employee " + empID + " was not registered yet.");
             }
         }
-        this.listOfEmployees.remove(findEmployee(empID));
-        return "Employee " + empID + " was successfully removed.";
+     */
+    int counter=0;
+    public String removeEmployee(String empID) throws Exception {
+        //if empID is not in the arraylist listOfEmployees, then we throw
+        for(int i =0; i< listOfEmployees.size(); i++) {
+
+            Employee currentEmployee = listOfEmployees.get(i);
+            if(currentEmployee.getID().equals (empID))
+            {
+                this.listOfEmployees.remove(findEmployee(empID));
+                counter = counter+1;
+            }
+        }
+        if(counter>0)
+        {
+            return "Employee " + empID + " was successfully removed.";
+        }
+        else {
+            throw new InvalidCompanyException("Employee " + empID + " was not registered yet.");
+        }
     }
 
     public String printEmployee(String employeeID) throws Exception {
