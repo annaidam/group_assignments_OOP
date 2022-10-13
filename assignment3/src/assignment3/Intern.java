@@ -13,14 +13,11 @@ public class Intern extends Employee {
         }
     }
 
-    public void setGpa(int GPA) throws Exception {
-        if(GPA >=0 && GPA <=10){
-        this.GPA = GPA;
+    public void setGpa(int newGPA) throws Exception {
+      //  if (GPA >= 0 && GPA <= 10)
+        this.GPA = newGPA;
         }
-        else {
-            throw new InvalidEmployeeException("GPA outside range. Must be between 0-10.");
-        }
-    }
+
 
     @Override
     public double calculateNetSalary()  {

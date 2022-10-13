@@ -16,6 +16,7 @@ public class Company {
        TODO Hash Maps
        TODO sorting
        TODO Test locally, then upload on codeGrade
+       TODO check if we can use 'name.trim().isEmpty'
      */
     public Company() {
         this.listOfEmployees = new ArrayList<>();
@@ -182,6 +183,10 @@ public class Company {
     }
 
     public String updateManagerDegree(String id, String newDegree) throws Exception {
+        if(!newDegree.equals("BSc") || !newDegree.equals("MSc") || !newDegree.equals("PhD")){
+            throw new InvalidEmployeeException("Employee " + id + " was not registered yet.");
+        }
+
         if (findEmployee(id) instanceof Manager) {
             ((Manager) findEmployee(id)).setDEGREE_TYPES(newDegree);
             return "Employee " + id + " was updated successfully";
@@ -238,12 +243,16 @@ public class Company {
     }
 
     public String promoteToIntern(String id, int GPA) throws Exception {
-        String originalName = findEmployee(id).getName();
-        double originalSalary = findEmployee(id).getRawGrossSalary();
-        Employee promotedEmployee = new Intern(id, originalName, originalSalary, GPA);
-        removeEmployee(id);
-        listOfEmployees.add(promotedEmployee);
-        return promotedEmployee.getID() + " promoted successfully to Intern.";
+        if (!listOfEmployees.isEmpty()) {
+            String originalName = findEmployee(id).getName();
+            double originalSalary = findEmployee(id).getRawGrossSalary();
+            Employee promotedEmployee = new Intern(id, originalName, originalSalary, GPA);
+            removeEmployee(id);
+            listOfEmployees.add(promotedEmployee);
+            return promotedEmployee.getID() + " promoted successfully to Intern.";
+        } else {
+            throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
+        }
     }
 
     /*
