@@ -26,7 +26,6 @@ public class Company {
     public String createEmployee(String id, String name, double grossSalary) throws Exception {
         Employee employee = new Employee(id, name, grossSalary);
 
-        //most of the try catch is in the tests, we need to figure out where to throw and where to catch
         for (Employee currentEmployee : listOfEmployees) {
             if (id.equals(currentEmployee.getID())) {
                 throw new InvalidCompanyException("Cannot register. The ID " + id + " is already registered.");
