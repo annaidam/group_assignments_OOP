@@ -28,7 +28,7 @@ public class Company {
 
         for (Employee currentEmployee : listOfEmployees) {
             if (id.equals(currentEmployee.getID())) {
-                throw new InvalidCompanyException("Cannot register. The ID " + id + " is already registered.");
+                throw new InvalidCompanyException("Cannot register. ID " + id + " is already registered.");
             }
         }
 
@@ -42,7 +42,7 @@ public class Company {
         ////////////throw from update, throw from setter
         for (Employee currentEmployee : listOfEmployees) {
             if (id.equals(currentEmployee.getID())) {
-                throw new InvalidCompanyException("Cannot register. The ID " + id + " is already registered.");
+                throw new InvalidCompanyException("Cannot register. ID " + id + " is already registered.");
             }
         }
 
@@ -55,7 +55,7 @@ public class Company {
 
         for (Employee currentEmployee : listOfEmployees) {
             if (id.equals(currentEmployee.getID())) {
-                throw new InvalidCompanyException("Cannot register. The ID " + id + " is already registered.");
+                throw new InvalidCompanyException("Cannot register. ID " + id + " is already registered.");
             }
         }
 
@@ -68,14 +68,19 @@ public class Company {
 
         for (Employee currentEmployee : listOfEmployees) {
             if (id.equals(currentEmployee.getID())) {
-                throw new InvalidCompanyException("Cannot register. The ID " + id + " is already registered.");
+                throw new InvalidCompanyException("Cannot register. ID " + id + " is already registered.");
             }
         }
         this.listOfEmployees.add(employee);
         return "Employee " + employee.getID() + " was registered successfully.";
     }
 
-    public Employee findEmployee(String id) {
+    public Employee findEmployee(String id) throws Exception {
+        for (Employee currentEmployee : listOfEmployees) {
+            if (!id.equals(currentEmployee.getID())) {
+                throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
+            }
+        }
         for (Employee currentEmployee : listOfEmployees) {
             if (id.equals(currentEmployee.getID())) {
                 return currentEmployee;
@@ -115,7 +120,7 @@ public class Company {
         if (!listOfEmployees.isEmpty()) {
             return findEmployee(employeeID).toString();
         } else {
-            throw new InvalidCompanyException("No employee has been registered yet.");
+            throw new InvalidCompanyException("Employee " + employeeID + " was not registered yet.");
         }
     }
 
@@ -123,7 +128,7 @@ public class Company {
         String allEmployees = "";
 
         if (listOfEmployees.isEmpty()) {
-            throw new InvalidCompanyException("No employee has been registered yet.");
+            throw new InvalidCompanyException("No employees registered yet.");
         }
 
         for (Employee employee : listOfEmployees) {
@@ -133,12 +138,16 @@ public class Company {
     }
 
     public double getNetSalary(String employeeID) throws Exception {
-        return findEmployee(employeeID).calculateNetSalary();
+        if (!listOfEmployees.isEmpty()) {
+            return findEmployee(employeeID).calculateNetSalary();
+        } else {
+            throw new InvalidCompanyException("Employee " + employeeID + " was not registered yet.");
+        }
     }
 
     public double getTotalNetSalary() throws Exception {
         if (listOfEmployees.isEmpty()) {
-            throw new InvalidCompanyException("No employee has been registered yet.");
+            throw new InvalidCompanyException("No employees registered yet.");
         } else {
             double expenses = 0.0;
             for (Employee currentEmployee : listOfEmployees) {
@@ -153,7 +162,7 @@ public class Company {
 
     public String printSortedEmployees() throws Exception {
         if (listOfEmployees.isEmpty()) {
-            throw new InvalidCompanyException("No employee has been registered yet.");
+            throw new InvalidCompanyException("No employees registered yet.");
         }
 
         Collections.sort(listOfEmployees);
@@ -166,10 +175,17 @@ public class Company {
     }
 
     public String updateEmployeeName(String id, String newName) throws Exception {
-        for (int i = 0; i < listOfEmployees.size(); i++) {
-            Employee currentEmployee = listOfEmployees.get(i);
+        if (newName.isEmpty()) {
+            throw new InvalidEmployeeException("Name cannot be blank.");
+        }
+        for (Employee currentEmployee : listOfEmployees) {
+            if (!id.equals(currentEmployee.getID())) {
+                throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
+            }
+        }
+        for (Employee currentEmployee : listOfEmployees) {
             if (id.equals(currentEmployee.getID())) {
-                currentEmployee.setName(newName);
+                findEmployee(id).setName(newName);
                 return "Employee " + id + " was updated successfully";
             }
         }
@@ -177,8 +193,12 @@ public class Company {
     }
 
     public String updateGrossSalary(String id, double newGrossSalary) throws Exception {
-        findEmployee(id).setGrossSalary(newGrossSalary);
-        return "Employee " + id + " was updated successfully";
+        if (!listOfEmployees.isEmpty()) {
+            findEmployee(id).setGrossSalary(newGrossSalary);
+            return "Employee " + id + " was updated successfully";
+        } else {
+            throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
+        }
     }
 
     public String updateManagerDegree(String id, String newDegree) throws Exception {
@@ -195,6 +215,9 @@ public class Company {
     }
 
     public String updateDirectorDegree(String id, String newDegree) throws Exception {
+        if(!newDegree.equals("BSc") || !newDegree.equals("MSc") || !newDegree.equals("PhD")){
+            throw new InvalidEmployeeException("Employee " + id + " was not registered yet.");
+        }
         if (findEmployee(id) instanceof Director) {
             ((Director) findEmployee(id)).setDEGREE_TYPES(newDegree);
             return "Employee " + id + " was updated successfully";
@@ -203,6 +226,9 @@ public class Company {
     }
 
     public String updateDirectorDept(String id, String newDept) throws Exception {
+        if(!newDept.equals("Human Resources") || !newDept.equals("Business") || !newDept.equals("Technical")){
+            throw new InvalidEmployeeException("Department must be one of the options: Business, Human Resources or Technical.");
+        }
         if (findEmployee(id) instanceof Director) {
             ((Director) findEmployee(id)).setDepartment(newDept);
             return "Employee " + id + " was updated successfully";
@@ -211,6 +237,9 @@ public class Company {
     }
 
     public String updateInternGPA(String id, int newGPA) throws Exception {
+        if (newGPA <= 0 || newGPA >= 10) {
+            throw new InvalidEmployeeException(newGPA + " outside range. Must be between 0-10.");
+        }
         for (int i = 0; i < listOfEmployees.size(); i++) {
             Employee currentEmployee = listOfEmployees.get(i);
             if (id.equals(currentEmployee.getID())) {
@@ -224,21 +253,29 @@ public class Company {
     }
 
     public String promoteToManager(String id, String degree) throws Exception {
-        String originalName = findEmployee(id).getName();
-        double originalSalary = findEmployee(id).getGrossSalary();
-        Employee promotedEmployee = new Manager(id, originalName, originalSalary, degree);
-        removeEmployee(id);
-        listOfEmployees.add(promotedEmployee);
-        return promotedEmployee.getID() + " promoted successfully to Manager.";
+        if (!listOfEmployees.isEmpty()) {
+            String originalName = findEmployee(id).getName();
+            double originalSalary = findEmployee(id).getGrossSalary();
+            Employee promotedEmployee = new Manager(id, originalName, originalSalary, degree);
+            removeEmployee(id);
+            listOfEmployees.add(promotedEmployee);
+            return promotedEmployee.getID() + " promoted successfully to Manager.";
+        } else {
+            throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
+        }
     }
 
     public String promoteToDirector(String id, String degree, String department) throws Exception {
-        String originalName = findEmployee(id).getName();
-        double originalSalary = findEmployee(id).getGrossSalary();
-        Employee promotedEmployee = new Director(id, originalName, originalSalary, degree, department);
-        removeEmployee(id);
-        listOfEmployees.add(promotedEmployee);
-        return promotedEmployee.getID() + " promoted successfully to Director.";
+        if (!listOfEmployees.isEmpty()) {
+            String originalName = findEmployee(id).getName();
+            double originalSalary = findEmployee(id).getGrossSalary();
+            Employee promotedEmployee = new Director(id, originalName, originalSalary, degree, department);
+            removeEmployee(id);
+            listOfEmployees.add(promotedEmployee);
+            return promotedEmployee.getID() + " promoted successfully to Director.";
+        } else {
+            throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
+        }
     }
 
     public String promoteToIntern(String id, int GPA) throws Exception {

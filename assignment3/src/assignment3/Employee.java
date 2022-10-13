@@ -10,11 +10,11 @@ public class Employee implements Comparable<Employee> {
     //private
 
     Employee(String id, String name, double grossSalary) throws Exception {
-        if (id.isEmpty()){
+        if (id.trim().isEmpty()){
             throw new InvalidEmployeeException("ID cannot be blank.");
         } else {  this.EMPLOYEE_ID = id;}
 
-        if (name.isEmpty()) {
+        if (name.trim().isEmpty()) {
             throw new InvalidEmployeeException("Name cannot be blank.");
         } else {this.name = name;}
 

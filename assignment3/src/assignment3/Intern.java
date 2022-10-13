@@ -6,8 +6,8 @@ public class Intern extends Employee {
     public Intern(String name, String id, double grossSalary, int GPA) throws Exception{
         super(name, id, grossSalary);
 
-        if(this.GPA<0 || this.GPA>10) {
-            throw new InvalidEmployeeException("GPA outside range. Must be between 0-10.");
+        if (GPA < 0 || GPA > 10) {
+            throw new InvalidEmployeeException(GPA + " outside range. Must be between 0-10.");
         } else {
             this.GPA = GPA;
         }
