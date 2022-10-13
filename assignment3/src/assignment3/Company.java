@@ -2,7 +2,7 @@ package assignment3;
 
 import java.util.*;
 
-public class Company implements Comparable {
+public class Company {
     private ArrayList<Employee> listOfEmployees;
     HashMap<String, Integer> degreeMap;
     final String END_OF_LINE = System.lineSeparator();
@@ -130,15 +130,10 @@ public class Company implements Comparable {
         for (Employee employee : listOfEmployees) {
             allEmployees = allEmployees + employee.toString() + END_OF_LINE;
         }
-        return allEmployees;
+        return "All registered employees:" + END_OF_LINE + allEmployees;
     }
 
     public double getNetSalary(String employeeID) throws Exception {
-        for (Employee currentEmployee : listOfEmployees) {
-            if (!employeeID.equals(currentEmployee.getID())) {
-                throw new InvalidCompanyException("Employee " + employeeID + " was not registered yet.");
-            }
-        }
         return findEmployee(employeeID).calculateNetSalary();
     }
 
@@ -157,32 +152,12 @@ public class Company implements Comparable {
         }
     }
 
-    /*
-    public interface Comparable<E> {
-        public double compareTo(E o);
-    }
-     */
-
-    /*
-    The compareTo() method determines the order of one object (object1) with the specified
-    object o (object2) and returns the following:
-    1. Returns 1 if object1 > object2;
-    2. Returns 0 if object1 == object2;
-    3. Returns -1 if object1 < object2;
-     */
-
-    @Override
-    public double compareTo(Employee emp) {
-        double compare = emp.getGrossSalary();
-        return emp.getGrossSalary() - compare;
-    }
-
     public String printSortedEmployees() throws Exception {
         if (listOfEmployees.isEmpty()) {
             throw new InvalidCompanyException("No employee has been registered yet.");
         }
 
-       // Collections.sort(listOfEmployees);
+        Collections.sort(listOfEmployees, new SalaryComparator());
 
         String allEmployeesSorted = "";
         for (Employee employee : listOfEmployees) {
@@ -190,27 +165,6 @@ public class Company implements Comparable {
         }
         return "Employees sorted by gross salary (ascending order):" + END_OF_LINE + allEmployeesSorted;
     }
-
-    //Sort again using stuff we will learn tomorrow
-    /*public String printSortedEmployees() throws Exception {
-        if (listOfEmployees.isEmpty()) {
-            throw new InvalidCompanyException("No employee has been registered yet.");
-        }
-        for (int i = 0; i < listOfEmployees.size(); i++) {
-            for (int j = listOfEmployees.size() - 1; j < i; j--) {
-                if (listOfEmployees.get(i).getGrossSalary() > listOfEmployees.get(j).getGrossSalary()) {
-                    Employee temp = listOfEmployees.get(i);
-                    listOfEmployees.set(i, listOfEmployees.get(i));
-                    listOfEmployees.set(j, temp);
-                }
-            }
-        }
-        String allEmployeesSorted = "";
-        for (Employee employee : listOfEmployees) {
-            allEmployeesSorted = allEmployeesSorted + employee.toString() + END_OF_LINE;
-        }
-        return "Employees sorted by gross salary (ascending order):" + END_OF_LINE + allEmployeesSorted;
-    }*/
 
     public String updateEmployeeName(String id, String newName) throws Exception {
         for (int i = 0; i < listOfEmployees.size(); i++) {

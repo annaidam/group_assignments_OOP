@@ -26,7 +26,7 @@ public class Director extends Manager {
 
     public void setDepartment(String newDept) throws Exception {
         if (containsBUSINESS || containsTECHNICAL || containsHUMAN_RESOURCES) {
-            this.department = department;
+            this.department = newDept;
         } else {
             throw new InvalidEmployeeException("Department must be one of the options: Business, Human Resources or Technical.");
         }
