@@ -88,6 +88,17 @@ public class Company implements Comparable {
         } else {
             return currentEmployee;
         }
+    }*/
+
+    public Employee findEmployee(String id) throws Exception {
+        Employee currentEmployee = null;
+        for (int i = 0; i < listOfEmployees.size(); i++) {
+            currentEmployee = listOfEmployees.get(i);
+            if (currentEmployee.getID().equals(id)) {
+                return currentEmployee;
+            }
+        }
+        throw new Exception ("Employee " + id + "was not registered yet.");
     }
 
     public String removeEmployee(String empID) throws Exception {
