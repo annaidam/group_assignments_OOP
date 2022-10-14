@@ -296,36 +296,27 @@ public class Company {
          counterBSc = 0;
          counterMSc = 0;
          counterPhD = 0;
-
         if (listOfEmployees.isEmpty()) {
             throw new InvalidCompanyException("No employees registered yet.");
         }
-
         for (Employee currentEmployee : listOfEmployees) {
             if (currentEmployee instanceof Manager) {
                     if(((Manager) currentEmployee).getDEGREE_TYPES().equals("BSc")){
                         counterBSc = counterBSc + 1;
-                    }
-                        else if(((Manager) currentEmployee).getDEGREE_TYPES().equals("MSc")){
-                        counterMSc = counterMSc + 1;
-                        }
-                    else if(((Manager) currentEmployee).getDEGREE_TYPES().equals("PhD")) {
+                    } else if(((Manager) currentEmployee).getDEGREE_TYPES().equals("MSc")){
+                    counterMSc = counterMSc + 1;
+                    } else if(((Manager) currentEmployee).getDEGREE_TYPES().equals("PhD")) {
                     counterPhD = counterPhD + 1;
                 }
-
             }
         }
         if (counterBSc != 0) {
             degreeMap.put("BSc", counterBSc);
-        }
-
-        if (counterMSc != 0) {
+        } if (counterMSc != 0) {
             degreeMap.put("MSc", counterMSc);
-        }
-        if (counterPhD != 0) {
+        } if (counterPhD != 0) {
             degreeMap.put("PhD", counterPhD);
         }
-
        return degreeMap;
     }
 
