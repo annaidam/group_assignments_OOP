@@ -13,9 +13,8 @@ public class Company {
     //Employee currentEmployee;
 
     /*
-    TODO Promotion refactoring
+       TODO Promotion refactoring
        TODO Hash Maps - remove
-        TODO handle some exceptions
        TODO Test locally, then upload on codeGrade
        TODO check if we can use 'name.trim().isEmpty'
        TODO handle some exceptions

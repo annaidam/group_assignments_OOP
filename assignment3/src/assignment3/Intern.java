@@ -3,6 +3,7 @@ package assignment3;
 public class Intern extends Employee {
     private int GPA;
 
+
     public Intern(String name, String id, double grossSalary, int GPA) throws Exception{
         super(name, id, grossSalary);
 
@@ -19,6 +20,11 @@ public class Intern extends Employee {
 
     public double getGrossSalary() {
         return calculateNetSalary();
+    }
+
+    @Override
+    public double getRawGrossSalary() {
+        return super.getGrossSalary();
     }
 
     @Override
