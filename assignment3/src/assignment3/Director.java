@@ -34,8 +34,7 @@ public class Director extends Manager {
 
     public double directorGrossSalary() {
         final double ADDITIONAL_SALARY = 5000.00;
-        double directorGrossSalary = this.truncateSalary(super.getGrossSalary()) + getDegreeBonus() + ADDITIONAL_SALARY;
-        return directorGrossSalary;
+        return this.truncateSalary(super.getGrossSalary()) + getDegreeBonus() + ADDITIONAL_SALARY;
     }
 
     public double calculateNetSalary() {

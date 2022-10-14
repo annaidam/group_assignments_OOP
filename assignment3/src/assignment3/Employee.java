@@ -18,7 +18,7 @@ public class Employee implements Comparable<Employee> {
             throw new InvalidEmployeeException("Name cannot be blank.");
         } else {this.name = name;}
 
-        if (grossSalary <= 0){
+        if (grossSalary < 0){
             throw new InvalidEmployeeException("Salary must be greater than zero.");
         } else {this.grossSalary = grossSalary;}
     }
@@ -31,25 +31,16 @@ public class Employee implements Comparable<Employee> {
         return name;
     }
 
-    public void setName(String newName)  throws Exception
-    {
+    public void setName(String newName)  throws Exception {
         if (name.isEmpty()) {
             throw new InvalidEmployeeException("Name cannot be blank.");
-        }
-        else {
+        } else {
             this.name = newName;
         }
     }
 
-  /*  public double calculateGrossSalary(grossSalary){
-
-        return grossSalary;
-    }*/
-
-
-
     public double getRawGrossSalary() {
-        return this.rawGrossSalary = this.grossSalary;
+        return this.rawGrossSalary = grossSalary;
     }
 
     public double getGrossSalary() {

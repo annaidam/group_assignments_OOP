@@ -48,8 +48,7 @@ public class Manager extends Employee
     }
 
     public double managerGrossSalary() {
-        double managerGrossSalary = truncateSalary(super.getGrossSalary()) + getDegreeBonus();
-        return managerGrossSalary;
+        return truncateSalary(super.getGrossSalary()) + getDegreeBonus();
     }
 
     @Override

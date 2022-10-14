@@ -14,26 +14,23 @@ public class Intern extends Employee {
     }
 
     public void setGpa(int newGPA) throws Exception {
-      // if (GPA >= 0 && GPA <= 10)
         this.GPA = newGPA;
-        }
+    }
 
     public double getGrossSalary() {
-        return calculateNetSalary();
+        return super.getRawGrossSalary();
     }
+
     @Override
     public double calculateNetSalary()  {
         double internGrossSalary;
         if (this.GPA <= 5) {
             internGrossSalary = 0.0;
-
         } else if (GPA <= 8) {
             internGrossSalary = super.getGrossSalary();
         } else {
             internGrossSalary = super.getGrossSalary() + 1000.00;
         }
-        //netSalary = internGrossSalary;
-        //setGrossSalary(internGrossSalary);
         return internGrossSalary;
     }
 
