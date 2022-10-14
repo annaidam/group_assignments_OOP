@@ -18,7 +18,7 @@ public class Intern extends Employee {
     }
 
     public double getGrossSalary() {
-        return super.getRawGrossSalary();
+        return calculateNetSalary();
     }
 
     @Override
