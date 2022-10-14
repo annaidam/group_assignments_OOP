@@ -11,12 +11,14 @@ public class Company {
     int counterMSc;
     int counterPhD;
 
-    /* TODO Try catch exception + extras
+    /*
        TODO Promotion refactoring
        TODO Hash Maps
        TODO sorting
        TODO Test locally, then upload on codeGrade
        TODO check if we can use 'name.trim().isEmpty'
+       TODO handle some exceptions
+       TODO Try catch exception + extras
      */
     public Company() {
         this.listOfEmployees = new ArrayList<>();
@@ -39,7 +41,6 @@ public class Company {
     public String createEmployee(String id, String name, double grossSalary, String DEGREE_TYPES) throws Exception {
         Employee employee = new Manager(id, name, grossSalary, DEGREE_TYPES);
 
-        ////////////throw from update, throw from setter
         for (Employee currentEmployee : listOfEmployees) {
             if (id.equals(currentEmployee.getID())) {
                 throw new InvalidCompanyException("Cannot register. ID " + id + " is already registered.");
@@ -96,8 +97,8 @@ public class Company {
             }
         }
      */
-    int counter=0;
     public String removeEmployee(String empID) throws Exception {
+        int counter=0;
         for(int i =0; i< listOfEmployees.size(); i++) {
 
             Employee currentEmployee = listOfEmployees.get(i);
@@ -324,7 +325,8 @@ public class Company {
         for (Employee currentEmployee : listOfEmployees) {
             if (currentEmployee instanceof Manager) {
                     if(((Manager) currentEmployee).getDEGREE_TYPES().equals("BSc")){
-                        counterBSc = counterBSc + 1;}
+                        counterBSc = counterBSc + 1;
+                    }
                         else if(((Manager) currentEmployee).getDEGREE_TYPES().equals("MSc")){
                         counterMSc = counterMSc + 1;
                         }

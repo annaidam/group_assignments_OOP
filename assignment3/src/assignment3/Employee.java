@@ -90,7 +90,8 @@ public class Employee implements Comparable<Employee> {
         if (anotherObject == null) {
             return false;
         }
-        if (anotherObject instanceof Employee otherEmployee) {
+        if (anotherObject instanceof Employee) {
+            Employee otherEmployee = (Employee) anotherObject;
             boolean sameID = this.EMPLOYEE_ID.equals(otherEmployee.getID());
             return sameID;
         } else {
