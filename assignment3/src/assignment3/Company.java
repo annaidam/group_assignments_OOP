@@ -13,9 +13,9 @@ public class Company {
     //Employee currentEmployee;
 
     /*
-       TODO Promotion refactoring
-       TODO Hash Maps
-       TODO sorting
+    TODO Promotion refactoring
+       TODO Hash Maps - remove
+        TODO handle some exceptions
        TODO Test locally, then upload on codeGrade
        TODO check if we can use 'name.trim().isEmpty'
        TODO handle some exceptions
@@ -184,7 +184,6 @@ public class Company {
         if (listOfEmployees.isEmpty()) {
             throw new InvalidCompanyException("No employees registered yet.");
         }
-
         Collections.sort(listOfEmployees);
 
         String allEmployeesSorted = "";
@@ -276,7 +275,7 @@ public class Company {
         }
     }
 
-    public String promoteToDirector(String id, String degree, String department) throws Exception {
+    /*public String promoteToDirector(String id, String degree, String department) throws Exception {
         if (!listOfEmployees.isEmpty()) {
             String originalName = findEmployee(id).getName();
             double originalSalary = findEmployee(id).getGrossSalary();
@@ -288,6 +287,32 @@ public class Company {
             throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
         }
     }
+
+     */
+    public String promoteToDirector(String id, String degree, String department) throws Exception {
+        Employee currentEmployee = findEmployee(id);
+        Employee promotedEmployee = new Employee(currentEmployee.getID(), currentEmployee.getName(), currentEmployee.getGrossSalary());
+        listOfEmployees.remove(currentEmployee);
+        listOfEmployees.add(promotedEmployee);
+        if (!listOfEmployees.isEmpty())
+            return promotedEmployee.getID() + " promoted successfully to Director.";
+        else {
+            throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
+        }
+    }
+        /*if (!listOfEmployees.isEmpty()) {
+            String originalName = findEmployee(id).getName();
+            double originalSalary = findEmployee(id).getGrossSalary();
+            Employee promotedEmployee = new Director(id, originalName, originalSalary, degree, department);
+            listOfEmployees.remove(id);
+            listOfEmployees.add(promotedEmployee);
+            return promotedEmployee.getID() + " promoted successfully to Director.";
+        } else {
+            throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
+        }
+    }
+
+         */
 
     public String promoteToIntern(String id, int GPA) throws Exception {
         if (!listOfEmployees.isEmpty()) {
@@ -349,12 +374,14 @@ public class Company {
         if (counterBSc != 0) {
             degreeMap.put("BSc", counterBSc);
         }
+
         if (counterMSc != 0) {
             degreeMap.put("MSc", counterMSc);
         }
         if (counterPhD != 0) {
             degreeMap.put("PhD", counterPhD);
         }
+
        return degreeMap;
     }
 
