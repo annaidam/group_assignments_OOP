@@ -10,6 +10,7 @@ public class Company {
     int counterBSc;
     int counterMSc;
     int counterPhD;
+    //Employee currentEmployee;
 
     /*
        TODO Promotion refactoring
@@ -77,14 +78,17 @@ public class Company {
     }
 
     public Employee findEmployee(String id) throws Exception {
-        for (Employee currentEmployee : listOfEmployees) {
-            if (!id.equals(currentEmployee.getID())) {
-                throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
-            }
-        }
-        for (Employee currentEmployee : listOfEmployees) {
+
+        for (int i=0; i<listOfEmployees.size();i++) {
+            Employee currentEmployee = listOfEmployees.get(i);
             if (id.equals(currentEmployee.getID())) {
                 return currentEmployee;
+            }
+        }
+        for (int i=0; i<listOfEmployees.size();i++) {
+            Employee currentEmployee = listOfEmployees.get(i);
+            if (!id.equals(currentEmployee.getID())) {
+                throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
             }
         }
         return null;
@@ -101,7 +105,12 @@ public class Company {
                 //counter = counter+1;
             }
         }
-        if(counter>0)
+        for (int i = 0; i < listOfEmployees.size(); i++) {
+            Employee currentEmployee = listOfEmployees.get(i);
+            if (empID.equals(findEmployee(currentEmployee.getID()))) {
+                throw new InvalidCompanyException("Employee " + empID + " was not registered yet.");
+            }
+       /* if(counter!=0)
         {
             return "Employee " + empID + " was successfully removed.";
         }
@@ -332,13 +341,13 @@ public class Company {
 
             }
         }
-        if (counterBSc > 0) {
+        if (counterBSc != 0) {
             degreeMap.put("BSc", counterBSc);
         }
-        if (counterMSc > 0) {
+        if (counterMSc != 0) {
             degreeMap.put("MSc", counterMSc);
         }
-        if (counterPhD > 0) {
+        if (counterPhD != 0) {
             degreeMap.put("PhD", counterPhD);
         }
        return degreeMap;
