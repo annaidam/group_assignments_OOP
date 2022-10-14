@@ -91,14 +91,14 @@ public class Company {
     }
 
     public String removeEmployee(String empID) throws Exception {
-        int counter=0;
-        for(int i =0; i< listOfEmployees.size(); i++) {
+        //int counter=0;
 
+        for (int i = 0; i < listOfEmployees.size(); i++) {
             Employee currentEmployee = listOfEmployees.get(i);
-            if(currentEmployee.getID().equals(empID))
-            {
-                this.listOfEmployees.remove(findEmployee(empID));
-                counter = counter+1;
+            if (currentEmployee.getID().equals(empID)) {
+                this.listOfEmployees.remove(currentEmployee);
+                return "Employee " + empID + " was successfully removed.";
+                //counter = counter+1;
             }
         }
         if(counter>0)
@@ -108,6 +108,9 @@ public class Company {
         else {
             throw new InvalidCompanyException("Employee " + empID + " was not registered yet.");
         }
+
+        */
+        }return null;
     }
 
     public String printEmployee(String employeeID) throws Exception {
@@ -314,8 +317,6 @@ public class Company {
         if (listOfEmployees.isEmpty()) {
             throw new InvalidCompanyException("No employees registered yet.");
         }
-        if()
-        throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
 
         for (Employee currentEmployee : listOfEmployees) {
             if (currentEmployee instanceof Manager) {
