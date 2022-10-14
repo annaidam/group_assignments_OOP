@@ -19,7 +19,7 @@ public class Company {
        TODO check if we can use 'name.trim().isEmpty'
        TODO handle some exceptions
        TODO Try catch exception + extras
-       TODO readme.txt  
+       TODO readme.txt
      */
     public Company() {
         this.listOfEmployees = new ArrayList<>();
