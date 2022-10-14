@@ -14,7 +14,7 @@ public class Intern extends Employee {
     }
 
     public void setGpa(int newGPA) throws Exception {
-      //  if (GPA >= 0 && GPA <= 10)
+      // if (GPA >= 0 && GPA <= 10)
         this.GPA = newGPA;
         }
 

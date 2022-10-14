@@ -198,70 +198,57 @@ public class Company {
         if (newName.isEmpty()) {
             throw new InvalidEmployeeException("Name cannot be blank.");
         }
-        for (Employee currentEmployee : listOfEmployees) {
-            if (!id.equals(currentEmployee.getID())) {
-                throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
-            }
+        findEmployee(id);
+        if (foundEmployee) {
+            findEmployee(id).setName(newName);
+            return "Employee " + id + " was updated successfully";
+        } else {
+            throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
         }
-        for (Employee currentEmployee : listOfEmployees) {
-            if (id.equals(currentEmployee.getID())) {
-                findEmployee(id).setName(newName);
-                return "Employee " + id + " was updated successfully";
-            }
-        }
-        return null;
     }
 
     public String updateGrossSalary(String id, double newGrossSalary) throws Exception {
         if (newGrossSalary <= 0){
             throw new InvalidEmployeeException("Salary must be greater than zero.");
         }
-        for (Employee currentEmployee : listOfEmployees) {
-            if (!id.equals(currentEmployee.getID())) {
-                throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
-            }
+        findEmployee(id);
+        if (foundEmployee) {
+            findEmployee(id).setGrossSalary(newGrossSalary);
+            return "Employee " + id + " was updated successfully";
+        } else {
+            throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
         }
-        findEmployee(id).setGrossSalary(newGrossSalary);
-        return "Employee " + id + " was updated successfully";
     }
 
     public String updateManagerDegree(String id, String newDegree) throws Exception {
-        if(!newDegree.equals("BSc") || !newDegree.equals("MSc") || !newDegree.equals("PhD")){
-            throw new InvalidEmployeeException("Degree must be one of the options: BSc, MSc or PhD.");
-        }
-
-        if (findEmployee(id) instanceof Manager) {
+        if(newDegree.equals("BSc") || newDegree.equals("MSc") || newDegree.equals("PhD")) {
             ((Manager) findEmployee(id)).setDEGREE_TYPES(newDegree);
             return "Employee " + id + " was updated successfully";
         } else {
-            return null;
+            throw new InvalidEmployeeException("Degree must be one of the options: BSc, MSc or PhD.");
         }
     }
 
     public String updateDirectorDegree(String id, String newDegree) throws Exception {
-        if(!newDegree.equals("BSc") || !newDegree.equals("MSc") || !newDegree.equals("PhD")){
-            throw new InvalidEmployeeException("Employee " + id + " was not registered yet.");
-        }
-        if (findEmployee(id) instanceof Director) {
-            ((Director) findEmployee(id)).setDEGREE_TYPES(newDegree);
+        if(newDegree.equals("BSc") || newDegree.equals("MSc") || newDegree.equals("PhD")) {
+            ((Manager) findEmployee(id)).setDEGREE_TYPES(newDegree);
             return "Employee " + id + " was updated successfully";
+        } else {
+            throw new InvalidEmployeeException("Degree must be one of the options: BSc, MSc or PhD.");
         }
-        return null;
     }
 
     public String updateDirectorDept(String id, String newDept) throws Exception {
-        if(!newDept.equals("Human Resources") || !newDept.equals("Business") || !newDept.equals("Technical")){
-            throw new InvalidEmployeeException("Department must be one of the options: Business, Human Resources or Technical.");
-        }
-        if (findEmployee(id) instanceof Director) {
+        if(newDept.equals("Human Resources") || newDept.equals("Business") || newDept.equals("Technical")) {
             ((Director) findEmployee(id)).setDepartment(newDept);
             return "Employee " + id + " was updated successfully";
+        } else {
+            throw new InvalidEmployeeException("Department must be one of the options: Business, Human Resources or Technical.");
         }
-        return null;
     }
 
     public String updateInternGPA(String id, int newGPA) throws Exception {
-        if (newGPA <= 0 || newGPA >= 10) {
+        if (newGPA < 0 || newGPA > 10) {
             throw new InvalidEmployeeException(newGPA + " outside range. Must be between 0-10.");
         }
         for (int i = 0; i < listOfEmployees.size(); i++) {
