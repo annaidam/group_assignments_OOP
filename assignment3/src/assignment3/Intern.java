@@ -18,7 +18,9 @@ public class Intern extends Employee {
         this.GPA = newGPA;
         }
 
-
+    public double getGrossSalary() {
+        return calculateNetSalary();
+    }
     @Override
     public double calculateNetSalary()  {
         double internGrossSalary;
