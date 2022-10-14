@@ -31,6 +31,10 @@ public class Director extends Manager {
             throw new InvalidEmployeeException("Department must be one of the options: Business, Human Resources or Technical.");
         }
     }
+    @Override
+    public double getRawGrossSalary() {
+        return super.getGrossSalary();
+    }
 
     public double directorGrossSalary() {
         final double ADDITIONAL_SALARY = 5000.00;

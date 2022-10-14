@@ -260,7 +260,7 @@ public class Company {
     public String promoteToDirector(String id, String degree, String department) throws Exception {
         if (!listOfEmployees.isEmpty()) {
             Employee currentEmployee = findEmployee(id);
-            Employee promotedEmployee = new Director(currentEmployee.getID(), currentEmployee.getName(), currentEmployee.getGrossSalary(), degree, department);
+            Employee promotedEmployee = new Director(currentEmployee.getID(), currentEmployee.getName(), currentEmployee.getRawGrossSalary(), degree, department);
             listOfEmployees.remove(currentEmployee);
             listOfEmployees.add(promotedEmployee);
             return promotedEmployee.getID() + " promoted successfully to Director.";
