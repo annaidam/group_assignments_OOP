@@ -90,13 +90,6 @@ public class Company {
         return null;
     }
 
-    /*
-    for (Employee currentEmployee : listOfEmployees) {
-            if (!empID.equals(currentEmployee.getID())) {
-                throw new InvalidCompanyException("Employee " + empID + " was not registered yet.");
-            }
-        }
-     */
     public String removeEmployee(String empID) throws Exception {
         int counter=0;
         for(int i =0; i< listOfEmployees.size(); i++) {
@@ -321,6 +314,8 @@ public class Company {
         if (listOfEmployees.isEmpty()) {
             throw new InvalidCompanyException("No employees registered yet.");
         }
+        if()
+        throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
 
         for (Employee currentEmployee : listOfEmployees) {
             if (currentEmployee instanceof Manager) {
@@ -340,10 +335,10 @@ public class Company {
             degreeMap.put("BSc", counterBSc);
         }
         if (counterMSc > 0) {
-            degreeMap.put("MSc", counterBSc);
+            degreeMap.put("MSc", counterMSc);
         }
         if (counterPhD > 0) {
-            degreeMap.put("PhD", counterBSc);
+            degreeMap.put("PhD", counterPhD);
         }
        return degreeMap;
     }
