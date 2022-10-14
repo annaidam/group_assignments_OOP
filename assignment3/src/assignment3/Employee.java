@@ -57,8 +57,8 @@ public class Employee implements Comparable<Employee> {
         if (grossSalary < 0){
             throw new InvalidEmployeeException("Salary must be greater than zero.");
         } else {
-        netSalary = truncateSalary(grossSalary) * 0.9;
-        return this.truncateSalary(netSalary);}
+            netSalary = truncateSalary(grossSalary) * 0.9;
+            return this.truncateSalary(netSalary);}
     }
 
     public double truncateSalary(double salary) {
@@ -104,10 +104,3 @@ public class Employee implements Comparable<Employee> {
     }
 
 }
-
-
-
-
-
-
-
