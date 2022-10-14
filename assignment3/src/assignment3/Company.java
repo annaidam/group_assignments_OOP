@@ -78,10 +78,10 @@ public class Company {
     }
 
     public Employee findEmployee(String id) throws Exception {
-
         for (int i=0; i<listOfEmployees.size();i++) {
             Employee currentEmployee = listOfEmployees.get(i);
             if (id.equals(currentEmployee.getID())) {
+                foundEmployee = true;
                 return currentEmployee;
             }
         }
@@ -95,7 +95,21 @@ public class Company {
     }
 
     public String removeEmployee(String empID) throws Exception {
-        //int counter=0;
+        findEmployee(empID);
+        if (foundEmployee) {
+            Employee removing = findEmployee(empID);
+            this.listOfEmployees.remove(removing);
+        } else {
+            throw new InvalidCompanyException("Employee " + empID + " was not registered yet.");
+        }
+        return "Employee " + empID + " was successfully removed.";
+    }
+    /*
+        for (int i = 0; i < listOfEmployees.size(); i++) {
+            Employee currentEmployee = listOfEmployees.get(i);
+            if (empID.equals(findEmployee(currentEmployee.getID()))) {
+                throw new InvalidCompanyException("Employee " + empID + " was not registered yet.");
+            }
 
         for (int i = 0; i < listOfEmployees.size(); i++) {
             Employee currentEmployee = listOfEmployees.get(i);
@@ -118,10 +132,10 @@ public class Company {
             throw new InvalidCompanyException("Employee " + empID + " was not registered yet.");
         }
 
-        */
+
         }return null;
     }
-
+*/
     public String printEmployee(String employeeID) throws Exception {
         if (!listOfEmployees.isEmpty()) {
             return findEmployee(employeeID).toString();
@@ -199,17 +213,21 @@ public class Company {
     }
 
     public String updateGrossSalary(String id, double newGrossSalary) throws Exception {
-        if (!listOfEmployees.isEmpty()) {
-            findEmployee(id).setGrossSalary(newGrossSalary);
-            return "Employee " + id + " was updated successfully";
-        } else {
-            throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
+        if (newGrossSalary <= 0){
+            throw new InvalidEmployeeException("Salary must be greater than zero.");
         }
+        for (Employee currentEmployee : listOfEmployees) {
+            if (!id.equals(currentEmployee.getID())) {
+                throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
+            }
+        }
+        findEmployee(id).setGrossSalary(newGrossSalary);
+        return "Employee " + id + " was updated successfully";
     }
 
     public String updateManagerDegree(String id, String newDegree) throws Exception {
         if(!newDegree.equals("BSc") || !newDegree.equals("MSc") || !newDegree.equals("PhD")){
-            throw new InvalidEmployeeException("Employee " + id + " was not registered yet.");
+            throw new InvalidEmployeeException("Degree must be one of the options: BSc, MSc or PhD.");
         }
 
         if (findEmployee(id) instanceof Manager) {
