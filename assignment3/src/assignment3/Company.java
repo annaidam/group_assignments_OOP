@@ -12,8 +12,6 @@ public class Company {
     int counterPhD;
 
     /*
-
-
        TODO check if we can use 'name.trim().isEmpty'
        TODO add comments
        TODO make the code 'pretty'
