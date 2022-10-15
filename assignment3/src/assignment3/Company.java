@@ -310,15 +310,72 @@ public class Company {
                 }
             }
         }
+        HashMap<String, Integer> hashMap = new HashMap<>();
         if (counterBSc != 0) {
-            degreeMap.put("BSc", counterBSc);
-        } if (counterMSc != 0) {
-            degreeMap.put("MSc", counterMSc);
-        } if (counterPhD != 0) {
-            degreeMap.put("PhD", counterPhD);
+            hashMap.put("BSc", counterBSc);
         }
-       return degreeMap;
+        if (counterMSc != 0) {
+            hashMap.put("MSc", counterMSc);
+        }
+        if (counterPhD != 0) {
+            hashMap.put("PhD", counterPhD);
+        }
+        return hashMap;
     }
+//
+//    public HashMap mapEachDegree2() {
+//
+//        int BScCount = 0;
+//        int MScCount = 0;
+//        int PhDCount = 0;
+//
+//        for (Employee currentEmployee : listOfEmployees) {
+//            if (currentEmployee instanceof Manager) {
+//                String degree = ((Manager) currentEmployee).getDEGREE_TYPES();
+//                switch (Degrees.valueOf(degree)) {
+//                    case BSC:
+//                        BScCount++;
+//                        break;
+//                    case MSC:
+//                        MScCount++;
+//                        break;
+//                    case PHD:
+//                        PhDCount++;
+//                        break;
+//                }
+//            }
+//        }
+//
+//        HashMap<String, Integer> hashMap = new HashMap<>();
+//        if (BScCount != 0) {
+//            hashMap.put(Degrees.BSC.toString(), BScCount);
+//        }
+//        if (MScCount != 0) {
+//            hashMap.put(Degrees.MSC.toString(), MScCount);
+//        }
+//        if (PhDCount != 0) {
+//            hashMap.put(Degrees.PHD.toString(), PhDCount);
+//        }
+//        return hashMap;
+//
+//    }
+
+//
+//    public HashMap<String, Integer> mapEachDegree1() throws Exception {
+//
+//        HashMap<String, Integer> degreesMap = new HashMap<>();
+//
+//        for (Employee currentEmployee : listOfEmployees) {
+//            if (currentEmployee instanceof Manager) {
+//                String degree = ((Manager) currentEmployee).getDEGREE_TYPES();
+//                int currentAmount = degreesMap.getOrDefault(degree, 0);
+//                degreesMap.put(degree, currentAmount + 1);
+//            }
+//        }
+//
+//        return degreesMap;
+//
+//    }
 
     public String toString(){
         String s1;
