@@ -1,6 +1,5 @@
 package assignment3;
 
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class Company {
@@ -101,7 +100,6 @@ public class Company {
         for (int i=0; i<listOfEmployees.size();i++) {
             Employee currentEmployee = listOfEmployees.get(i);
             if (empID.equals(currentEmployee.getID())) {
-                //Employee removing = findEmployee(empID);
                 listOfEmployees.remove(findEmployee((empID)));
                 counter = counter +1;
             }
