@@ -15,7 +15,8 @@ public class Company {
 
 
        TODO check if we can use 'name.trim().isEmpty'
-       TODO handle some exceptions
+       TODO add comments
+       TODO make the code 'pretty'
        TODO Try catch exception + extras
        TODO readme.txt
      */
