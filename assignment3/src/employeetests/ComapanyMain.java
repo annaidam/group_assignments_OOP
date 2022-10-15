@@ -39,7 +39,11 @@ public class ComapanyMain {
         actualMap.get("PhD"); //1
         actualMap.get("MSc"); //1
         actualMap.get("BSc"); //1
+        System.out.println("before" + facade.mapEachDegree());
         facade.removeEmployee("Emp2"); // Remove Blanca with the PhD
+
+        System.out.println("after" + facade.mapEachDegree());
+
         //Adds temporary employees with more 3 MSc and 1 BSc
         facade.createEmployee("Temp1", "John Doe", 25000.0, "MSc");
         facade.createEmployee("Temp2", "Jane Doe", 25000.0, "MSc");
