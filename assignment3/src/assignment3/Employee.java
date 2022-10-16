@@ -4,7 +4,7 @@ public class Employee implements Comparable<Employee> {
     private final String EMPLOYEE_ID;
     private String name;
     private double grossSalary;
-    double netSalary;
+    double netSalary; //make it private?
     double truncatedSalary;
     private double rawGrossSalary;
     //private

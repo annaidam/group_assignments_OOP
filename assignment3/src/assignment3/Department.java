@@ -5,7 +5,7 @@ public enum Department {
     TECHNICAL("Technical"),
     BUSINESS("Business");
 
-    final String DEPARTMENT;
+    private final String DEPARTMENT;
 
     Department(String department) {
         DEPARTMENT = department;

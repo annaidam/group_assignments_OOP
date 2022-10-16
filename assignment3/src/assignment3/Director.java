@@ -3,9 +3,9 @@ package assignment3;
 public class Director extends Manager {
 
     private String department;
-    boolean containsHUMAN_RESOURCES;
-    boolean containsBUSINESS;
-    boolean containsTECHNICAL;
+    private boolean containsHUMAN_RESOURCES;
+    private boolean containsBUSINESS;
+    private boolean containsTECHNICAL;
 
 
     public Director (String id, String name, double grossSalary, String DEGREE_TYPES, String department) throws Exception {

@@ -6,10 +6,10 @@ public class Company {
     private ArrayList<Employee> listOfEmployees;
     HashMap<String, Integer> degreeMap;
     final String END_OF_LINE = System.lineSeparator();
-    boolean foundEmployee = false;
-    int counterBSc;
-    int counterMSc;
-    int counterPhD;
+    private boolean foundEmployee = false;
+    private int counterBSc;
+    private int counterMSc;
+    private int counterPhD;
 
     /*
        TODO check if we can use 'name.trim().isEmpty'
@@ -93,15 +93,15 @@ public class Company {
 
     public String removeEmployee(String empID) throws Exception {
         //findEmployee(empID);
-        int counter =0;
+        int counterRemoveEmployee =0;
         for (int i=0; i<listOfEmployees.size();i++) {
             Employee currentEmployee = listOfEmployees.get(i);
             if (empID.equals(currentEmployee.getID())) {
                 listOfEmployees.remove(findEmployee((empID)));
-                counter = counter +1;
+                counterRemoveEmployee = counterRemoveEmployee +1;
             }
         }
-        if (counter != 0)
+        if (counterRemoveEmployee != 0)
         {
             return "Employee " + empID + " was successfully removed.";
         }
@@ -195,20 +195,6 @@ public class Company {
     }
 
     public String updateManagerDegree(String id, String newDegree) throws Exception {
-        findEmployee(id);
-        if (foundEmployee) {
-            if (newDegree.equals("BSc") || newDegree.equals("MSc") || newDegree.equals("PhD")) {
-                ((Manager) findEmployee(id)).setDEGREE_TYPES(newDegree);
-                return "Employee " + id + " was updated successfully";
-            }else {
-                throw new InvalidEmployeeException("Degree must be one of the options: BSc, MSc or PhD.");
-            }
-        } else {
-            throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
-        }
-    }
-
-    public String updateDirectorDegree(String id, String newDegree) throws Exception {
         findEmployee(id);
         if (foundEmployee) {
             if (newDegree.equals("BSc") || newDegree.equals("MSc") || newDegree.equals("PhD")) {
