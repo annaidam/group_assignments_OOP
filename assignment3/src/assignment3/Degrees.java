@@ -12,5 +12,3 @@ public enum Degrees {
 
     public String toString() { return this.DEGREE_TYPES; }
 }
-
-
