@@ -21,10 +21,7 @@ public class Manager extends Employee
         } else {throw new InvalidEmployeeException("Degree must be one of the options: BSc, MSc or PhD.");}
     }
 
-    public String getDEGREE_TYPES()
-    {
-        return DEGREE_TYPES;
-    }
+    public String getDEGREE_TYPES() {return DEGREE_TYPES;}
 
     public void setDEGREE_TYPES(String DEGREE_TYPES) throws Exception {
         if (containsBSc || containsMSc || containsPhD) {
@@ -37,12 +34,16 @@ public class Manager extends Employee
 
     public double getDegreeBonus() {
         double bonus = 0.0;
-        if (DEGREE_TYPES.equals("BSc")) {
-            bonus = 0.1 * super.getGrossSalary();
-        } else if (DEGREE_TYPES.equals("MSc")) {
-            bonus = 0.2 * super.getGrossSalary();
-        } else if (DEGREE_TYPES.equals("PhD")) {
-            bonus = 0.35 * super.getGrossSalary();
+        switch (DEGREE_TYPES) {
+            case "BSc":
+                bonus = 0.1 * super.getGrossSalary();
+                break;
+            case "MSc":
+                bonus = 0.2 * super.getGrossSalary();
+                break;
+            case "PhD":
+                bonus = 0.35 * super.getGrossSalary();
+                break;
         }
         return bonus;
     }
@@ -58,11 +59,10 @@ public class Manager extends Employee
 
     @Override
     public double calculateNetSalary() {
-        double netSalary = truncateSalary(managerGrossSalary()) * 0.9;
-        return netSalary;
+        return truncateSalary(managerGrossSalary()) * 0.9;
     }
 
-    //<degree> <name>’s gross salary is <gross_salary> SEK per month.
+    @Override
     public String toString()
     {
         return this.DEGREE_TYPES + " " + this.getName() + "'s gross salary is " + String.format("%.2f", this.truncateSalary(managerGrossSalary())) + " SEK per month.";

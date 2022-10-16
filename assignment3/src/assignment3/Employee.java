@@ -1,12 +1,13 @@
 package assignment3;
 
+import java.util.Objects;
+
 public class Employee implements Comparable<Employee> {
     private final String EMPLOYEE_ID;
     private String name;
     private double grossSalary;
 
-
-    Employee(String id, String name, double grossSalary) throws Exception {
+   public Employee(String id, String name, double grossSalary) throws Exception {
         if (id.trim().isEmpty()){
             throw new InvalidEmployeeException("ID cannot be blank.");
         } else {  this.EMPLOYEE_ID = id;}
@@ -49,7 +50,6 @@ public class Employee implements Comparable<Employee> {
         truncateSalary(this.grossSalary);
     }
 
-    //netSalary = grossSalary - (grossSalary * 0.1)
     public double calculateNetSalary() throws Exception{
         double netSalary;
         if (grossSalary < 0){
@@ -68,7 +68,6 @@ public class Employee implements Comparable<Employee> {
 
     }
 
-    //<name>’s gross salary is <gross_salary> SEK per month.
     public String toString() {
         return this.name + "'s gross salary is " + String.format("%.2f", this.truncateSalary(grossSalary)) + " SEK per month.";
     }
@@ -82,8 +81,7 @@ public class Employee implements Comparable<Employee> {
         }
         if (anotherObject instanceof Employee) {
             Employee otherEmployee = (Employee) anotherObject;
-            boolean sameID = this.EMPLOYEE_ID.equals(otherEmployee.getID());
-            return sameID;
+            return this.EMPLOYEE_ID.equals(otherEmployee.getID());
         } else {
             return false;
         }
@@ -100,6 +98,10 @@ public class Employee implements Comparable<Employee> {
         } else {
             return -1;
         }
+    }
+
+    public int hashCode() {
+        return Objects.hash(getID(), getName(), getGrossSalary());
     }
 
 }

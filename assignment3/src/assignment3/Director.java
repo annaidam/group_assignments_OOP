@@ -54,7 +54,7 @@ public class Director extends Manager {
         }
         return netSalary;
     }
-
+    @Override
     public String toString() {
         return (super.getDEGREE_TYPES() + " " + super.getName() + "'s gross salary is " + String.format("%.2f", this.truncateSalary(directorGrossSalary())) + " SEK per month. Dept: " + this.getDepartment());
     }

@@ -10,13 +10,6 @@ public class Company {
     private int counterMSc;
     private int counterPhD;
 
-    /*
-       TODO check if we can use 'name.trim().isEmpty'
-       TODO add comments
-       TODO make the code 'pretty'
-       TODO Try catch exception + extras
-       TODO readme.txt
-     */
     public Company() {
         this.listOfEmployees = new ArrayList<>();
     }
@@ -73,15 +66,13 @@ public class Company {
     }
 
     public Employee findEmployee(String id) throws Exception {
-        for (int i=0; i<listOfEmployees.size();i++) {
-            Employee currentEmployee = listOfEmployees.get(i);
+        for (Employee currentEmployee : listOfEmployees) {
             if (id.equals(currentEmployee.getID())) {
                 foundEmployee = true;
                 return currentEmployee;
             }
         }
-        for (int i=0; i<listOfEmployees.size();i++) {
-            Employee currentEmployee = listOfEmployees.get(i);
+        for (Employee currentEmployee : listOfEmployees) {
             if (!id.equals(currentEmployee.getID())) {
                 throw new InvalidCompanyException("Employee " + id + " was not registered yet.");
             }
@@ -90,7 +81,6 @@ public class Company {
     }
 
     public String removeEmployee(String empID) throws Exception {
-        //findEmployee(empID);
         int counter =0;
         for (int i=0; i<listOfEmployees.size();i++) {
             Employee currentEmployee = listOfEmployees.get(i);
@@ -283,12 +273,16 @@ public class Company {
         }
         for (Employee currentEmployee : listOfEmployees) {
             if (currentEmployee instanceof Manager) {
-                    if(((Manager) currentEmployee).getDEGREE_TYPES().equals("BSc")){
+                switch (((Manager) currentEmployee).getDEGREE_TYPES()) {
+                    case "BSc":
                         counterBSc = counterBSc + 1;
-                    } else if(((Manager) currentEmployee).getDEGREE_TYPES().equals("MSc")){
-                    counterMSc = counterMSc + 1;
-                    } else if(((Manager) currentEmployee).getDEGREE_TYPES().equals("PhD")) {
-                    counterPhD = counterPhD + 1;
+                        break;
+                    case "MSc":
+                        counterMSc = counterMSc + 1;
+                        break;
+                    case "PhD":
+                        counterPhD = counterPhD + 1;
+                        break;
                 }
             }
         }

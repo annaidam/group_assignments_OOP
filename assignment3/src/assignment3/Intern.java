@@ -2,8 +2,6 @@ package assignment3;
 
 public class Intern extends Employee {
     private int GPA;
-
-
     public Intern(String name, String id, double grossSalary, int GPA) throws Exception{
         super(name, id, grossSalary);
 
@@ -15,9 +13,13 @@ public class Intern extends Employee {
     }
 
     public void setGpa(int newGPA) throws Exception {
-        this.GPA = newGPA;
+        if (GPA < 0 || GPA > 10) {
+            throw new InvalidEmployeeException(GPA + " outside range. Must be between 0-10.");
+        } else {
+            this.GPA = newGPA;
+        }
     }
-
+    @Override
     public double getGrossSalary() {
         return calculateNetSalary();
     }
