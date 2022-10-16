@@ -37,7 +37,7 @@ public class Employee implements Comparable<Employee> {
     }
 
     public double getRawGrossSalary() {
-        return this.rawGrossSalary = grossSalary;
+        return this.grossSalary;
     }
 
     public double getGrossSalary() {
