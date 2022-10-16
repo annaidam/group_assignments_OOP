@@ -40,7 +40,7 @@ public class Director extends Manager {
         final double ADDITIONAL_SALARY = 5000.00;
         return this.truncateSalary(super.getGrossSalary()) + getDegreeBonus() + ADDITIONAL_SALARY;
     }
-
+    @Override
     public double calculateNetSalary() {
         double netSalary;
         netSalary = 0.0;
@@ -58,4 +58,5 @@ public class Director extends Manager {
     public String toString() {
         return (super.getDEGREE_TYPES() + " " + super.getName() + "'s gross salary is " + String.format("%.2f", this.truncateSalary(directorGrossSalary())) + " SEK per month. Dept: " + this.getDepartment());
     }
+
 }

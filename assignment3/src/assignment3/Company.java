@@ -4,7 +4,6 @@ import java.util.*;
 
 public class Company {
     private ArrayList<Employee> listOfEmployees;
-    HashMap<String, Integer> degreeMap;
     final String END_OF_LINE = System.lineSeparator();
     private boolean foundEmployee = false;
     private int counterBSc;
@@ -20,7 +19,6 @@ public class Company {
      */
     public Company() {
         this.listOfEmployees = new ArrayList<>();
-        this.degreeMap = new HashMap<String, Integer>();
     }
 
     public String createEmployee(String id, String name, double grossSalary) throws Exception {
@@ -93,15 +91,15 @@ public class Company {
 
     public String removeEmployee(String empID) throws Exception {
         //findEmployee(empID);
-        int counterRemoveEmployee =0;
+        int counter =0;
         for (int i=0; i<listOfEmployees.size();i++) {
             Employee currentEmployee = listOfEmployees.get(i);
             if (empID.equals(currentEmployee.getID())) {
                 listOfEmployees.remove(findEmployee((empID)));
-                counterRemoveEmployee = counterRemoveEmployee +1;
+                counter = counter +1;
             }
         }
-        if (counterRemoveEmployee != 0)
+        if (counter != 0)
         {
             return "Employee " + empID + " was successfully removed.";
         }
@@ -274,7 +272,9 @@ public class Company {
         }
     }
 
+
     public Map<String, Integer> mapEachDegree() throws Exception {
+        HashMap<String, Integer> degreeMap = new HashMap<String, Integer>();
          counterBSc = 0;
          counterMSc = 0;
          counterPhD = 0;

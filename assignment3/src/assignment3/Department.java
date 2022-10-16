@@ -10,4 +10,6 @@ public enum Department {
     Department(String department) {
         DEPARTMENT = department;
     }
+
+    public String toString() {return this.DEPARTMENT;}
 }

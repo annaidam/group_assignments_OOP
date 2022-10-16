@@ -51,14 +51,14 @@ public class Manager extends Employee
     public double getRawGrossSalary() {
         return super.getGrossSalary();
     }
+
     public double managerGrossSalary() {
         return truncateSalary(super.getGrossSalary()) + getDegreeBonus();
     }
 
     @Override
     public double calculateNetSalary() {
-        double netSalary;
-        netSalary = truncateSalary(managerGrossSalary()) * 0.9;
+        double netSalary = truncateSalary(managerGrossSalary()) * 0.9;
         return netSalary;
     }
 

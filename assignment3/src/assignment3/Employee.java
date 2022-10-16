@@ -4,10 +4,7 @@ public class Employee implements Comparable<Employee> {
     private final String EMPLOYEE_ID;
     private String name;
     private double grossSalary;
-    double netSalary; //make it private?
-    double truncatedSalary;
-    private double rawGrossSalary;
-    //private
+
 
     Employee(String id, String name, double grossSalary) throws Exception {
         if (id.trim().isEmpty()){
@@ -54,6 +51,7 @@ public class Employee implements Comparable<Employee> {
 
     //netSalary = grossSalary - (grossSalary * 0.1)
     public double calculateNetSalary() throws Exception{
+        double netSalary;
         if (grossSalary < 0){
             throw new InvalidEmployeeException("Salary must be greater than zero.");
         } else {
@@ -62,6 +60,7 @@ public class Employee implements Comparable<Employee> {
     }
 
     public double truncateSalary(double salary) {
+        double truncatedSalary;
         double temporary1 = salary * 100;
         double temporary2 = (int) temporary1;
         truncatedSalary = temporary2 / 100.0;
