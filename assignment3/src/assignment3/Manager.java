@@ -3,9 +3,9 @@ package assignment3;
 public class Manager extends Employee
 {
     private String DEGREE_TYPES;
-    boolean containsBSc;
-    boolean containsMSc;
-    boolean containsPhD;
+    private boolean containsBSc;
+    private boolean containsMSc;
+    private boolean containsPhD;
 
     public Manager (String id, String name, double grossSalary, String DEGREE_TYPES) throws Exception {
         super (id,name,grossSalary);
