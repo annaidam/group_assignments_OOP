@@ -57,6 +57,7 @@ public class Manager extends Employee
 
     @Override
     public double calculateNetSalary() {
+        double netSalary;
         netSalary = truncateSalary(managerGrossSalary()) * 0.9;
         return netSalary;
     }
